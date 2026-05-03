@@ -71,7 +71,7 @@ nav {
 .nav-dropdown {
   position: relative;
 }
-.nav-dropdown-trigger {
+.nav-links .nav-dropdown-trigger {
   cursor: pointer;
   display: flex; align-items: center; gap: 6px;
   font-family: 'Barlow Condensed', sans-serif;
@@ -80,7 +80,8 @@ nav {
   color: var(--light);
   opacity: 0.7; transition: opacity 0.2s, color 0.2s;
 }
-.nav-dropdown:hover .nav-dropdown-trigger { opacity: 1; color: var(--orange); }
+.nav-dropdown:hover .nav-links .nav-dropdown-trigger,
+.nav-dropdown:hover > .nav-dropdown-trigger { opacity: 1; color: var(--orange); }
 .nav-dropdown-trigger::after {
   content: '';
   width: 0; height: 0;
@@ -329,11 +330,11 @@ nav {
   position: absolute; right: 6%; top: 50%;
   transform: translateY(-50%);
   width: clamp(220px, 28vw, 440px); aspect-ratio: 1;
-  opacity: 0.3; animation: fadeInLogo 2s ease both;
+  opacity: 0.35; animation: fadeInLogo 2s ease both;
 }
 
 @keyframes fadeInLogo {
-  from { opacity: 0; } to { opacity: 0.07; }
+  from { opacity: 0; } to { opacity: 0.35; }
 }
 
 /* ── TICKER ── */
@@ -673,8 +674,8 @@ footer {
             <span class="nav-dropdown-item-year">2024</span>
           </a>
           <div class="nav-dropdown-divider"></div>
-          <a href="b2f-2023.html" class="nav-dropdown-item">
-            <span class="nav-dropdown-item-year">2023</span>
+          <a href="b2f-2022.html" class="nav-dropdown-item">
+            <span class="nav-dropdown-item-year">2022</span>
           </a>
           <div class="nav-dropdown-divider"></div>
           <a href="#archive" class="nav-dropdown-item" data-hr="Sva izdanja →" data-en="All editions →">
@@ -682,6 +683,7 @@ footer {
           </a>
         </div>
       </li>
+      <li><a href="about.html" data-hr="O nama" data-en="About us">O nama</a></li>
       <li><a href="#follow" data-hr="Kontakt" data-en="Contact">Kontakt</a></li>
     </ul>
     <div class="lang-toggle">
@@ -727,7 +729,7 @@ footer {
 <section class="about" id="about">
   <div class="about-text reveal">
     <p class="section-label" data-hr="Što je Break2Future" data-en="What is Break2Future">Što je Break2Future</p>
-    <h2 class="section-title" data-hr="KULTURA.<br>BITKA.<br>ZAJEDNICA." data-en="CULTURE.<br>BATTLE.<br>COMMUNITY.">KULTURA.<br>BITKA.<br>ZAJEDNICA.</h2>
+    <h2 class="section-title" data-hr="KULTURA.<br><span style='color:var(--orange)'>BITKA.</span><br>ZAJEDNICA." data-en="CULTURE.<br><span style='color:var(--orange)'>BATTLE.</span><br>COMMUNITY.">KULTURA.<br><span style="color:var(--orange)">BITKA.</span><br>ZAJEDNICA.</h2>
     <p data-hr="Break2Future je Zagreb's premier breaking event — dvodnevna proslava breaking kulture koja spaja najtalentiranije B-Boy i B-Girl plesače iz regije i šire." data-en="Break2Future is Zagreb's premier breaking event — a two-day celebration of breaking culture that brings together the most talented B-Boys and B-Girls from the region and beyond.">
       Break2Future je Zagreb's premier breaking event — dvodnevna proslava breaking kulture koja spaja najtalentiranije B-Boy i B-Girl plesače iz regije i šire.
     </p>
@@ -827,11 +829,11 @@ footer {
         </div>
       </a>
 
-      <!-- B2F 2023 -->
-      <a href="b2f-2023.html" class="edition-card reveal">
+      <!-- B2F 2022 -->
+      <a href="b2f-2022.html" class="edition-card reveal">
         <div class="edition-top"></div>
         <div class="edition-body">
-          <div class="edition-year">20<span>23</span></div>
+          <div class="edition-year">20<span>22</span></div>
           <div class="edition-meta" data-hr="Zagreb · Arhiva" data-en="Zagreb · Archive">Zagreb · Arhiva</div>
           <div class="edition-winners">
             <div class="winner-row">
