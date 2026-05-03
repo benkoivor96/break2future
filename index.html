@@ -74,14 +74,21 @@ nav {
 .nav-dropdown-trigger {
   cursor: pointer;
   display: flex; align-items: center; gap: 6px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--light);
+  opacity: 0.7; transition: opacity 0.2s, color 0.2s;
 }
+.nav-dropdown:hover .nav-dropdown-trigger { opacity: 1; color: var(--orange); }
 .nav-dropdown-trigger::after {
   content: '';
   width: 0; height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid currentColor;
+  border-left: 3.5px solid transparent;
+  border-right: 3.5px solid transparent;
+  border-top: 3.5px solid currentColor;
   transition: transform 0.25s;
+  margin-top: 1px;
 }
 .nav-dropdown:hover .nav-dropdown-trigger::after {
   transform: rotate(180deg);
@@ -321,8 +328,12 @@ nav {
 .hero-oct {
   position: absolute; right: 6%; top: 50%;
   transform: translateY(-50%);
-  width: clamp(160px, 24vw, 360px); aspect-ratio: 1;
-  opacity: 0.1; animation: spin 80s linear infinite, fadeIn 2s ease both;
+  width: clamp(220px, 28vw, 440px); aspect-ratio: 1;
+  opacity: 0.18; animation: spin 80s linear infinite, fadeInLogo 2s ease both;
+}
+
+@keyframes fadeInLogo {
+  from { opacity: 0; } to { opacity: 0.18; }
 }
 
 /* ── TICKER ── */
@@ -649,14 +660,13 @@ footer {
       <li class="nav-dropdown">
         <a class="nav-dropdown-trigger" data-hr="Arhiva" data-en="Archive">Arhiva</a>
         <div class="nav-dropdown-menu">
-          <a href="b2f-2027.html" class="nav-dropdown-item">
-            <span class="nav-dropdown-item-year">2027</span>
-            <span class="nav-dropdown-badge" data-hr="USKORO" data-en="SOON">USKORO</span>
-          </a>
-          <div class="nav-dropdown-divider"></div>
           <a href="b2f-2026.html" class="nav-dropdown-item">
             <span class="nav-dropdown-item-year">2026</span>
             <span class="nav-dropdown-badge" data-hr="NAJNOVIJE" data-en="LATEST">NAJNOVIJE</span>
+          </a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="b2f-2025.html" class="nav-dropdown-item">
+            <span class="nav-dropdown-item-year">2025</span>
           </a>
           <div class="nav-dropdown-divider"></div>
           <a href="b2f-2024.html" class="nav-dropdown-item">
@@ -665,10 +675,6 @@ footer {
           <div class="nav-dropdown-divider"></div>
           <a href="b2f-2023.html" class="nav-dropdown-item">
             <span class="nav-dropdown-item-year">2023</span>
-          </a>
-          <div class="nav-dropdown-divider"></div>
-          <a href="b2f-2022.html" class="nav-dropdown-item">
-            <span class="nav-dropdown-item-year">2022</span>
           </a>
           <div class="nav-dropdown-divider"></div>
           <a href="#archive" class="nav-dropdown-item" data-hr="Sva izdanja →" data-en="All editions →">
@@ -689,11 +695,7 @@ footer {
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
   <div class="hero-ghost" id="hero-ghost">B2F</div>
-  <svg class="hero-oct" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="59,3 141,3 197,59 197,141 141,197 59,197 3,141 3,59" stroke="#E8490F" stroke-width="1.5"/>
-    <polygon points="70,18 130,18 182,70 182,130 130,182 70,182 18,130 18,70" stroke="#E8490F" stroke-width="0.8" opacity="0.5"/>
-    <polygon points="82,34 118,34 166,82 166,118 118,166 82,166 34,118 34,82" stroke="#E8490F" stroke-width="0.5" opacity="0.25"/>
-  </svg>
+  <img class="hero-oct" src="logo.png" alt="Break2Future Logo">
   <div class="hero-content" id="hero-content"></div>
 </section>
 
@@ -793,6 +795,22 @@ footer {
         </div>
       </a>
 
+      <!-- B2F 2025 -->
+      <a href="b2f-2025.html" class="edition-card reveal">
+        <div class="edition-top"></div>
+        <div class="edition-body">
+          <div class="edition-year">20<span>25</span></div>
+          <div class="edition-meta" data-hr="Zagreb · Arhiva" data-en="Zagreb · Archive">Zagreb · Arhiva</div>
+          <div class="edition-winners">
+            <div class="winner-row">
+              <div class="winner-cat" data-hr="Pobjednici" data-en="Winners">Pobjednici</div>
+              <div class="winner-name" data-hr="Dodaj podatke →" data-en="Add data →">Dodaj podatke →</div>
+            </div>
+          </div>
+          <div class="edition-cta" data-hr="Pogledaj izdanje" data-en="View edition">Pogledaj izdanje</div>
+        </div>
+      </a>
+
       <!-- B2F 2024 -->
       <a href="b2f-2024.html" class="edition-card reveal">
         <div class="edition-top"></div>
@@ -814,22 +832,6 @@ footer {
         <div class="edition-top"></div>
         <div class="edition-body">
           <div class="edition-year">20<span>23</span></div>
-          <div class="edition-meta" data-hr="Zagreb · Arhiva" data-en="Zagreb · Archive">Zagreb · Arhiva</div>
-          <div class="edition-winners">
-            <div class="winner-row">
-              <div class="winner-cat" data-hr="Pobjednici" data-en="Winners">Pobjednici</div>
-              <div class="winner-name" data-hr="Dodaj podatke →" data-en="Add data →">Dodaj podatke →</div>
-            </div>
-          </div>
-          <div class="edition-cta" data-hr="Pogledaj izdanje" data-en="View edition">Pogledaj izdanje</div>
-        </div>
-      </a>
-
-      <!-- B2F 2022 -->
-      <a href="b2f-2022.html" class="edition-card reveal">
-        <div class="edition-top"></div>
-        <div class="edition-body">
-          <div class="edition-year">20<span>22</span></div>
           <div class="edition-meta" data-hr="Zagreb · Arhiva" data-en="Zagreb · Archive">Zagreb · Arhiva</div>
           <div class="edition-winners">
             <div class="winner-row">
