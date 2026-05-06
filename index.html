@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BREAK2FUTURE — Breaking Event, Zagreb</title>
+<meta name="description" content="Break2Future je Zagreb's premier breaking event. Battles, workshops, kultura.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --orange: #E8490F;
+  --orange-dim: rgba(232,73,15,0.15);
+  --dark: #07090A;
+  --mid: #0F1517;
+  --panel: #131C1F;
+  --light: #B8CACF;
+  --white: #EEF3F5;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--dark);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  overflow-x: hidden;
+}
+
+/* GRAIN */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 48px;
+  background: linear-gradient(to bottom, rgba(7,9,10,0.98) 60%, transparent);
+  backdrop-filter: blur(2px);
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem; letter-spacing: 0.12em;
+  color: var(--white); text-decoration: none;
+}
+.nav-logo span { color: var(--orange); }
+
+.nav-right { display: flex; align-items: center; gap: 32px; }
+
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--light); text-decoration: none;
+  opacity: 0.7; transition: opacity 0.2s, color 0.2s;
+}
+.nav-links a:hover { opacity: 1; color: var(--orange); }
+
+/* LANG TOGGLE */
+.lang-toggle {
+  display: flex; gap: 0;
+  border: 1px solid rgba(184,202,207,0.2);
+}
+.lang-btn {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
+  padding: 6px 14px; cursor: pointer; border: none;
+  background: transparent; color: var(--light);
+  opacity: 0.4; transition: all 0.2s; text-transform: uppercase;
+}
+.lang-btn.active { background: var(--orange); color: var(--dark); opacity: 1; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 140px 48px 100px;
+  position: relative; overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 65% at 80% 40%, rgba(232,73,15,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 50% at 10% 90%, rgba(13,43,46,0.6) 0%, transparent 60%),
+    var(--dark);
+}
+
+/* big background text */
+.hero-ghost {
+  position: absolute;
+  right: -2%; bottom: -4%;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(180px, 28vw, 420px);
+  line-height: 0.85;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(232,73,15,0.07);
+  letter-spacing: -0.02em;
+  user-select: none; pointer-events: none;
+  animation: fadeIn 1.2s ease both;
+}
+
+.hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 16px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 28px;
+  animation: fadeUp 0.7s ease both;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block; width: 32px; height: 1px;
+  background: var(--orange);
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 13vw, 180px);
+  line-height: 0.88; letter-spacing: -0.01em;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+.hero-title .line-outline {
+  display: block;
+  -webkit-text-stroke: 2px rgba(238,243,245,0.85);
+  color: transparent;
+}
+.hero-title .line-solid { display: block; color: var(--white); }
+.hero-title .line-accent { display: block; color: var(--orange); }
+
+.hero-sub {
+  margin-top: 36px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(14px, 1.8vw, 18px);
+  letter-spacing: 0.08em; line-height: 1.6;
+  color: var(--light); opacity: 0.65; max-width: 480px;
+  animation: fadeUp 0.7s 0.2s ease both;
+}
+
+.hero-actions {
+  margin-top: 52px; display: flex; gap: 16px; flex-wrap: wrap;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+
+.btn {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem; letter-spacing: 0.22em;
+  padding: 16px 44px; text-decoration: none;
+  display: inline-block;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  transition: transform 0.2s, background 0.2s, color 0.2s;
+}
+.btn:hover { transform: translate(-2px, -2px); }
+.btn-primary { background: var(--orange); color: var(--dark); }
+.btn-primary:hover { background: var(--white); }
+.btn-ghost {
+  background: transparent; color: var(--light);
+  box-shadow: inset 0 0 0 1px rgba(184,202,207,0.25);
+}
+.btn-ghost:hover { color: var(--orange); box-shadow: inset 0 0 0 1px var(--orange); }
+
+/* Octagon deco */
+.hero-oct {
+  position: absolute; right: 6%; top: 50%;
+  transform: translateY(-50%);
+  width: clamp(160px, 24vw, 360px); aspect-ratio: 1;
+  opacity: 0.1; animation: spin 80s linear infinite, fadeIn 2s ease both;
+}
+
+/* ── TICKER ── */
+.ticker {
+  background: var(--orange);
+  padding: 12px 0; overflow: hidden;
+}
+.ticker-track {
+  display: flex; width: max-content;
+  animation: ticker 30s linear infinite;
+}
+.ticker-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem; letter-spacing: 0.3em;
+  color: var(--dark); padding: 0 36px; white-space: nowrap;
+}
+.ticker-dot { opacity: 0.35; margin: 0 4px; }
+
+/* ── ABOUT ── */
+.about {
+  padding: 130px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px; max-width: 1240px; margin: 0 auto;
+  align-items: center;
+}
+
+.section-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.45em; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 20px;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(42px, 6vw, 82px);
+  line-height: 0.93; margin-bottom: 36px;
+}
+
+.about-text p {
+  font-size: 1rem; line-height: 1.85;
+  color: var(--light); opacity: 0.75; margin-bottom: 18px;
+}
+
+.about-right { display: flex; flex-direction: column; gap: 2px; }
+
+.stat-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+}
+
+.stat {
+  background: var(--panel);
+  padding: 32px 28px;
+  position: relative; overflow: hidden;
+  transition: background 0.3s;
+}
+.stat:hover { background: #182022; }
+.stat::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--orange);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s;
+}
+.stat:hover::after { transform: scaleX(1); }
+.stat-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.2rem; color: var(--orange); line-height: 1;
+}
+.stat-l {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--light); opacity: 0.5; margin-top: 6px;
+}
+
+/* ── ARCHIVE ── */
+.archive-section {
+  background: var(--mid);
+  padding: 130px 0;
+}
+.archive-inner {
+  max-width: 1240px; margin: 0 auto; padding: 0 48px;
+}
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px; margin-top: 60px;
+}
+
+.edition-card {
+  position: relative; overflow: hidden;
+  background: var(--panel);
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+  text-decoration: none; color: var(--white);
+  display: block;
+  transition: transform 0.3s;
+  group: true;
+}
+.edition-card:hover { transform: translateY(-6px); }
+
+.edition-card-inner {
+  padding: 0;
+}
+
+/* Colored top bar per edition */
+.edition-top {
+  height: 4px; width: 100%;
+  background: var(--orange);
+}
+
+.edition-body { padding: 28px 24px 32px; }
+
+.edition-year {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.8rem; line-height: 1;
+  color: var(--white);
+}
+.edition-year span { color: var(--orange); }
+
+.edition-meta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--light); opacity: 0.45;
+  margin-top: 6px; margin-bottom: 24px;
+}
+
+.edition-winners { display: flex; flex-direction: column; gap: 10px; }
+
+.winner-row {
+  border-top: 1px solid rgba(184,202,207,0.08);
+  padding-top: 10px;
+}
+.winner-cat {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--orange); opacity: 0.8; margin-bottom: 2px;
+}
+.winner-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  letter-spacing: 0.04em; color: var(--white);
+}
+
+.edition-cta {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 28px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--orange); opacity: 0;
+  transition: opacity 0.3s;
+}
+.edition-card:hover .edition-cta { opacity: 1; }
+.edition-cta::after {
+  content: '→';
+  font-size: 1rem; transition: transform 0.2s;
+}
+.edition-card:hover .edition-cta::after { transform: translateX(4px); }
+
+/* Archive: current edition badge */
+.badge-current {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--dark);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  padding: 3px 10px; margin-bottom: 10px;
+}
+
+/* ── CTA BAND ── */
+.cta-band {
+  padding: 120px 48px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+
+.cta-band-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(232,73,15,0.1) 0%, transparent 70%);
+}
+
+.cta-band-ghost {
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(100px, 18vw, 260px);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(232,73,15,0.05);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap; pointer-events: none;
+}
+
+.cta-band-content { position: relative; z-index: 2; }
+
+.cta-band-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 6vw, 80px);
+  line-height: 1; margin-bottom: 20px;
+}
+
+.cta-band-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem; letter-spacing: 0.1em;
+  color: var(--light); opacity: 0.6;
+  margin-bottom: 44px; max-width: 420px; margin-left: auto; margin-right: auto;
+}
+
+.ig-link {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem; letter-spacing: 0.2em;
+  color: var(--white); text-decoration: none;
+  border: 1px solid rgba(184,202,207,0.2);
+  padding: 18px 48px;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  transition: all 0.25s;
+}
+.ig-link:hover {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--dark);
+  transform: translate(-2px,-2px);
+}
+.ig-icon { width: 20px; height: 20px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--mid);
+  border-top: 1px solid rgba(232,73,15,0.15);
+  padding: 56px 48px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center; gap: 24px;
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem; letter-spacing: 0.04em;
+}
+.footer-logo span { color: var(--orange); }
+
+.footer-center {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem; letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--light); opacity: 0.3;
+  text-align: center; line-height: 2;
+}
+
+.footer-right {
+  display: flex; justify-content: flex-end; gap: 12px;
+}
+
+.footer-link {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--light); text-decoration: none;
+  opacity: 0.4; padding: 8px 14px;
+  border: 1px solid rgba(184,202,207,0.12);
+  transition: all 0.2s;
+}
+.footer-link:hover { opacity: 1; color: var(--orange); border-color: var(--orange); }
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes spin {
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 18px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 110px 24px 80px; }
+  .hero-oct { display: none; }
+  .about { grid-template-columns: 1fr; gap: 48px; padding: 80px 24px; }
+  .stat-row { grid-template-columns: 1fr 1fr; }
+  .archive-grid { grid-template-columns: 1fr 1fr; }
+  .archive-inner { padding: 0 24px; }
+  .cta-band { padding: 80px 24px; }
+  footer { grid-template-columns: 1fr; text-align: center; padding: 40px 24px; }
+  .footer-right { justify-content: center; }
+}
+@media (max-width: 540px) {
+  .archive-grid { grid-template-columns: 1fr; }
+  .stat-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">BREAK<span>2</span>FUTURE</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about" data-hr="O eventu" data-en="About">O eventu</a></li>
+      <li><a href="#archive" data-hr="Arhiva" data-en="Archive">Arhiva</a></li>
+      <li><a href="#follow" data-hr="Kontakt" data-en="Contact">Kontakt</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('hr')">HR</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ghost">B2F</div>
+
+  <svg class="hero-oct" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="59,3 141,3 197,59 197,141 141,197 59,197 3,141 3,59" stroke="#E8490F" stroke-width="1.5"/>
+    <polygon points="70,18 130,18 182,70 182,130 130,182 70,182 18,130 18,70" stroke="#E8490F" stroke-width="0.8" opacity="0.5"/>
+    <polygon points="82,34 118,34 166,82 166,118 118,166 82,166 34,118 34,82" stroke="#E8490F" stroke-width="0.5" opacity="0.25"/>
+  </svg>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">
+      <span data-hr="Zagreb, Hrvatska · Breaking kultura" data-en="Zagreb, Croatia · Breaking culture">Zagreb, Hrvatska · Breaking kultura</span>
+    </p>
+    <h1 class="hero-title">
+      <span class="line-solid">BREAK</span>
+      <span class="line-outline">2</span>
+      <span class="line-accent">FUTURE</span>
+    </h1>
+    <p class="hero-sub" data-hr="Sljedeće izdanje uskoro. Pratite nas za najavu datuma, lokacije i registracije." data-en="Next edition coming soon. Follow us for the announcement of dates, location and registration.">
+      Sljedeće izdanje uskoro. Pratite nas za najavu datuma, lokacije i registracije.
+    </p>
+    <div class="hero-actions">
+      <a href="#archive" class="btn btn-primary" data-hr="Pogledaj arhivu" data-en="View Archive">Pogledaj arhivu</a>
+      <a href="https://www.instagram.com/break2future.hr/" target="_blank" class="btn btn-ghost" data-hr="Prati nas" data-en="Follow us">Prati nas</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="ticker">
+    <span class="ticker-item">BREAKING <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">BATTLES <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">WORKSHOPS <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">ZAGREB <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">KULTURA <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">1VS1 <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">2VS2 <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">7 TO SMOKE <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">BREAK2FUTURE <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">BREAKING <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">BATTLES <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">WORKSHOPS <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">ZAGREB <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">KULTURA <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">1VS1 <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">2VS2 <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">7 TO SMOKE <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">BREAK2FUTURE <span class="ticker-dot">◆</span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text reveal">
+    <p class="section-label" data-hr="Što je Break2Future" data-en="What is Break2Future">Što je Break2Future</p>
+    <h2 class="section-title" data-hr="KULTURA.<br>BITKA.<br>ZAJEDNICA." data-en="CULTURE.<br>BATTLE.<br>COMMUNITY.">KULTURA.<br>BITKA.<br>ZAJEDNICA.</h2>
+    <p data-hr="Break2Future je Zagreb's premier breaking event — dvodnevna proslava breaking kulture koja spaja najtalentiranije B-Boy i B-Girl plesače iz regije i šire." data-en="Break2Future is Zagreb's premier breaking event — a two-day celebration of breaking culture that brings together the most talented B-Boys and B-Girls from the region and beyond.">
+      Break2Future je Zagreb's premier breaking event — dvodnevna proslava breaking kulture koja spaja najtalentiranije B-Boy i B-Girl plesače iz regije i šire.
+    </p>
+    <p data-hr="Od kids battles za početnike do elitnih međunarodnih showdowna — B2F je platforma za svaki level plesača. Uz radionice svjetski poznatih umjetnika, panel diskusije i natjecanja u više formata." data-en="From beginner-level kids battles to elite international showdowns — B2F is a platform for every level of dancer. With workshops from world-class artists, panel discussions and competitions across multiple formats.">
+      Od kids battles za početnike do elitnih međunarodnih showdowna — B2F je platforma za svaki level plesača. Uz radionice svjetski poznatih umjetnika, panel diskusije i natjecanja u više formata.
+    </p>
+    <p data-hr="Odigrano u srcu Zagreba, Break2Future je mjesto gdje nova generacija breakera dobiva svoju priliku." data-en="Held in the heart of Zagreb, Break2Future is where the next generation of breakers get their moment.">
+      Odigrano u srcu Zagreba, Break2Future je mjesto gdje nova generacija breakera dobiva svoju priliku.
+    </p>
+  </div>
+  <div class="about-right reveal">
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-n">4</div>
+        <div class="stat-l" data-hr="Izdanja" data-en="Editions">Izdanja</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">2</div>
+        <div class="stat-l" data-hr="Dana bitke" data-en="Days of battle">Dana bitke</div>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-n">∞</div>
+        <div class="stat-l" data-hr="Kultura" data-en="Culture">Kultura</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">ZG</div>
+        <div class="stat-l" data-hr="Zagreb, HR" data-en="Zagreb, HR">Zagreb, HR</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHIVE -->
+<section class="archive-section" id="archive">
+  <div class="archive-inner">
+    <p class="section-label reveal" data-hr="Sva izdanja" data-en="All editions">Sva izdanja</p>
+    <h2 class="section-title reveal" data-hr="ARHIVA" data-en="ARCHIVE">ARHIVA</h2>
+
+    <div class="archive-grid">
+
+      <!-- B2F 2026 -->
+      <a href="b2f-2026.html" class="edition-card reveal">
+        <div class="edition-top"></div>
+        <div class="edition-body">
+          <div class="badge-current" data-hr="Najnovije" data-en="Latest">Najnovije</div>
+          <div class="edition-year">20<span>26</span></div>
+          <div class="edition-meta">14–15.03.2026 · Tala Ple(i)s / Peti Kupe</div>
+          <div class="edition-winners">
+            <div class="winner-row">
+              <div class="winner-cat" data-hr="1VS1 Kids U16" data-en="1VS1 Kids U16">1VS1 Kids U16</div>
+              <div class="winner-name" data-hr="Pobjednik TBA" data-en="Winner TBA">Pobjednik TBA</div>
+            </div>
+            <div class="winner-row">
+              <div class="winner-cat">2VS2 Breaking</div>
+              <div class="winner-name" data-hr="Pobjednik TBA" data-en="Winner TBA">Pobjednik TBA</div>
+            </div>
+            <div class="winner-row">
+              <div class="winner-cat">7 to Smoke</div>
+              <div class="winner-name" data-hr="Pobjednik TBA" data-en="Winner TBA">Pobjednik TBA</div>
+            </div>
+          </div>
+          <div class="edition-cta" data-hr="Pogledaj izdanje" data-en="View edition">Pogledaj izdanje</div>
+        </div>
+      </a>
+
+      <!-- B2F 2024 -->
+      <a href="b2f-2024.html" class="edition-card reveal">
+        <div class="edition-top"></div>
+        <div class="edition-body">
+          <div class="edition-year">20<span>24</span></div>
+          <div class="edition-meta" data-hr="Zagreb · Arhiva" data-en="Zagreb · Archive">Zagreb · Arhiva</div>
+          <div class="edition-winners">
+            <div class="winner-row">
+              <div class="winner-cat" data-hr="Pobjednici" data-en="Winners">Pobjednici</div>
+              <div class="winner-name" data-hr="Dodaj podatke →" data-en="Add data →">Dodaj podatke →</div>
+            </div>
+          </div>
+          <div class="edition-cta" data-hr="Pogledaj izdanje" data-en="View edition">Pogledaj izdanje</div>
+        </div>
+      </a>
+
+      <!-- B2F 2023 -->
+      <a href="b2f-2023.html" class="edition-card reveal">
+        <div class="edition-top"></div>
+        <div class="edition-body">
+          <div class="edition-year">20<span>23</span></div>
+          <div class="edition-meta" data-hr="Zagreb · Arhiva" data-en="Zagreb · Archive">Zagreb · Arhiva</div>
+          <div class="edition-winners">
+            <div class="winner-row">
+              <div class="winner-cat" data-hr="Pobjednici" data-en="Winners">Pobjednici</div>
+              <div class="winner-name" data-hr="Dodaj podatke →" data-en="Add data →">Dodaj podatke →</div>
+            </div>
+          </div>
+          <div class="edition-cta" data-hr="Pogledaj izdanje" data-en="View edition">Pogledaj izdanje</div>
+        </div>
+      </a>
+
+      <!-- B2F 2022 -->
+      <a href="b2f-2022.html" class="edition-card reveal">
+        <div class="edition-top"></div>
+        <div class="edition-body">
+          <div class="edition-year">20<span>22</span></div>
+          <div class="edition-meta" data-hr="Zagreb · Arhiva" data-en="Zagreb · Archive">Zagreb · Arhiva</div>
+          <div class="edition-winners">
+            <div class="winner-row">
+              <div class="winner-cat" data-hr="Pobjednici" data-en="Winners">Pobjednici</div>
+              <div class="winner-name" data-hr="Dodaj podatke →" data-en="Add data →">Dodaj podatke →</div>
+            </div>
+          </div>
+          <div class="edition-cta" data-hr="Pogledaj izdanje" data-en="View edition">Pogledaj izdanje</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA / FOLLOW -->
+<section class="cta-band" id="follow">
+  <div class="cta-band-bg"></div>
+  <div class="cta-band-ghost">B2F</div>
+  <div class="cta-band-content reveal">
+    <p class="section-label" data-hr="Budi prvi" data-en="Be the first">Budi prvi</p>
+    <h2 class="cta-band-title" data-hr="IDUĆE IZDANJE<br>USKORO." data-en="NEXT EDITION<br>COMING SOON.">IDUĆE IZDANJE<br>USKORO.</h2>
+    <p class="cta-band-sub" data-hr="Prati nas na Instagramu i budi prvi koji će saznati datum, lokaciju i kako se registrirati." data-en="Follow us on Instagram and be the first to know the date, location and how to register.">
+      Prati nas na Instagramu i budi prvi koji će saznati datum, lokaciju i kako se registrirati.
+    </p>
+    <a href="https://www.instagram.com/break2future.hr/" target="_blank" class="ig-link">
+      <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+      </svg>
+      @break2future.hr
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">BREAK<span>2</span>FUTURE</div>
+  <div class="footer-center">
+    Zagreb, Croatia<br>
+    breaking culture<br>
+    © 2026 Break2Future
+  </div>
+  <div class="footer-right">
+    <a href="https://www.instagram.com/break2future.hr/" target="_blank" class="footer-link">Instagram</a>
+  </div>
+</footer>
+
+<script>
+// ── LANGUAGE TOGGLE ──
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase() === lang));
+  document.querySelectorAll('[data-hr]').forEach(el => {
+    const txt = el.getAttribute('data-' + lang);
+    if (txt) el.innerHTML = txt;
+  });
+  document.documentElement.lang = lang;
+}
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 90);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
