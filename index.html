@@ -67,6 +67,92 @@ nav {
 }
 .nav-links a:hover { opacity: 1; color: var(--orange); }
 
+/* ARCHIVE DROPDOWN */
+.nav-dropdown {
+  position: relative;
+}
+.nav-links .nav-dropdown-trigger {
+  cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--light);
+  opacity: 0.7; transition: opacity 0.2s, color 0.2s;
+}
+.nav-dropdown:hover .nav-links .nav-dropdown-trigger,
+.nav-dropdown:hover > .nav-dropdown-trigger { opacity: 1; color: var(--orange); }
+.nav-dropdown-trigger::after {
+  content: '';
+  width: 0; height: 0;
+  border-left: 3.5px solid transparent;
+  border-right: 3.5px solid transparent;
+  border-top: 3.5px solid currentColor;
+  transition: transform 0.25s;
+  margin-top: 1px;
+}
+.nav-dropdown:hover .nav-dropdown-trigger::after {
+  transform: rotate(180deg);
+}
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 14px); left: 50%;
+  transform: translateX(-50%);
+  min-width: 200px;
+  background: var(--panel);
+  border: 1px solid rgba(232,73,15,0.2);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(8px);
+  transition: opacity 0.25s, visibility 0.25s, transform 0.25s;
+  z-index: 300;
+}
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute; top: -14px; left: 0; right: 0; height: 14px;
+}
+.nav-dropdown-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 20px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--light); text-decoration: none;
+  opacity: 0.7;
+  transition: all 0.2s;
+}
+.nav-dropdown-item:hover {
+  opacity: 1; color: var(--orange);
+  background: rgba(232,73,15,0.06);
+  padding-left: 24px;
+}
+.nav-dropdown-item-year {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem; letter-spacing: 0.05em;
+  color: var(--white);
+}
+.nav-dropdown-item:hover .nav-dropdown-item-year {
+  color: var(--orange);
+}
+.nav-dropdown-badge {
+  font-size: 0.55rem; font-weight: 700;
+  letter-spacing: 0.2em;
+  background: var(--orange); color: var(--dark);
+  padding: 2px 7px; margin-left: 8px;
+}
+.nav-dropdown-divider {
+  height: 1px;
+  background: rgba(184,202,207,0.08);
+  margin: 4px 16px;
+}
+
 /* LANG TOGGLE */
 .lang-toggle {
   display: flex; gap: 0;
@@ -95,6 +181,23 @@ nav {
   background:
     radial-gradient(ellipse 55% 65% at 80% 40%, rgba(232,73,15,0.09) 0%, transparent 65%),
     radial-gradient(ellipse 50% 50% at 10% 90%, rgba(13,43,46,0.6) 0%, transparent 60%),
+    var(--dark);
+  transition: background 1s ease;
+}
+
+/* recap mode tints hero slightly differently */
+.hero.mode-recap .hero-bg {
+  background:
+    radial-gradient(ellipse 55% 65% at 20% 40%, rgba(232,73,15,0.11) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 50% at 90% 80%, rgba(13,43,46,0.5) 0%, transparent 60%),
+    var(--dark);
+}
+
+/* announcement mode — more intense orange */
+.hero.mode-announcement .hero-bg {
+  background:
+    radial-gradient(ellipse 65% 70% at 75% 45%, rgba(232,73,15,0.16) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 50% at 10% 80%, rgba(13,43,46,0.7) 0%, transparent 60%),
     var(--dark);
 }
 
@@ -130,9 +233,13 @@ nav {
 
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(72px, 13vw, 180px);
   line-height: 0.88; letter-spacing: -0.01em;
   animation: fadeUp 0.7s 0.1s ease both;
+}
+
+/* coming soon — big B2F logo style */
+.hero-title.title-b2f {
+  font-size: clamp(72px, 13vw, 180px);
 }
 .hero-title .line-outline {
   display: block;
@@ -142,12 +249,57 @@ nav {
 .hero-title .line-solid { display: block; color: var(--white); }
 .hero-title .line-accent { display: block; color: var(--orange); }
 
+/* recap / announcement — event title style */
+.hero-title.title-event {
+  font-size: clamp(52px, 9vw, 130px);
+}
+
+/* recap badge */
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--orange);
+  color: var(--dark);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  padding: 8px 18px; margin-bottom: 24px;
+  animation: fadeUp 0.5s ease both;
+}
+.hero-badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--dark); opacity: 0.5;
+  animation: pulse 1.8s ease infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* countdown for announcement mode */
+.hero-countdown {
+  display: flex; gap: 0; margin-top: 40px; margin-bottom: 4px;
+  animation: fadeUp 0.7s 0.25s ease both;
+}
+.hcd-item { text-align: center; padding: 0 20px 0 0; margin-right: 20px; border-right: 1px solid rgba(184,202,207,0.15); }
+.hcd-item:last-child { border-right: none; }
+.hcd-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 5vw, 60px);
+  color: var(--orange); line-height: 1;
+}
+.hcd-unit {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--light); opacity: 0.45; margin-top: 4px;
+}
+
 .hero-sub {
   margin-top: 36px;
   font-family: 'Barlow Condensed', sans-serif;
   font-size: clamp(14px, 1.8vw, 18px);
   letter-spacing: 0.08em; line-height: 1.6;
-  color: var(--light); opacity: 0.65; max-width: 480px;
+  color: var(--light); opacity: 0.65; max-width: 520px;
   animation: fadeUp 0.7s 0.2s ease both;
 }
 
@@ -177,8 +329,12 @@ nav {
 .hero-oct {
   position: absolute; right: 6%; top: 50%;
   transform: translateY(-50%);
-  width: clamp(160px, 24vw, 360px); aspect-ratio: 1;
-  opacity: 0.1; animation: spin 80s linear infinite, fadeIn 2s ease both;
+  width: clamp(220px, 28vw, 440px); aspect-ratio: 1;
+  opacity: 0.35; animation: fadeInLogo 2s ease both;
+}
+
+@keyframes fadeInLogo {
+  from { opacity: 0; } to { opacity: 0.35; }
 }
 
 /* ── TICKER ── */
@@ -477,6 +633,7 @@ footer {
 @media (max-width: 900px) {
   nav { padding: 18px 24px; }
   .nav-links { display: none; }
+  .nav-dropdown-menu { display: none; }
   .hero { padding: 110px 24px 80px; }
   .hero-oct { display: none; }
   .about { grid-template-columns: 1fr; gap: 48px; padding: 80px 24px; }
@@ -500,9 +657,32 @@ footer {
   <a href="index.html" class="nav-logo">BREAK<span>2</span>FUTURE</a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#about" data-hr="O eventu" data-en="About">O eventu</a></li>
-      <li><a href="#archive" data-hr="Arhiva" data-en="Archive">Arhiva</a></li>
-      <li><a href="#follow" data-hr="Kontakt" data-en="Contact">Kontakt</a></li>
+      <li class="nav-dropdown">
+        <a class="nav-dropdown-trigger" data-hr="Arhiva" data-en="Archive">Arhiva</a>
+        <div class="nav-dropdown-menu">
+          <a href="b2f-2026.html" class="nav-dropdown-item">
+            <span class="nav-dropdown-item-year">2026</span>
+            <span class="nav-dropdown-badge" data-hr="NAJNOVIJE" data-en="LATEST">NAJNOVIJE</span>
+          </a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="b2f-2025.html" class="nav-dropdown-item">
+            <span class="nav-dropdown-item-year">2025</span>
+          </a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="b2f-2024.html" class="nav-dropdown-item">
+            <span class="nav-dropdown-item-year">2024</span>
+          </a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="b2f-2022.html" class="nav-dropdown-item">
+            <span class="nav-dropdown-item-year">2022</span>
+          </a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="#archive" class="nav-dropdown-item" data-hr="Sva izdanja →" data-en="All editions →">
+            Sva izdanja →
+          </a>
+        </div>
+      </li>
+      <li><a href="about.html" data-hr="O nama" data-en="About us">O nama</a></li>
     </ul>
     <div class="lang-toggle">
       <button class="lang-btn active" onclick="setLang('hr')">HR</button>
@@ -511,34 +691,12 @@ footer {
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
+<!-- HERO — populated by SITE_CONFIG in JS -->
+<section class="hero" id="hero">
   <div class="hero-bg"></div>
-  <div class="hero-ghost">B2F</div>
-
-  <svg class="hero-oct" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="59,3 141,3 197,59 197,141 141,197 59,197 3,141 3,59" stroke="#E8490F" stroke-width="1.5"/>
-    <polygon points="70,18 130,18 182,70 182,130 130,182 70,182 18,130 18,70" stroke="#E8490F" stroke-width="0.8" opacity="0.5"/>
-    <polygon points="82,34 118,34 166,82 166,118 118,166 82,166 34,118 34,82" stroke="#E8490F" stroke-width="0.5" opacity="0.25"/>
-  </svg>
-
-  <div class="hero-content">
-    <p class="hero-eyebrow">
-      <span data-hr="Zagreb, Hrvatska · Breaking kultura" data-en="Zagreb, Croatia · Breaking culture">Zagreb, Hrvatska · Breaking kultura</span>
-    </p>
-    <h1 class="hero-title">
-      <span class="line-solid">BREAK</span>
-      <span class="line-outline">2</span>
-      <span class="line-accent">FUTURE</span>
-    </h1>
-    <p class="hero-sub" data-hr="Sljedeće izdanje uskoro. Pratite nas za najavu datuma, lokacije i registracije." data-en="Next edition coming soon. Follow us for the announcement of dates, location and registration.">
-      Sljedeće izdanje uskoro. Pratite nas za najavu datuma, lokacije i registracije.
-    </p>
-    <div class="hero-actions">
-      <a href="#archive" class="btn btn-primary" data-hr="Pogledaj arhivu" data-en="View Archive">Pogledaj arhivu</a>
-      <a href="https://www.instagram.com/break2future.hr/" target="_blank" class="btn btn-ghost" data-hr="Prati nas" data-en="Follow us">Prati nas</a>
-    </div>
-  </div>
+  <div class="hero-ghost" id="hero-ghost">B2F</div>
+  <img class="hero-oct" src="logo.png" alt="Break2Future Logo">
+  <div class="hero-content" id="hero-content"></div>
 </section>
 
 <!-- TICKER -->
@@ -569,7 +727,7 @@ footer {
 <section class="about" id="about">
   <div class="about-text reveal">
     <p class="section-label" data-hr="Što je Break2Future" data-en="What is Break2Future">Što je Break2Future</p>
-    <h2 class="section-title" data-hr="KULTURA.<br>BITKA.<br>ZAJEDNICA." data-en="CULTURE.<br>BATTLE.<br>COMMUNITY.">KULTURA.<br>BITKA.<br>ZAJEDNICA.</h2>
+    <h2 class="section-title" data-hr="KULTURA.<br><span style='color:var(--orange)'>BITKA.</span><br>ZAJEDNICA." data-en="CULTURE.<br><span style='color:var(--orange)'>BATTLE.</span><br>COMMUNITY.">KULTURA.<br><span style="color:var(--orange)">BITKA.</span><br>ZAJEDNICA.</h2>
     <p data-hr="Break2Future je Zagreb's premier breaking event — dvodnevna proslava breaking kulture koja spaja najtalentiranije B-Boy i B-Girl plesače iz regije i šire." data-en="Break2Future is Zagreb's premier breaking event — a two-day celebration of breaking culture that brings together the most talented B-Boys and B-Girls from the region and beyond.">
       Break2Future je Zagreb's premier breaking event — dvodnevna proslava breaking kulture koja spaja najtalentiranije B-Boy i B-Girl plesače iz regije i šire.
     </p>
@@ -637,11 +795,11 @@ footer {
         </div>
       </a>
 
-      <!-- B2F 2024 -->
-      <a href="b2f-2024.html" class="edition-card reveal">
+      <!-- B2F 2025 -->
+      <a href="b2f-2025.html" class="edition-card reveal">
         <div class="edition-top"></div>
         <div class="edition-body">
-          <div class="edition-year">20<span>24</span></div>
+          <div class="edition-year">20<span>25</span></div>
           <div class="edition-meta" data-hr="Zagreb · Arhiva" data-en="Zagreb · Archive">Zagreb · Arhiva</div>
           <div class="edition-winners">
             <div class="winner-row">
@@ -653,11 +811,11 @@ footer {
         </div>
       </a>
 
-      <!-- B2F 2023 -->
-      <a href="b2f-2023.html" class="edition-card reveal">
+      <!-- B2F 2024 -->
+      <a href="b2f-2024.html" class="edition-card reveal">
         <div class="edition-top"></div>
         <div class="edition-body">
-          <div class="edition-year">20<span>23</span></div>
+          <div class="edition-year">20<span>24</span></div>
           <div class="edition-meta" data-hr="Zagreb · Arhiva" data-en="Zagreb · Archive">Zagreb · Arhiva</div>
           <div class="edition-winners">
             <div class="winner-row">
@@ -724,9 +882,207 @@ footer {
 </footer>
 
 <script>
-// ── LANGUAGE TOGGLE ──
-function setLang(lang) {
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase() === lang));
+// ════════════════════════════════════════════════════
+//  SITE CONFIG — jedina stvar koju treba mijenjati
+//  mode: 'coming_soon' | 'recap' | 'announcement'
+// ════════════════════════════════════════════════════
+const SITE_CONFIG = {
+
+  // ── Trenutni mode ──────────────────────────────────
+  // Promijeni ovo kada se stanje mijenja:
+  //   'coming_soon'   → između recapa i sljedeće najave
+  //   'recap'         → odmah nakon eventa
+  //   'announcement'  → kada je sljedeći event najavljen
+  mode: 'coming_soon',
+
+  // ── Recap (ispuni nakon eventa) ────────────────────
+  recap: {
+    edition: '2026',
+    date_hr: '14–15. ožujka 2026.',
+    date_en: 'March 14–15, 2026',
+    location: 'Tala Ple(i)s / Peti Kupe, Zagreb',
+    headline_hr: 'B2F 2026 JE ODIGRAN.',
+    headline_en: 'B2F 2026 IS DONE.',
+    sub_hr: 'Hvala svima koji su bili dio ovogodišnjeg Break2Future. Pogledajte recap izdanja.',
+    sub_en: 'Thank you to everyone who was part of this year\'s Break2Future. Check out the edition recap.',
+    link: 'b2f-2026.html',
+    cta_hr: 'Pogledaj recap',
+    cta_en: 'View recap',
+  },
+
+  // ── Announcement (ispuni kada ima nova najava) ──────
+  announcement: {
+    edition: '2027',
+    date_hr: 'XX. 2027.',          // npr. '14–15. ožujka 2027.'
+    date_en: 'XX 2027',
+    location: 'Zagreb',
+    headline_hr: 'BREAK2FUTURE\n2027',
+    headline_en: 'BREAK2FUTURE\n2027',
+    sub_hr: 'Sljedeće izdanje je potvrđeno. Registracija uskoro otvorena.',
+    sub_en: 'The next edition is confirmed. Registration opening soon.',
+    event_date: '2027-03-14T10:00:00', // za countdown
+    link: 'b2f-2027.html',
+    cta_primary_hr: 'Registriraj se',
+    cta_primary_en: 'Register',
+    cta_secondary_hr: 'Saznaj više',
+    cta_secondary_en: 'Learn more',
+  },
+};
+// ════════════════════════════════════════════════════
+
+// ── Aktivni jezik ────────────────────────────────────
+let activeLang = 'hr';
+
+// ── Render hero po modu ──────────────────────────────
+function renderHero() {
+  const hero = document.getElementById('hero');
+  const content = document.getElementById('hero-content');
+  const ghost = document.getElementById('hero-ghost');
+  const { mode, recap, announcement } = SITE_CONFIG;
+
+  hero.className = 'hero mode-' + mode;
+
+  if (mode === 'coming_soon') {
+    ghost.textContent = 'B2F';
+    content.innerHTML = `
+      <p class="hero-eyebrow">
+        <span data-hr="Zagreb, Hrvatska · Breaking kultura"
+              data-en="Zagreb, Croatia · Breaking culture">
+          ${activeLang === 'hr' ? 'Zagreb, Hrvatska · Breaking kultura' : 'Zagreb, Croatia · Breaking culture'}
+        </span>
+      </p>
+      <h1 class="hero-title title-b2f">
+        <span class="line-solid">BREAK</span>
+        <span class="line-outline">2</span>
+        <span class="line-accent">FUTURE</span>
+      </h1>
+      <p class="hero-sub"
+         data-hr="Sljedeće izdanje uskoro. Pratite nas na Instagramu za najavu datuma, lokacije i registracije."
+         data-en="Next edition coming soon. Follow us on Instagram for the announcement of dates, location and registration.">
+        ${activeLang === 'hr'
+          ? 'Sljedeće izdanje uskoro. Pratite nas na Instagramu za najavu datuma, lokacije i registracije.'
+          : 'Next edition coming soon. Follow us on Instagram for the announcement of dates, location and registration.'}
+      </p>
+      <div class="hero-actions">
+        <a href="#archive" class="btn btn-primary"
+           data-hr="Pogledaj arhivu" data-en="View Archive">
+           ${activeLang === 'hr' ? 'Pogledaj arhivu' : 'View Archive'}
+        </a>
+        <a href="https://www.instagram.com/break2future.hr/" target="_blank"
+           class="btn btn-ghost"
+           data-hr="Prati nas" data-en="Follow us">
+           ${activeLang === 'hr' ? 'Prati nas' : 'Follow us'}
+        </a>
+      </div>
+    `;
+
+  } else if (mode === 'recap') {
+    ghost.textContent = recap.edition;
+    const date = activeLang === 'hr' ? recap.date_hr : recap.date_en;
+    const headline = activeLang === 'hr' ? recap.headline_hr : recap.headline_en;
+    const sub = activeLang === 'hr' ? recap.sub_hr : recap.sub_en;
+    const cta = activeLang === 'hr' ? recap.cta_hr : recap.cta_en;
+    const archiveCta = activeLang === 'hr' ? 'Sva izdanja' : 'All editions';
+
+    content.innerHTML = `
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span data-hr="Upravo odigrano" data-en="Just happened">
+          ${activeLang === 'hr' ? 'Upravo odigrano' : 'Just happened'}
+        </span>
+      </div>
+      <p class="hero-eyebrow">
+        <span>${date} · ${recap.location}</span>
+      </p>
+      <h1 class="hero-title title-event">
+        ${headline.split('\n').map((line, i) =>
+          `<span class="${i === 0 ? 'line-solid' : 'line-accent'}">${line}</span>`
+        ).join('')}
+      </h1>
+      <p class="hero-sub"
+         data-hr="${recap.sub_hr}"
+         data-en="${recap.sub_en}">
+        ${sub}
+      </p>
+      <div class="hero-actions">
+        <a href="${recap.link}" class="btn btn-primary"
+           data-hr="${recap.cta_hr}" data-en="${recap.cta_en}">${cta}</a>
+        <a href="#archive" class="btn btn-ghost"
+           data-hr="Sva izdanja" data-en="All editions">${archiveCta}</a>
+      </div>
+    `;
+
+  } else if (mode === 'announcement') {
+    ghost.textContent = announcement.edition;
+    const date = activeLang === 'hr' ? announcement.date_hr : announcement.date_en;
+    const headline = activeLang === 'hr' ? announcement.headline_hr : announcement.headline_en;
+    const sub = activeLang === 'hr' ? announcement.sub_hr : announcement.sub_en;
+    const ctaPrimary = activeLang === 'hr' ? announcement.cta_primary_hr : announcement.cta_primary_en;
+    const ctaSecondary = activeLang === 'hr' ? announcement.cta_secondary_hr : announcement.cta_secondary_en;
+    const countdownLabel = activeLang === 'hr' ? 'Do eventa' : 'Until event';
+
+    content.innerHTML = `
+      <p class="hero-eyebrow">
+        <span>${date} · ${announcement.location}</span>
+      </p>
+      <h1 class="hero-title title-event">
+        ${headline.split('\n').map((line, i) =>
+          `<span class="${i === 0 ? 'line-solid' : 'line-accent'}">${line}</span>`
+        ).join('')}
+      </h1>
+      <div class="hero-countdown" id="hero-cd">
+        <div class="hcd-item"><div class="hcd-num" id="cd-d">--</div><div class="hcd-unit" data-hr="Dana" data-en="Days">${activeLang === 'hr' ? 'Dana' : 'Days'}</div></div>
+        <div class="hcd-item"><div class="hcd-num" id="cd-h">--</div><div class="hcd-unit" data-hr="Sati" data-en="Hours">${activeLang === 'hr' ? 'Sati' : 'Hours'}</div></div>
+        <div class="hcd-item"><div class="hcd-num" id="cd-m">--</div><div class="hcd-unit" data-hr="Minuta" data-en="Minutes">${activeLang === 'hr' ? 'Minuta' : 'Minutes'}</div></div>
+        <div class="hcd-item"><div class="hcd-num" id="cd-s">--</div><div class="hcd-unit" data-hr="Sekundi" data-en="Seconds">${activeLang === 'hr' ? 'Sekundi' : 'Seconds'}</div></div>
+      </div>
+      <p class="hero-sub"
+         data-hr="${announcement.sub_hr}"
+         data-en="${announcement.sub_en}">
+        ${sub}
+      </p>
+      <div class="hero-actions">
+        <a href="${announcement.link}" class="btn btn-primary"
+           data-hr="${announcement.cta_primary_hr}"
+           data-en="${announcement.cta_primary_en}">${ctaPrimary}</a>
+        <a href="#archive" class="btn btn-ghost"
+           data-hr="${announcement.cta_secondary_hr}"
+           data-en="${announcement.cta_secondary_en}">${ctaSecondary}</a>
+      </div>
+    `;
+
+    // start countdown
+    startCountdown(announcement.event_date);
+  }
+
+  // re-apply lang attributes after render
+  applyLang(activeLang);
+}
+
+// ── Countdown ────────────────────────────────────────
+let cdInterval = null;
+function startCountdown(targetDate) {
+  if (cdInterval) clearInterval(cdInterval);
+  function tick() {
+    const diff = new Date(targetDate) - new Date();
+    if (diff <= 0) { clearInterval(cdInterval); return; }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    const fmt = n => String(n).padStart(2, '0');
+    const el = id => document.getElementById(id);
+    if (el('cd-d')) el('cd-d').textContent = fmt(d);
+    if (el('cd-h')) el('cd-h').textContent = fmt(h);
+    if (el('cd-m')) el('cd-m').textContent = fmt(m);
+    if (el('cd-s')) el('cd-s').textContent = fmt(s);
+  }
+  tick();
+  cdInterval = setInterval(tick, 1000);
+}
+
+// ── Language ─────────────────────────────────────────
+function applyLang(lang) {
   document.querySelectorAll('[data-hr]').forEach(el => {
     const txt = el.getAttribute('data-' + lang);
     if (txt) el.innerHTML = txt;
@@ -734,7 +1090,19 @@ function setLang(lang) {
   document.documentElement.lang = lang;
 }
 
-// ── SCROLL REVEAL ──
+function setLang(lang) {
+  activeLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('active', b.textContent.toLowerCase() === lang)
+  );
+  renderHero();
+  applyLang(lang);
+}
+
+// ── Init ──────────────────────────────────────────────
+renderHero();
+
+// ── Scroll reveal ─────────────────────────────────────
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
