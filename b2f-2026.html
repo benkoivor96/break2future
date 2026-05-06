@@ -245,6 +245,12 @@
   .rank-1 { background: var(--gold); color: var(--dark); }
   .rank-2 { background: var(--silver); color: var(--dark); }
   .rank-3 { background: var(--bronze); color: var(--dark); }
+  .rank-other { background: rgba(200,212,214,0.12); color: var(--light); }
+
+  .result-body-scroll { max-height: 220px; overflow-y: auto; padding-right: 4px; }
+  .result-body-scroll::-webkit-scrollbar { width: 3px; }
+  .result-body-scroll::-webkit-scrollbar-track { background: transparent; }
+  .result-body-scroll::-webkit-scrollbar-thumb { background: rgba(232,73,15,0.4); border-radius: 2px; }
 
   .podium-name {
     font-family: 'Barlow Condensed', sans-serif;
@@ -658,12 +664,61 @@
         <span class="result-category">7 to Smoke</span>
         <span class="result-format">Footwork</span>
       </div>
-      <div class="result-body">
+      <div class="result-body result-body-scroll">
         <div class="podium-item">
           <div class="podium-rank rank-1">1</div>
           <div>
             <div class="podium-name">Beat the Young Hustler</div>
             <div class="podium-crew">Romania · 7/7 wins</div>
+          </div>
+        </div>
+        <div class="podium-item">
+          <div class="podium-rank rank-other">–</div>
+          <div>
+            <div class="podium-name">Bokser</div>
+            <div class="podium-crew">Serbia</div>
+          </div>
+        </div>
+        <div class="podium-item">
+          <div class="podium-rank rank-other">–</div>
+          <div>
+            <div class="podium-name">Điga</div>
+            <div class="podium-crew">Slovenia</div>
+          </div>
+        </div>
+        <div class="podium-item">
+          <div class="podium-rank rank-other">–</div>
+          <div>
+            <div class="podium-name">EL Vasi</div>
+            <div class="podium-crew">Croatia</div>
+          </div>
+        </div>
+        <div class="podium-item">
+          <div class="podium-rank rank-other">–</div>
+          <div>
+            <div class="podium-name">FikiFunky</div>
+            <div class="podium-crew">Croatia</div>
+          </div>
+        </div>
+        <div class="podium-item">
+          <div class="podium-rank rank-other">–</div>
+          <div>
+            <div class="podium-name">Marox</div>
+            <div class="podium-crew">Croatia</div>
+          </div>
+        </div>
+        <div class="podium-item">
+          <div class="podium-rank rank-other">–</div>
+          <div>
+            <div class="podium-name">Martino</div>
+            <div class="podium-crew">Belgium</div>
+          </div>
+        </div>
+        <div class="podium-item">
+          <div class="podium-rank rank-other">–</div>
+          <div>
+            <div class="podium-name">Mia</div>
+            <div class="podium-crew">France</div>
           </div>
         </div>
       </div>
@@ -712,16 +767,9 @@
       </div>
 
       <div class="gallery-item reveal">
-        <div class="gallery-placeholder">
-          <svg class="gp-octagon" width="60" height="60" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36" fill="none" stroke="var(--orange)" stroke-width="1.5"/>
-          </svg>
-          <span class="gp-label">7 to Smoke</span>
-        </div>
+        <img src="photos/b2f46.jpg" alt="B2F 2026 — MC on stage" loading="lazy">
       </div>
 
-      <div class="gallery-item wide reveal">
-        <div class="gallery-placeholder">
       <div class="gallery-item wide reveal">
         <img src="photos/b2f47.jpg" alt="B2F 2026 — DJ" loading="lazy">
       </div>
@@ -775,16 +823,28 @@
         <div class="day-label">Day 02</div>
         <div class="day-date">Sunday · 15 March 2026</div>
         <div class="schedule-item">
-          <div><div class="schedule-time">TBA</div></div>
-          <div><div class="schedule-name">2VS2 Breaking</div><div class="schedule-venue">Peti Kupe · Main Stage</div></div>
+          <div><div class="schedule-time">14:00</div></div>
+          <div><div class="schedule-name">Doors & Check-in</div><div class="schedule-venue">Peti Kupe</div></div>
         </div>
         <div class="schedule-item">
-          <div><div class="schedule-time">TBA</div></div>
-          <div><div class="schedule-name">7 to Smoke – Footwork</div><div class="schedule-venue">Peti Kupe · Main Stage</div></div>
+          <div><div class="schedule-time">16:00 – 16:30</div></div>
+          <div><div class="schedule-name">Qualifications – 7 to Smoke</div><div class="schedule-venue">Peti Kupe · Main Stage</div></div>
         </div>
         <div class="schedule-item">
-          <div><div class="schedule-time">TBA</div></div>
-          <div><div class="schedule-name">Finals & Awards</div><div class="schedule-venue">Peti Kupe · Main Stage</div></div>
+          <div><div class="schedule-time">16:30 – 17:30</div></div>
+          <div><div class="schedule-name">Qualifications – 2VS2 Breaking</div><div class="schedule-venue">Peti Kupe · Main Stage</div></div>
+        </div>
+        <div class="schedule-item">
+          <div><div class="schedule-time">19:00 – 21:30</div></div>
+          <div><div class="schedule-name">Main Battles – 7 to Smoke & 2VS2</div><div class="schedule-venue">Peti Kupe · Main Stage</div></div>
+        </div>
+        <div class="schedule-item">
+          <div><div class="schedule-time">21:30 – 22:00</div></div>
+          <div><div class="schedule-name">Finals & Awards Ceremony</div><div class="schedule-venue">Peti Kupe · Main Stage</div></div>
+        </div>
+        <div class="schedule-item">
+          <div><div class="schedule-time">22:00 →</div></div>
+          <div><div class="schedule-name">After Party</div><div class="schedule-venue">Peti Kupe · feat. DJ Hrwoe</div></div>
         </div>
       </div>
     </div>
@@ -834,7 +894,20 @@
       <div><div class="dj-tag">Battle DJ</div><div class="dj-name">DJ TZEK</div><div class="dj-desc">Battle DJ & Workshop instructor for B2F 2026.</div></div>
       <div class="dj-divider"></div>
       <div><div class="dj-tag">Day 1 Opening</div><div class="dj-name">DJ PARRISH</div><div class="dj-desc">Soundtrack for the 1VS1 Kids U16 battles.</div></div>
+      <div class="dj-divider"></div>
+      <div><div class="dj-tag">After Party</div><div class="dj-name">DJ HRWOE</div><div class="dj-desc">Closing the night at Peti Kupe — Day 2 after-party.</div></div>
     </div>
+
+    <!-- Host -->
+    <div class="dj-card reveal" style="margin-top: 24px;">
+      <div><div class="dj-tag">Host & MC</div><div class="dj-name">ADMIR</div><div class="dj-desc">Hosting the event and keeping the energy alive. Belgium.</div></div>
+    </div>
+
+    <!-- Media -->
+    <div class="dj-card reveal" style="margin-top: 24px;">
+      <div><div class="dj-tag">Photo & Video</div><div class="dj-name">MEDIA TEAM</div><div class="dj-desc">Official B2F 2026 photography & videography.</div></div>
+    </div>
+
   </div>
 </section>
 
