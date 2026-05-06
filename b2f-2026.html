@@ -424,6 +424,9 @@
   .gallery-item:nth-child(even) .gallery-placeholder { background: linear-gradient(145deg, #0F2225, #0B1819); }
   .gallery-item:nth-child(3n) .gallery-placeholder { background: linear-gradient(145deg, #121A1C, #0D1315); }
 
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+  .gallery-item:hover img { transform: scale(1.04); }
+
   .gallery-note {
     margin-top: 24px;
     font-family: 'Barlow Condensed', sans-serif;
@@ -677,75 +680,35 @@
 
     <div class="gallery-grid">
       <div class="gallery-item big reveal">
-        <div class="gallery-placeholder">
-          <svg class="gp-octagon" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36" fill="none" stroke="var(--orange)" stroke-width="1"/>
-          </svg>
-          <span class="gp-label">Battle Finals</span>
-        </div>
+        <img src="photos/b2f55.jpg" alt="B2F 2026 — Cypher" loading="lazy">
       </div>
 
       <div class="gallery-item reveal">
-        <div class="gallery-placeholder">
-          <svg class="gp-octagon" width="60" height="60" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36" fill="none" stroke="var(--orange)" stroke-width="1.5"/>
-          </svg>
-          <span class="gp-label">Crowd</span>
-        </div>
+        <img src="photos/b2f4.jpg" alt="B2F 2026 — Breaking action" loading="lazy">
       </div>
 
       <div class="gallery-item reveal">
-        <div class="gallery-placeholder">
-          <svg class="gp-octagon" width="60" height="60" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36" fill="none" stroke="var(--orange)" stroke-width="1.5"/>
-          </svg>
-          <span class="gp-label">Workshop</span>
-        </div>
+        <img src="photos/b2f18.jpg" alt="B2F 2026 — Battle floor" loading="lazy">
       </div>
 
       <div class="gallery-item wide reveal">
-        <div class="gallery-placeholder">
-          <svg class="gp-octagon" width="80" height="80" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36" fill="none" stroke="var(--orange)" stroke-width="1"/>
-          </svg>
-          <span class="gp-label">2vs2 Breaking</span>
-        </div>
+        <img src="photos/b2f43.jpg" alt="B2F 2026 — Crowd" loading="lazy">
       </div>
 
       <div class="gallery-item reveal">
-        <div class="gallery-placeholder">
-          <svg class="gp-octagon" width="60" height="60" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36" fill="none" stroke="var(--orange)" stroke-width="1.5"/>
-          </svg>
-          <span class="gp-label">Judges</span>
-        </div>
+        <img src="photos/b2f1.jpg" alt="B2F 2026 — Merch" loading="lazy">
       </div>
 
       <div class="gallery-item tall reveal">
-        <div class="gallery-placeholder">
-          <svg class="gp-octagon" width="80" height="80" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36" fill="none" stroke="var(--orange)" stroke-width="1"/>
-          </svg>
-          <span class="gp-label">Power Move</span>
-        </div>
+        <img src="photos/b2f57.jpg" alt="B2F 2026 — Dancers" loading="lazy">
       </div>
 
       <div class="gallery-item wide reveal">
-        <div class="gallery-placeholder">
-          <svg class="gp-octagon" width="80" height="80" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36" fill="none" stroke="var(--orange)" stroke-width="1"/>
-          </svg>
-          <span class="gp-label">Kids Battle</span>
-        </div>
+        <img src="photos/b2f15.jpg" alt="B2F 2026 — Logo" loading="lazy">
       </div>
 
       <div class="gallery-item reveal">
-        <div class="gallery-placeholder">
-          <svg class="gp-octagon" width="60" height="60" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36" fill="none" stroke="var(--orange)" stroke-width="1.5"/>
-          </svg>
-          <span class="gp-label">DJ Tzek</span>
-        </div>
+        <img src="photos/b2f32.jpg" alt="B2F 2026 — Power move" loading="lazy">
       </div>
 
       <div class="gallery-item reveal">
@@ -759,15 +722,14 @@
 
       <div class="gallery-item wide reveal">
         <div class="gallery-placeholder">
-          <svg class="gp-octagon" width="80" height="80" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36" fill="none" stroke="var(--orange)" stroke-width="1"/>
-          </svg>
-          <span class="gp-label">Panel Talk</span>
-        </div>
+      <div class="gallery-item wide reveal">
+        <img src="photos/b2f47.jpg" alt="B2F 2026 — DJ" loading="lazy">
+      </div>
+
+      <div class="gallery-item reveal">
+        <img src="photos/b2f48.jpg" alt="B2F 2026 — Cypher Time" loading="lazy">
       </div>
     </div>
-
-    <p class="gallery-note reveal">Fotke dolaze uskoro · Photos coming soon</p>
   </div>
 </section>
 
