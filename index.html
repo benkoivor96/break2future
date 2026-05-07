@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -669,16 +669,20 @@ footer {
             <span class="nav-dropdown-item-year">2025</span>
           </a>
           <div class="nav-dropdown-divider"></div>
+          <a href="b2f-2022.html" class="nav-dropdown-item">
+            <span class="nav-dropdown-item-year">2022</span>
+          </a>
+          <div class="nav-dropdown-divider"></div>
           <a href="#archive" class="nav-dropdown-item" data-hr="Sva izdanja →" data-en="All editions →">
-            Sva izdanja →
+            All editions →
           </a>
         </div>
       </li>
       <li><a href="about.html" data-hr="O nama" data-en="About us">O nama</a></li>
     </ul>
     <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('hr')">HR</button>
-      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="hr" onclick="setLang('hr')">HR</button>
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
     </div>
   </div>
 </nav>
@@ -818,18 +822,20 @@ footer {
       </div>
 
       <!-- B2F 2022 -->
-      <div class="edition-card reveal" style="opacity:0.5;cursor:default;">
+      <a href="b2f-2022.html" class="edition-card reveal">
         <div class="edition-top"></div>
         <div class="edition-body">
           <div class="edition-year">20<span>22</span></div>
-          <div class="edition-meta" data-hr="Zagreb · Arhiva" data-en="Zagreb · Archive">Zagreb · Arhiva</div>
+          <div class="edition-meta" data-hr="Zagreb · Arhiva" data-en="Zagreb · Archive">Zagreb · Archive</div>
           <div class="edition-winners">
             <div class="winner-row">
-              <div class="winner-cat" data-hr="Stranica dolazi uskoro" data-en="Page coming soon">Stranica dolazi uskoro</div>
+              <div class="winner-cat" data-hr="Pobjednici" data-en="Winners">Winners</div>
+              <div class="winner-name" data-hr="Dodaj podatke →" data-en="Add data →">Add data →</div>
             </div>
           </div>
+          <div class="edition-cta" data-hr="Pogledaj izdanje" data-en="View edition">View edition</div>
         </div>
-      </div>
+      </a>
 
     </div>
   </div>
@@ -919,7 +925,7 @@ const SITE_CONFIG = {
 // ════════════════════════════════════════════════════
 
 // ── Aktivni jezik ────────────────────────────────────
-let activeLang = 'hr';
+let activeLang = localStorage.getItem('b2f-lang') || 'en';
 
 // ── Render hero po modu ──────────────────────────────
 function renderHero() {
@@ -1080,8 +1086,9 @@ function applyLang(lang) {
 
 function setLang(lang) {
   activeLang = lang;
+  localStorage.setItem('b2f-lang', lang);
   document.querySelectorAll('.lang-btn').forEach(b =>
-    b.classList.toggle('active', b.textContent.toLowerCase() === lang)
+    b.classList.toggle('active', (b.dataset.lang || b.textContent.toLowerCase()) === lang)
   );
   renderHero();
   applyLang(lang);

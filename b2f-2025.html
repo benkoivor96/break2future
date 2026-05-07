@@ -487,6 +487,11 @@
   }
   .social-link:hover { opacity: 1; color: var(--orange); border-color: var(--orange); }
 
+  /* ── LANG TOGGLE ── */
+  .lang-toggle { display:flex; border: 1px solid rgba(200,212,214,0.2); }
+  .lang-btn { font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.2em; padding:6px 14px; cursor:pointer; border:none; background:transparent; color:var(--light); opacity:0.4; transition:all 0.2s; text-transform:uppercase; }
+  .lang-btn.active { background:var(--orange); color:var(--dark); opacity:1; }
+
   /* ── ANIMATIONS ── */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -525,22 +530,28 @@
 <header class="site-header">
   <div class="header-top">
     <a href="index.html" class="nav-logo">BREAK<span>2</span>FUTURE</a>
-    <ul class="nav-links">
-      <li><a href="index.html">← Home</a></li>
-      <li><a href="#results">Results</a></li>
-      <li><a href="#judges">Judges</a></li>
-      <li><a href="#venue">Venue</a></li>
-    </ul>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <ul class="nav-links">
+        <li><a href="index.html" data-en="← Home" data-hr="← Početna">← Home</a></li>
+        <li><a href="#results" data-en="Results" data-hr="Rezultati">Results</a></li>
+        <li><a href="#judges" data-en="Judges" data-hr="Suci">Judges</a></li>
+        <li><a href="#venue" data-en="Venue" data-hr="Lokacija">Venue</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn" data-lang="hr" onclick="applyLang('hr')">HR</button>
+        <button class="lang-btn active" data-lang="en" onclick="applyLang('en')">EN</button>
+      </div>
+    </div>
   </div>
   <div class="header-body">
     <div class="header-left">
-      <div class="header-edition">Edition 2025</div>
+      <div class="header-edition" data-en="Edition 2025" data-hr="Izdanje 2025">Edition 2025</div>
       <h1 class="header-title">
         <span class="word">BREAK</span><span class="num">2</span><span class="word">FUTURE</span>
       </h1>
     </div>
     <div class="header-meta">
-      <div class="header-meta-badge">Event Finished</div>
+      <div class="header-meta-badge" data-en="Event Finished" data-hr="Event Završen">Event Finished</div>
       <div class="header-meta-line"><strong>Zagreb</strong>, Croatia</div>
       <div class="header-meta-line">Tala Ple(j)s</div>
     </div>
@@ -569,8 +580,8 @@
 
 <!-- RESULTS -->
 <section class="results-section" id="results">
-  <p class="section-label reveal">Battle Results</p>
-  <h2 class="section-heading reveal">WINNERS &<br>RESULTS</h2>
+  <p class="section-label reveal" data-en="Battle Results" data-hr="Rezultati Bitaka">Battle Results</p>
+  <h2 class="section-heading reveal" data-en="WINNERS &amp;<br>RESULTS" data-hr="POBJEDNICI &amp;<br>REZULTATI">WINNERS &<br>RESULTS</h2>
 
   <div class="winners-grid">
 
@@ -606,8 +617,8 @@
 <!-- GALLERY placeholder -->
 <section class="gallery-section" id="gallery">
   <div class="gallery-inner">
-    <p class="section-label reveal">Photo Gallery</p>
-    <h2 class="section-heading reveal">B2F 2025<br>IN PHOTOS</h2>
+    <p class="section-label reveal" data-en="Photo Gallery" data-hr="Foto Galerija">Photo Gallery</p>
+    <h2 class="section-heading reveal" data-en="B2F 2025<br>IN PHOTOS" data-hr="B2F 2025<br>NA FOTOGRAFIJAMA">B2F 2025<br>IN PHOTOS</h2>
     <div class="gallery-grid-25">
       <div class="gp span2 reveal">
         <div class="gp-inner">
@@ -638,8 +649,8 @@
 <!-- JUDGES & DJ -->
 <section class="panel-section" id="judges">
   <div class="panel-inner">
-    <p class="section-label reveal">The Panel</p>
-    <h2 class="section-heading reveal">JUDGES &<br>ARTISTS</h2>
+    <p class="section-label reveal" data-en="The Panel" data-hr="Panel Sudaca">The Panel</p>
+    <h2 class="section-heading reveal" data-en="JUDGES &amp;<br>ARTISTS" data-hr="SUCI &amp;<br>UMJETNICI">JUDGES &<br>ARTISTS</h2>
 
     <div class="panel-row">
       <div class="panel-person reveal">
@@ -695,8 +706,8 @@
 
 <!-- VENUE + SCHEDULE -->
 <section class="venue-section" id="venue">
-  <p class="section-label reveal">Where it happened</p>
-  <h2 class="section-heading reveal">VENUE</h2>
+  <p class="section-label reveal" data-en="Where it happened" data-hr="Gdje se odvilo">Where it happened</p>
+  <h2 class="section-heading reveal" data-en="VENUE" data-hr="LOKACIJA">VENUE</h2>
 
   <div class="venue-single reveal">
     <div class="venue-left">
@@ -753,6 +764,21 @@
 </footer>
 
 <script>
+  // ── Lang ──────────────────────────────────────────
+  function applyLang(lang) {
+    document.querySelectorAll('[data-en],[data-hr]').forEach(el => {
+      const txt = el.getAttribute('data-' + lang);
+      if (txt !== null) el.innerHTML = txt;
+    });
+    document.querySelectorAll('.lang-btn').forEach(b =>
+      b.classList.toggle('active', b.dataset.lang === lang)
+    );
+    document.documentElement.lang = lang;
+    localStorage.setItem('b2f-lang', lang);
+  }
+  applyLang(localStorage.getItem('b2f-lang') || 'en');
+
+  // ── Reveal ────────────────────────────────────────
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {

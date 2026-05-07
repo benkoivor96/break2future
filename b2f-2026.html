@@ -560,6 +560,12 @@
   }
   .social-link:hover { opacity: 1; color: var(--orange); border-color: var(--orange); }
 
+  /* ── LANG TOGGLE ── */
+  .lang-toggle { display:flex; border: 1px solid rgba(200,212,214,0.2); }
+  .lang-btn { font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.2em; padding:6px 14px; cursor:pointer; border:none; background:transparent; color:var(--light); opacity:0.4; transition:all 0.2s; text-transform:uppercase; }
+  .lang-btn.active { background:var(--orange); color:var(--dark); opacity:1; }
+  .nav-right { display:flex; align-items:center; gap:32px; }
+
   /* ── ANIMATIONS ── */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 0.15; } }
@@ -604,13 +610,19 @@
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">BREAK<span>2</span>FUTURE</a>
-  <ul class="nav-links">
-    <li><a href="index.html">← Home</a></li>
-    <li><a href="#results">Results</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#schedule">Schedule</a></li>
-    <li><a href="#judges">Judges</a></li>
-  </ul>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html" data-en="← Home" data-hr="← Početna">← Home</a></li>
+      <li><a href="#results" data-en="Results" data-hr="Rezultati">Results</a></li>
+      <li><a href="#gallery" data-en="Gallery" data-hr="Galerija">Gallery</a></li>
+      <li><a href="#schedule" data-en="Schedule" data-hr="Raspored">Schedule</a></li>
+      <li><a href="#judges" data-en="Judges" data-hr="Suci">Judges</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="hr" onclick="applyLang('hr')">HR</button>
+      <button class="lang-btn active" data-lang="en" onclick="applyLang('en')">EN</button>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -643,17 +655,17 @@
 
 <!-- FINISHED BANNER -->
 <div class="finished-banner">
-  <div class="finished-label">Event Completed · March 2026</div>
-  <div class="finished-stat"><strong>120+</strong> Participants</div>
-  <div class="finished-stat"><strong>3</strong> Battle Categories</div>
-  <div class="finished-stat"><strong>4</strong> Workshops</div>
-  <div class="finished-stat"><strong>3</strong> Int'l Judges</div>
+  <div class="finished-label" data-en="Event Completed · March 2026" data-hr="Event završen · Ožujak 2026">Event Completed · March 2026</div>
+  <div class="finished-stat"><strong>120+</strong> <span data-en="Participants" data-hr="Sudionika">Participants</span></div>
+  <div class="finished-stat"><strong>3</strong> <span data-en="Battle Categories" data-hr="Kategorije">Battle Categories</span></div>
+  <div class="finished-stat"><strong>4</strong> <span data-en="Workshops" data-hr="Radionice">Workshops</span></div>
+  <div class="finished-stat"><strong>3</strong> <span data-en="Int'l Judges" data-hr="Međ. suci">Int'l Judges</span></div>
 </div>
 
 <!-- RESULTS -->
 <section class="section" id="results">
-  <p class="section-tag reveal">Battle Results</p>
-  <h2 class="section-title reveal">WINNERS &<br>RESULTS</h2>
+  <p class="section-tag reveal" data-en="Battle Results" data-hr="Rezultati Bitaka">Battle Results</p>
+  <h2 class="section-title reveal" data-en="WINNERS &amp;<br>RESULTS" data-hr="POBJEDNICI &amp;<br>REZULTATI">WINNERS &<br>RESULTS</h2>
 
   <div class="results-grid">
 
@@ -791,8 +803,8 @@
 <!-- GALLERY -->
 <section class="gallery-section" id="gallery">
   <div class="gallery-inner">
-    <p class="section-tag reveal">Photo Gallery</p>
-    <h2 class="section-title reveal">B2F 2026<br>IN PHOTOS</h2>
+    <p class="section-tag reveal" data-en="Photo Gallery" data-hr="Foto Galerija">Photo Gallery</p>
+    <h2 class="section-title reveal" data-en="B2F 2026<br>IN PHOTOS" data-hr="B2F 2026<br>NA FOTOGRAFIJAMA">B2F 2026<br>IN PHOTOS</h2>
 
     <div class="gallery-grid">
       <!-- Row 1–2: big hero + 2 normals + wide -->
@@ -846,8 +858,8 @@
 <!-- SCHEDULE -->
 <div class="schedule-section" id="schedule">
   <div class="schedule-inner">
-    <p class="section-tag reveal">Full Programme</p>
-    <h2 class="section-title reveal">SCHEDULE</h2>
+    <p class="section-tag reveal" data-en="Full Programme" data-hr="Kompletan Program">Full Programme</p>
+    <h2 class="section-title reveal" data-en="SCHEDULE" data-hr="RASPORED">SCHEDULE</h2>
     <div class="schedule-grid">
       <div class="day-block reveal">
         <div class="day-label">Day 01</div>
@@ -927,8 +939,8 @@
 
 <!-- JUDGES -->
 <section class="judges-section" id="judges">
-  <p class="section-tag reveal">The Panel</p>
-  <h2 class="section-title reveal">JUDGES &<br>ARTISTS</h2>
+  <p class="section-tag reveal" data-en="The Panel" data-hr="Panel Sudaca">The Panel</p>
+  <h2 class="section-title reveal" data-en="JUDGES &amp;<br>ARTISTS" data-hr="SUCI &amp;<br>UMJETNICI">JUDGES &<br>ARTISTS</h2>
   <div class="judges-grid">
 
     <div class="judge-card-wrap reveal">
@@ -1026,8 +1038,8 @@
 
 <!-- VENUE -->
 <section class="venue-section" id="venue">
-  <p class="section-tag reveal">Where it happened</p>
-  <h2 class="section-title reveal">VENUES</h2>
+  <p class="section-tag reveal" data-en="Where it happened" data-hr="Gdje se odvilo">Where it happened</p>
+  <h2 class="section-title reveal" data-en="VENUES" data-hr="LOKACIJE">VENUES</h2>
   <div class="venue-grid">
     <div class="venue-card reveal">
       <div class="venue-num">01</div>
@@ -1070,6 +1082,21 @@
 </footer>
 
 <script>
+  // ── Lang ──────────────────────────────────────────
+  function applyLang(lang) {
+    document.querySelectorAll('[data-en],[data-hr]').forEach(el => {
+      const txt = el.getAttribute('data-' + lang);
+      if (txt !== null) el.innerHTML = txt;
+    });
+    document.querySelectorAll('.lang-btn').forEach(b =>
+      b.classList.toggle('active', b.dataset.lang === lang)
+    );
+    document.documentElement.lang = lang;
+    localStorage.setItem('b2f-lang', lang);
+  }
+  applyLang(localStorage.getItem('b2f-lang') || 'en');
+
+  // ── Reveal ────────────────────────────────────────
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {

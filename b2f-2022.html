@@ -505,6 +505,11 @@
   }
   .f-link:hover { opacity: 1; color: var(--orange); border-color: var(--orange); }
 
+  /* ── LANG TOGGLE ── */
+  .lang-toggle { display:flex; border: 1px solid rgba(200,212,214,0.2); }
+  .lang-btn { font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.2em; padding:6px 14px; cursor:pointer; border:none; background:transparent; color:var(--light); opacity:0.4; transition:all 0.2s; text-transform:uppercase; }
+  .lang-btn.active { background:var(--orange); color:var(--dark); opacity:1; }
+
   /* ── ANIMATIONS ── */
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
   .reveal.visible { opacity: 1; transform: none; }
@@ -541,12 +546,18 @@
 <nav class="topbar">
   <a href="index.html" class="topbar-logo">BREAK<em>2</em>FUTURE</a>
   <ul class="topbar-nav">
-    <li><a href="index.html">← Home</a></li>
-    <li><a href="#results">Results</a></li>
-    <li><a href="#judges">Judges</a></li>
-    <li><a href="#venue">Venue</a></li>
+    <li><a href="index.html" data-en="← Home" data-hr="← Početna">← Home</a></li>
+    <li><a href="#results" data-en="Results" data-hr="Rezultati">Results</a></li>
+    <li><a href="#judges" data-en="Judges" data-hr="Suci">Judges</a></li>
+    <li><a href="#venue" data-en="Venue" data-hr="Lokacija">Venue</a></li>
   </ul>
-  <div class="topbar-year">2022</div>
+  <div style="display:flex;align-items:center;gap:20px;">
+    <div class="topbar-year">2022</div>
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="hr" onclick="applyLang('hr')">HR</button>
+      <button class="lang-btn active" data-lang="en" onclick="applyLang('en')">EN</button>
+    </div>
+  </div>
 </nav>
 
 <!-- MASTHEAD -->
@@ -596,8 +607,8 @@
   <div class="section-header reveal">
     <div class="section-num">01</div>
     <div class="section-heading-wrap">
-      <div class="section-tag-sm">Battle Results</div>
-      <div class="section-heading-lg">Winners & Results</div>
+      <div class="section-tag-sm" data-en="Battle Results" data-hr="Rezultati Bitaka">Battle Results</div>
+      <div class="section-heading-lg" data-en="Winners &amp; Results" data-hr="Pobjednici &amp; Rezultati">Winners & Results</div>
     </div>
   </div>
 
@@ -643,8 +654,8 @@
   <div class="section-header reveal">
     <div class="section-num">02</div>
     <div class="section-heading-wrap">
-      <div class="section-tag-sm">Photo Gallery</div>
-      <div class="section-heading-lg">B2F 2022 in Photos</div>
+      <div class="section-tag-sm" data-en="Photo Gallery" data-hr="Foto Galerija">Photo Gallery</div>
+      <div class="section-heading-lg" data-en="B2F 2022 in Photos" data-hr="B2F 2022 na Fotografijama">B2F 2022 in Photos</div>
     </div>
   </div>
   <div class="gallery-mosaic">
@@ -678,8 +689,8 @@
   <div class="section-header reveal">
     <div class="section-num">03</div>
     <div class="section-heading-wrap">
-      <div class="section-tag-sm">The Panel</div>
-      <div class="section-heading-lg">Judges & Artists</div>
+      <div class="section-tag-sm" data-en="The Panel" data-hr="Panel Sudaca">The Panel</div>
+      <div class="section-heading-lg" data-en="Judges &amp; Artists" data-hr="Suci &amp; Umjetnici">Judges & Artists</div>
     </div>
   </div>
 
@@ -744,8 +755,8 @@
   <div class="section-header reveal">
     <div class="section-num">04</div>
     <div class="section-heading-wrap">
-      <div class="section-tag-sm">Where it happened</div>
-      <div class="section-heading-lg">Venue & Schedule</div>
+      <div class="section-tag-sm" data-en="Where it happened" data-hr="Gdje se odvilo">Where it happened</div>
+      <div class="section-heading-lg" data-en="Venue &amp; Schedule" data-hr="Lokacija &amp; Raspored">Venue & Schedule</div>
     </div>
   </div>
   <div class="info-grid">
@@ -792,6 +803,21 @@
 </footer>
 
 <script>
+  // ── Lang ──────────────────────────────────────────
+  function applyLang(lang) {
+    document.querySelectorAll('[data-en],[data-hr]').forEach(el => {
+      const txt = el.getAttribute('data-' + lang);
+      if (txt !== null) el.innerHTML = txt;
+    });
+    document.querySelectorAll('.lang-btn').forEach(b =>
+      b.classList.toggle('active', b.dataset.lang === lang)
+    );
+    document.documentElement.lang = lang;
+    localStorage.setItem('b2f-lang', lang);
+  }
+  applyLang(localStorage.getItem('b2f-lang') || 'en');
+
+  // ── Reveal ────────────────────────────────────────
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
