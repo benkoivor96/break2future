@@ -298,7 +298,7 @@
     transform-style: preserve-3d;
     transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1);
   }
-  .judge-card-wrap:hover .judge-card-inner {
+  .judge-card-wrap.flipped .judge-card-inner {
     transform: rotateY(180deg);
   }
 
@@ -382,6 +382,11 @@
     font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em;
     color: var(--orange); opacity: 0.85;
   }
+  .judge-back-ig a {
+    color: var(--orange); text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .judge-back-ig a:hover { opacity: 1; text-decoration: underline; }
   .judge-back-hint {
     margin-top: auto; padding-top: 20px;
     font-family: 'Barlow Condensed', sans-serif;
@@ -928,8 +933,8 @@
           <div class="judge-back-name">INTACT</div>
           <div class="judge-back-crew">Ruffneck Attack · 🇺🇦 Ukraine</div>
           <div class="judge-back-bio">One of Ukraine's most respected b-boys, known for his raw power and consistent musicality. Member of Ruffneck Attack crew and a frequent judge at major international events across Europe.</div>
-          <div class="judge-back-ig">@intact_bboy</div>
-          <div class="judge-back-hint">hover to flip back</div>
+          <div class="judge-back-ig"><a href="https://www.instagram.com/intact_bboy" target="_blank" rel="noopener">@intact_bboy</a></div>
+          <div class="judge-back-hint">tap to flip back</div>
         </div>
       </div>
     </div>
@@ -953,8 +958,8 @@
           <div class="judge-back-name">SAM</div>
           <div class="judge-back-crew">Team Shmetta · 🇧🇪 Belgium</div>
           <div class="judge-back-bio">Belgian b-boy with deep roots in the European breaking scene. Part of Team Shmetta, Sam brings a sharp eye for foundational breaking and creative expression, blending old-school roots with modern style.</div>
-          <div class="judge-back-ig">@sam_shmetta</div>
-          <div class="judge-back-hint">hover to flip back</div>
+          <div class="judge-back-ig"><a href="https://www.instagram.com/sam_shmetta" target="_blank" rel="noopener">@sam_shmetta</a></div>
+          <div class="judge-back-hint">tap to flip back</div>
         </div>
       </div>
     </div>
@@ -978,11 +983,20 @@
           <div class="judge-back-name">VISION</div>
           <div class="judge-back-crew">Flow from Below · 🇸🇮 Slovenia</div>
           <div class="judge-back-bio">Slovenian b-boy and one of the region's most prominent figures. Representing Flow from Below, Vision is recognised for his technical precision and deep understanding of breaking culture and musicality.</div>
-          <div class="judge-back-ig">@vision_fbf</div>
-          <div class="judge-back-hint">hover to flip back</div>
+          <div class="judge-back-ig"><a href="https://www.instagram.com/vision_fbf" target="_blank" rel="noopener">@vision_fbf</a></div>
+          <div class="judge-back-hint">tap to flip back</div>
         </div>
       </div>
     </div>
+
+  </div>
+</section>
+
+<!-- DJs & CREW -->
+<section class="judges-section" id="crew" style="padding-top: 0;">
+  <p class="section-tag reveal" data-en="Sound &amp; Media" data-hr="Zvuk i Mediji">Sound &amp; Media</p>
+  <h2 class="section-title reveal" data-en="DJs &amp;<br>CREW" data-hr="DJ-EVI &amp;<br>EKIPA">DJs &<br>CREW</h2>
+  <div class="judges-grid">
 
     <!-- DJ Tzek -->
     <div class="judge-card-wrap reveal">
@@ -1002,8 +1016,8 @@
           <div class="judge-back-name">DJ TZEK</div>
           <div class="judge-back-crew">B2F 2026 Main DJ</div>
           <div class="judge-back-bio">Main battle DJ for B2F 2026 and workshop instructor on Day 1. Tzek brought the heat from the first qualifier to the last final battle.</div>
-          <div class="judge-back-ig">@djtzek</div>
-          <div class="judge-back-hint">hover to flip back</div>
+          <div class="judge-back-ig"><a href="https://www.instagram.com/djtzek" target="_blank" rel="noopener">@djtzek</a></div>
+          <div class="judge-back-hint">tap to flip back</div>
         </div>
       </div>
     </div>
@@ -1026,8 +1040,8 @@
           <div class="judge-back-name">DJ PARRISH</div>
           <div class="judge-back-crew">1VS1 Kids U16 DJ</div>
           <div class="judge-back-bio">Provided the soundtrack for the 1VS1 Kids U16 battles on Day 1, setting the tone and energy for the youngest competitors on stage.</div>
-          <div class="judge-back-ig">@djparrish</div>
-          <div class="judge-back-hint">hover to flip back</div>
+          <div class="judge-back-ig"><a href="https://www.instagram.com/djparrish" target="_blank" rel="noopener">@djparrish</a></div>
+          <div class="judge-back-hint">tap to flip back</div>
         </div>
       </div>
     </div>
@@ -1050,8 +1064,8 @@
           <div class="judge-back-name">DJ HRWOE</div>
           <div class="judge-back-crew">Peti Kupe · Day 2</div>
           <div class="judge-back-bio">Closed out B2F 2026 at Peti Kupe, taking over after the finals and keeping the after-party energy alive into the night.</div>
-          <div class="judge-back-ig">@djhrwoe</div>
-          <div class="judge-back-hint">hover to flip back</div>
+          <div class="judge-back-ig"><a href="https://www.instagram.com/djhrwoe" target="_blank" rel="noopener">@djhrwoe</a></div>
+          <div class="judge-back-hint">tap to flip back</div>
         </div>
       </div>
     </div>
@@ -1074,8 +1088,8 @@
           <div class="judge-back-name">ADMIR</div>
           <div class="judge-back-crew">Host · 🇧🇪 Belgium</div>
           <div class="judge-back-bio">Belgian host and MC who guided the audience through both days of B2F 2026, keeping the energy high and the crowd engaged from opening to finals.</div>
-          <div class="judge-back-ig">@admir_mc</div>
-          <div class="judge-back-hint">hover to flip back</div>
+          <div class="judge-back-ig"><a href="https://www.instagram.com/admir_mc" target="_blank" rel="noopener">@admir_mc</a></div>
+          <div class="judge-back-hint">tap to flip back</div>
         </div>
       </div>
     </div>
@@ -1098,8 +1112,8 @@
           <div class="judge-back-name">GOOFY</div>
           <div class="judge-back-crew">Official B2F Media</div>
           <div class="judge-back-bio">Official B2F 2026 photographer and videographer. Goofy captured every battle, every move and every moment across both days of the event.</div>
-          <div class="judge-back-ig">@goofy_media</div>
-          <div class="judge-back-hint">hover to flip back</div>
+          <div class="judge-back-ig"><a href="https://www.instagram.com/goofy_media" target="_blank" rel="noopener">@goofy_media</a></div>
+          <div class="judge-back-hint">tap to flip back</div>
         </div>
       </div>
     </div>
@@ -1166,6 +1180,13 @@
     localStorage.setItem('b2f-lang', lang);
   }
   applyLang(localStorage.getItem('b2f-lang') || 'en');
+
+  // ── Flip cards (click) ────────────────────────────
+  document.querySelectorAll('.judge-card-wrap').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (!e.target.closest('a')) card.classList.toggle('flipped');
+    });
+  });
 
   // ── Reveal ────────────────────────────────────────
   const reveals = document.querySelectorAll('.reveal');
