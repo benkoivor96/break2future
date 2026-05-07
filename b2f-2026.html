@@ -73,7 +73,7 @@
     position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(120px, 18vw, 260px);
-    color: rgba(232,73,15,0.05); line-height: 1;
+    color: rgba(232,73,15,0.08); line-height: 1;
     pointer-events: none; user-select: none; letter-spacing: -0.02em;
   }
   .ph-body {
@@ -95,6 +95,15 @@
     line-height: 0.95; letter-spacing: 0.01em;
   }
   .ph-title .ph-num { -webkit-text-stroke: 1.5px var(--orange); color: transparent; }
+  .ph-year {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 4.5vw, 64px);
+    -webkit-text-stroke: 1.5px var(--orange);
+    color: transparent;
+    letter-spacing: 0.25em;
+    margin-top: 4px;
+  }
   .ph-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; padding-bottom: 4px; }
   .ph-badge {
     display: inline-block;
@@ -484,6 +493,52 @@
     font-size: 0.8rem; letter-spacing: 0.15em;
     color: var(--light); opacity: 0.35; text-align: center;
   }
+  .gallery-link {
+    display: flex; justify-content: center; margin-top: 36px;
+  }
+  .gallery-link a {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--light); text-decoration: none; opacity: 0.5;
+    padding: 10px 28px; border: 1px solid rgba(200,212,214,0.2);
+    transition: opacity 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .gallery-link a:hover { opacity: 1; color: var(--orange); border-color: var(--orange); }
+  .gallery-link a::before { content: '↗'; font-size: 1rem; }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(8,14,16,0.95);
+    align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 90vw; max-height: 88vh;
+    object-fit: contain; display: block;
+    box-shadow: 0 0 80px rgba(0,0,0,0.8);
+  }
+  .lb-close {
+    position: fixed; top: 24px; right: 32px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem;
+    color: var(--light); opacity: 0.6; cursor: pointer; line-height: 1;
+    background: none; border: none;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .lb-close:hover { opacity: 1; color: var(--orange); }
+  .lb-prev, .lb-next {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif; font-size: 2rem;
+    color: var(--light); opacity: 0.5; cursor: pointer; line-height: 1;
+    background: rgba(8,14,16,0.6); border: none;
+    padding: 14px 18px;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .lb-prev { left: 16px; }
+  .lb-next { right: 16px; }
+  .lb-prev:hover, .lb-next:hover { opacity: 1; color: var(--orange); }
+  .gallery-item { cursor: pointer; }
 
   /* ── VENUE ── */
   .venue-section { padding: 120px 48px; max-width: 1200px; margin: 0 auto; }
@@ -613,7 +668,7 @@
   <div class="ph-body">
     <div>
       <p class="ph-edition" data-en="Zagreb, Croatia · 14–15 March 2026" data-hr="Zagreb, Hrvatska · 14–15. ožujka 2026.">Zagreb, Croatia · 14–15 March 2026</p>
-      <h1 class="ph-title">BREAK<span class="ph-num">2</span>FUTURE</h1>
+      <h1 class="ph-title">BREAK<span class="ph-num">2</span>FUTURE<span class="ph-year">2026</span></h1>
     </div>
     <div class="ph-meta">
       <span class="ph-badge" data-en="Event Finished" data-hr="Event završen">Event Finished</span>
@@ -826,8 +881,19 @@
         <img src="photos/b2f48.jpg" alt="B2F 2026 — Cypher Time" loading="lazy">
       </div>
     </div>
+    <div class="gallery-link">
+      <a href="https://drive.google.com/drive/mobile/folders/1PB4EC9HdDeQGGz7S4wIMyFA3dB6ScTtg?usp=sharing" target="_blank" rel="noopener" data-en="View all photos on Google Drive" data-hr="Sve fotografije na Google Driveu">View all photos on Google Drive</a>
+    </div>
   </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lb-close">✕</button>
+  <button class="lb-prev" id="lb-prev">‹</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-next" id="lb-next">›</button>
+</div>
 
 <!-- SCHEDULE -->
 <div class="schedule-section" id="schedule">
@@ -1076,10 +1142,7 @@
         <div class="judge-front">
           <div class="judge-role">Host & MC</div>
           <div class="judge-placeholder">
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" fill="none" stroke="#E8490F" stroke-width="1.5" opacity="0.4"/>
-              <text x="40" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="11" fill="#E8490F" opacity="0.6">ADMIR</text>
-            </svg>
+            <img src="photos/admir.png" alt="Admir" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="judge-info"><div class="judge-name">ADMIR</div><div class="judge-origin">🇧🇪 Belgium</div></div>
         </div>
@@ -1186,6 +1249,43 @@
     card.addEventListener('click', (e) => {
       if (!e.target.closest('a')) card.classList.toggle('flipped');
     });
+  });
+
+  // ── Lightbox ──────────────────────────────────────
+  const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  let lbIdx = 0;
+
+  function openLb(idx) {
+    lbIdx = idx;
+    lbImg.src = galleryItems[lbIdx].src;
+    lbImg.alt = galleryItems[lbIdx].alt;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function lbStep(dir) {
+    lbIdx = (lbIdx + dir + galleryItems.length) % galleryItems.length;
+    lbImg.src = galleryItems[lbIdx].src;
+    lbImg.alt = galleryItems[lbIdx].alt;
+  }
+
+  galleryItems.forEach((img, i) => {
+    img.parentElement.addEventListener('click', () => openLb(i));
+  });
+  document.getElementById('lb-close').addEventListener('click', closeLb);
+  document.getElementById('lb-prev').addEventListener('click', () => lbStep(-1));
+  document.getElementById('lb-next').addEventListener('click', () => lbStep(1));
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') lbStep(-1);
+    if (e.key === 'ArrowRight') lbStep(1);
   });
 
   // ── Reveal ────────────────────────────────────────
