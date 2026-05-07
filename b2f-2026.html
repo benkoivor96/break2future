@@ -61,101 +61,74 @@
   }
   .nav-links a:hover { color: var(--orange); }
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
+  /* ── COMPACT PAGE HEADER ── */
+  .page-header {
     position: relative; overflow: hidden;
-    padding: 120px 48px 80px;
+    background: var(--mid);
+    border-bottom: 1px solid rgba(232,73,15,0.2);
+    padding: 100px 48px 48px;
   }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 60% 60% at 70% 50%, rgba(232,73,15,0.12) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 50% at 20% 80%, rgba(13,43,46,0.8) 0%, transparent 60%),
-      var(--dark);
+  .page-header::before {
+    content: '2026';
+    position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(120px, 18vw, 260px);
+    color: rgba(232,73,15,0.05); line-height: 1;
+    pointer-events: none; user-select: none; letter-spacing: -0.02em;
   }
-  .hero-bg::after {
-    content: ''; position: absolute; inset: 0;
-    background-image:
-      linear-gradient(135deg, transparent 40%, rgba(232,73,15,0.03) 50%, transparent 60%),
-      linear-gradient(45deg, transparent 30%, rgba(232,73,15,0.02) 40%, transparent 55%);
-    background-size: 300px 300px, 200px 200px;
+  .ph-body {
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: end; gap: 40px;
+    position: relative; z-index: 1;
   }
-  .hero-content { position: relative; z-index: 2; max-width: 1100px; width: 100%; }
-
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--orange); color: var(--dark);
+  .ph-edition {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.7rem; font-weight: 700;
-    letter-spacing: 0.3em; text-transform: uppercase;
-    padding: 8px 18px; margin-bottom: 24px;
-    animation: fadeUp 0.7s ease both;
+    letter-spacing: 0.45em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px;
   }
-
-  .hero-eyebrow {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.8rem; font-weight: 600;
-    letter-spacing: 0.4em; text-transform: uppercase;
-    color: var(--orange); margin-bottom: 24px;
-    animation: fadeUp 0.8s ease both;
-  }
-  .hero-title {
+  .ph-edition::before { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--orange); }
+  .ph-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(80px, 14vw, 200px);
-    line-height: 0.88; letter-spacing: -0.01em;
-    animation: fadeUp 0.8s 0.1s ease both;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.95; letter-spacing: 0.01em;
   }
-  .hero-title .outline { -webkit-text-stroke: 2px var(--orange); color: transparent; }
-  .hero-title .solid { color: var(--white); }
-
-  .hero-date-bar {
-    display: flex; align-items: center; gap: 24px; margin-top: 40px;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
-  .hero-date {
+  .ph-title .ph-num { -webkit-text-stroke: 1.5px var(--orange); color: transparent; }
+  .ph-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; padding-bottom: 4px; }
+  .ph-badge {
+    display: inline-block;
+    background: rgba(232,73,15,0.15); border: 1px solid rgba(232,73,15,0.4);
+    color: var(--orange);
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(18px, 3vw, 32px);
-    font-weight: 700; letter-spacing: 0.1em; color: var(--light);
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+    padding: 5px 14px; margin-bottom: 10px;
   }
-  .hero-divider { width: 60px; height: 2px; background: var(--orange); }
-  .hero-location {
+  .ph-meta-line {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(14px, 2vw, 20px);
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--light); opacity: 0.7;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--light); opacity: 0.55;
   }
-
-  .hero-cta {
-    margin-top: 56px; display: flex; gap: 20px; flex-wrap: wrap;
-    animation: fadeUp 0.8s 0.4s ease both;
-  }
+  .ph-meta-line strong { color: var(--white); opacity: 1; }
+  .ph-cta { margin-top: 36px; display: flex; gap: 16px; flex-wrap: wrap; position: relative; z-index: 1; }
 
   .btn-primary {
     display: inline-block; background: var(--orange); color: var(--dark);
-    font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.2em;
-    padding: 18px 48px; text-decoration: none;
-    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.2em;
+    padding: 14px 40px; text-decoration: none;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
     transition: background 0.2s, transform 0.2s;
   }
   .btn-primary:hover { background: var(--white); transform: translate(-2px, -2px); }
 
   .btn-outline {
     display: inline-block; border: 1px solid rgba(200,212,214,0.4); color: var(--light);
-    font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.2em;
-    padding: 18px 48px; text-decoration: none;
-    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.2em;
+    padding: 14px 40px; text-decoration: none;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
     transition: border-color 0.2s, color 0.2s, transform 0.2s;
   }
   .btn-outline:hover { border-color: var(--orange); color: var(--orange); transform: translate(-2px, -2px); }
-
-  .hero-octagon {
-    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
-    width: clamp(200px, 30vw, 420px); aspect-ratio: 1; opacity: 0.15;
-    animation: spin 60s linear infinite, fadeIn 1.5s ease both;
-  }
-  .hero-octagon polygon { fill: none; stroke: var(--orange); stroke-width: 2; }
 
   /* ── EVENT FINISHED BANNER ── */
   .finished-banner {
@@ -403,6 +376,12 @@
     font-size: 0.85rem; line-height: 1.65;
     color: var(--light); opacity: 0.7;
   }
+  .judge-back-ig {
+    margin-top: 14px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em;
+    color: var(--orange); opacity: 0.85;
+  }
   .judge-back-hint {
     margin-top: auto; padding-top: 20px;
     font-family: 'Barlow Condensed', sans-serif;
@@ -585,16 +564,15 @@
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
-    .hero { padding: 100px 24px 60px; }
-    .hero-octagon { display: none; }
+    .page-header { padding: 80px 24px 40px; }
+    .ph-body { grid-template-columns: 1fr; gap: 20px; }
+    .ph-meta { align-items: flex-start; }
     .section, .judges-section, .venue-section { padding: 80px 24px; }
     .results-grid, .judges-grid, .schedule-grid, .venue-grid { grid-template-columns: 1fr; }
     .result-card-wide { grid-template-columns: 1fr; gap: 24px; }
     .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 180px; }
     .gallery-item.wide, .gallery-item.big { grid-column: span 2; }
     .gallery-item.tall { grid-row: span 1; }
-    .dj-card { flex-direction: column; text-align: center; }
-    .dj-divider { width: 80px; height: 1px; }
     .gallery-inner { padding: 0 24px; }
     .gallery-section { padding: 80px 0; }
     .schedule-section { padding: 80px 0; }
@@ -625,33 +603,24 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <svg class="hero-octagon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="60,5 140,5 195,60 195,140 140,195 60,195 5,140 5,60"/>
-    <polygon points="70,20 130,20 180,70 180,130 130,180 70,180 20,130 20,70" opacity="0.5"/>
-    <polygon points="80,35 120,35 165,80 165,120 120,165 80,165 35,120 35,80" opacity="0.3"/>
-  </svg>
-  <div class="hero-content">
-    <div class="hero-badge">Event Finished</div>
-    <p class="hero-eyebrow">Zagreb, Croatia &nbsp;·&nbsp; 14–15 March 2026</p>
-    <h1 class="hero-title">
-      <span class="solid">BREAK</span><br>
-      <span class="outline">2</span><br>
-      <span class="solid">FUTURE</span>
-    </h1>
-    <div class="hero-date-bar">
-      <span class="hero-date">EDITION 2026</span>
-      <div class="hero-divider"></div>
-      <span class="hero-location">Tala Ple(i)s · Peti Kupe</span>
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="ph-body">
+    <div>
+      <p class="ph-edition" data-en="Zagreb, Croatia · 14–15 March 2026" data-hr="Zagreb, Hrvatska · 14–15. ožujka 2026.">Zagreb, Croatia · 14–15 March 2026</p>
+      <h1 class="ph-title">BREAK<span class="ph-num">2</span>FUTURE</h1>
     </div>
-    <div class="hero-cta">
-      <a href="#results" class="btn-primary">View Results</a>
-      <a href="#gallery" class="btn-outline">Photo Gallery</a>
+    <div class="ph-meta">
+      <span class="ph-badge" data-en="Event Finished" data-hr="Event završen">Event Finished</span>
+      <span class="ph-meta-line"><strong>Tala Ple(i)s</strong> · Day 1</span>
+      <span class="ph-meta-line"><strong>Peti Kupe</strong> · Day 2</span>
     </div>
   </div>
-</section>
+  <div class="ph-cta">
+    <a href="#results" class="btn-primary" data-en="View Results" data-hr="Rezultati">View Results</a>
+    <a href="#gallery" class="btn-outline" data-en="Photo Gallery" data-hr="Galerija">Photo Gallery</a>
+  </div>
+</header>
 
 <!-- FINISHED BANNER -->
 <div class="finished-banner">
@@ -951,14 +920,15 @@
           <div class="judge-placeholder">
             <img src="photos/intact.jpeg" alt="Intact" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
-          <div class="judge-info"><div class="judge-name">INTACT</div><div class="judge-origin">Ukraine</div></div>
+          <div class="judge-info"><div class="judge-name">INTACT</div><div class="judge-origin">🇺🇦 Ukraine</div></div>
         </div>
         <!-- BACK -->
         <div class="judge-back">
           <div class="judge-back-tag">Breaking Judge</div>
           <div class="judge-back-name">INTACT</div>
-          <div class="judge-back-crew">Ruffneck Attack · Ukraine</div>
+          <div class="judge-back-crew">Ruffneck Attack · 🇺🇦 Ukraine</div>
           <div class="judge-back-bio">One of Ukraine's most respected b-boys, known for his raw power and consistent musicality. Member of Ruffneck Attack crew and a frequent judge at major international events across Europe.</div>
+          <div class="judge-back-ig">@intact_bboy</div>
           <div class="judge-back-hint">hover to flip back</div>
         </div>
       </div>
@@ -975,14 +945,15 @@
               <text x="40" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#E8490F" opacity="0.6">SAM</text>
             </svg>
           </div>
-          <div class="judge-info"><div class="judge-name">SAM</div><div class="judge-origin">Belgium</div></div>
+          <div class="judge-info"><div class="judge-name">SAM</div><div class="judge-origin">🇧🇪 Belgium</div></div>
         </div>
         <!-- BACK -->
         <div class="judge-back">
           <div class="judge-back-tag">Breaking Judge</div>
           <div class="judge-back-name">SAM</div>
-          <div class="judge-back-crew">Team Shmetta · Belgium</div>
+          <div class="judge-back-crew">Team Shmetta · 🇧🇪 Belgium</div>
           <div class="judge-back-bio">Belgian b-boy with deep roots in the European breaking scene. Part of Team Shmetta, Sam brings a sharp eye for foundational breaking and creative expression, blending old-school roots with modern style.</div>
+          <div class="judge-back-ig">@sam_shmetta</div>
           <div class="judge-back-hint">hover to flip back</div>
         </div>
       </div>
@@ -999,35 +970,138 @@
               <text x="40" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#E8490F" opacity="0.6">VISION</text>
             </svg>
           </div>
-          <div class="judge-info"><div class="judge-name">VISION</div><div class="judge-origin">Slovenia</div></div>
+          <div class="judge-info"><div class="judge-name">VISION</div><div class="judge-origin">🇸🇮 Slovenia</div></div>
         </div>
         <!-- BACK -->
         <div class="judge-back">
           <div class="judge-back-tag">Breaking Judge</div>
           <div class="judge-back-name">VISION</div>
-          <div class="judge-back-crew">Flow from Below · Slovenia</div>
+          <div class="judge-back-crew">Flow from Below · 🇸🇮 Slovenia</div>
           <div class="judge-back-bio">Slovenian b-boy and one of the region's most prominent figures. Representing Flow from Below, Vision is recognised for his technical precision and deep understanding of breaking culture and musicality.</div>
+          <div class="judge-back-ig">@vision_fbf</div>
           <div class="judge-back-hint">hover to flip back</div>
         </div>
       </div>
     </div>
 
-    <div class="dj-card reveal">
-      <div><div class="dj-tag">Battle DJ</div><div class="dj-name">DJ TZEK</div><div class="dj-desc">Battle DJ & Workshop instructor for B2F 2026.</div></div>
-      <div class="dj-divider"></div>
-      <div><div class="dj-tag">Day 1 Opening</div><div class="dj-name">DJ PARRISH</div><div class="dj-desc">Soundtrack for the 1VS1 Kids U16 battles.</div></div>
-      <div class="dj-divider"></div>
-      <div><div class="dj-tag">After Party</div><div class="dj-name">DJ HRWOE</div><div class="dj-desc">Closing the night at Peti Kupe — Day 2 after-party.</div></div>
+    <!-- DJ Tzek -->
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <div class="judge-front">
+          <div class="judge-role">Battle DJ</div>
+          <div class="judge-placeholder">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" fill="none" stroke="#E8490F" stroke-width="1.5" opacity="0.4"/>
+              <text x="40" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="11" fill="#E8490F" opacity="0.6">TZEK</text>
+            </svg>
+          </div>
+          <div class="judge-info"><div class="judge-name">DJ TZEK</div><div class="judge-origin">Battle DJ</div></div>
+        </div>
+        <div class="judge-back">
+          <div class="judge-back-tag">Battle DJ</div>
+          <div class="judge-back-name">DJ TZEK</div>
+          <div class="judge-back-crew">B2F 2026 Main DJ</div>
+          <div class="judge-back-bio">Main battle DJ for B2F 2026 and workshop instructor on Day 1. Tzek brought the heat from the first qualifier to the last final battle.</div>
+          <div class="judge-back-ig">@djtzek</div>
+          <div class="judge-back-hint">hover to flip back</div>
+        </div>
+      </div>
     </div>
 
-    <!-- Host -->
-    <div class="dj-card reveal" style="margin-top: 24px;">
-      <div><div class="dj-tag">Host & MC</div><div class="dj-name">ADMIR</div><div class="dj-desc">Hosting the event and keeping the energy alive. Belgium.</div></div>
+    <!-- DJ Parrish -->
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <div class="judge-front">
+          <div class="judge-role">Day 1 Opening</div>
+          <div class="judge-placeholder">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" fill="none" stroke="#E8490F" stroke-width="1.5" opacity="0.4"/>
+              <text x="40" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#E8490F" opacity="0.6">PARRISH</text>
+            </svg>
+          </div>
+          <div class="judge-info"><div class="judge-name">DJ PARRISH</div><div class="judge-origin">Day 1 DJ</div></div>
+        </div>
+        <div class="judge-back">
+          <div class="judge-back-tag">Day 1 DJ</div>
+          <div class="judge-back-name">DJ PARRISH</div>
+          <div class="judge-back-crew">1VS1 Kids U16 DJ</div>
+          <div class="judge-back-bio">Provided the soundtrack for the 1VS1 Kids U16 battles on Day 1, setting the tone and energy for the youngest competitors on stage.</div>
+          <div class="judge-back-ig">@djparrish</div>
+          <div class="judge-back-hint">hover to flip back</div>
+        </div>
+      </div>
     </div>
 
-    <!-- Media -->
-    <div class="dj-card reveal" style="margin-top: 24px;">
-      <div><div class="dj-tag">Photo & Video</div><div class="dj-name">GOOFY</div><div class="dj-desc">Official B2F 2026 photographer & videographer.</div></div>
+    <!-- DJ Hrwoe -->
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <div class="judge-front">
+          <div class="judge-role">After Party</div>
+          <div class="judge-placeholder">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" fill="none" stroke="#E8490F" stroke-width="1.5" opacity="0.4"/>
+              <text x="40" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#E8490F" opacity="0.6">HRWOE</text>
+            </svg>
+          </div>
+          <div class="judge-info"><div class="judge-name">DJ HRWOE</div><div class="judge-origin">After Party</div></div>
+        </div>
+        <div class="judge-back">
+          <div class="judge-back-tag">After Party DJ</div>
+          <div class="judge-back-name">DJ HRWOE</div>
+          <div class="judge-back-crew">Peti Kupe · Day 2</div>
+          <div class="judge-back-bio">Closed out B2F 2026 at Peti Kupe, taking over after the finals and keeping the after-party energy alive into the night.</div>
+          <div class="judge-back-ig">@djhrwoe</div>
+          <div class="judge-back-hint">hover to flip back</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Host: Admir -->
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <div class="judge-front">
+          <div class="judge-role">Host & MC</div>
+          <div class="judge-placeholder">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" fill="none" stroke="#E8490F" stroke-width="1.5" opacity="0.4"/>
+              <text x="40" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="11" fill="#E8490F" opacity="0.6">ADMIR</text>
+            </svg>
+          </div>
+          <div class="judge-info"><div class="judge-name">ADMIR</div><div class="judge-origin">🇧🇪 Belgium</div></div>
+        </div>
+        <div class="judge-back">
+          <div class="judge-back-tag">Host & MC</div>
+          <div class="judge-back-name">ADMIR</div>
+          <div class="judge-back-crew">Host · 🇧🇪 Belgium</div>
+          <div class="judge-back-bio">Belgian host and MC who guided the audience through both days of B2F 2026, keeping the energy high and the crowd engaged from opening to finals.</div>
+          <div class="judge-back-ig">@admir_mc</div>
+          <div class="judge-back-hint">hover to flip back</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Media: Goofy -->
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <div class="judge-front">
+          <div class="judge-role">Photo & Video</div>
+          <div class="judge-placeholder">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" fill="none" stroke="#E8490F" stroke-width="1.5" opacity="0.4"/>
+              <text x="40" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="11" fill="#E8490F" opacity="0.6">GOOFY</text>
+            </svg>
+          </div>
+          <div class="judge-info"><div class="judge-name">GOOFY</div><div class="judge-origin">Media Team</div></div>
+        </div>
+        <div class="judge-back">
+          <div class="judge-back-tag">Photo & Video</div>
+          <div class="judge-back-name">GOOFY</div>
+          <div class="judge-back-crew">Official B2F Media</div>
+          <div class="judge-back-bio">Official B2F 2026 photographer and videographer. Goofy captured every battle, every move and every moment across both days of the event.</div>
+          <div class="judge-back-ig">@goofy_media</div>
+          <div class="judge-back-hint">hover to flip back</div>
+        </div>
+      </div>
     </div>
 
   </div>
