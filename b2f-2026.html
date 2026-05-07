@@ -577,43 +577,35 @@
 
   /* ── FOOTER ── */
   footer {
-    background: var(--mid);
+    background: var(--mid); padding: 60px 48px;
+    display: flex; justify-content: space-between; align-items: center;
     border-top: 1px solid rgba(232,73,15,0.2);
-    padding: 80px 48px 60px;
-    display: flex; flex-direction: column; align-items: center;
-    gap: 0; text-align: center;
+    flex-wrap: wrap; gap: 24px;
   }
   .footer-collab {
-    display: flex; flex-direction: column; align-items: center; gap: 0;
-    margin-bottom: 48px;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 0;
   }
   .footer-logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.4rem, 6vw, 4.5rem);
-    letter-spacing: 0.05em; line-height: 1; color: var(--white);
+    font-size: 2.5rem; letter-spacing: 0.05em; line-height: 1;
+    color: var(--white);
   }
   .footer-logo span { color: var(--orange); }
   .footer-x {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    color: var(--light); opacity: 0.3;
-    line-height: 1.4; letter-spacing: 0.1em;
+    font-size: 1.6rem; color: var(--light); opacity: 0.3;
+    line-height: 1.6; letter-spacing: 0.1em;
   }
   .footer-partner-logo {
-    max-width: clamp(160px, 28vw, 320px);
+    max-width: 160px;
     filter: brightness(0) invert(1);
-    opacity: 0.85;
+    opacity: 0.6;
     display: block;
-  }
-  .footer-bottom {
-    display: flex; justify-content: space-between; align-items: center;
-    width: 100%; flex-wrap: wrap; gap: 16px;
-    border-top: 1px solid rgba(200,212,214,0.07); padding-top: 32px;
   }
   .footer-info {
     font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem;
-    letter-spacing: 0.2em; color: var(--light); opacity: 0.35;
-    text-transform: uppercase; line-height: 1.8;
+    letter-spacing: 0.2em; color: var(--light); opacity: 0.4;
+    text-align: right; text-transform: uppercase; line-height: 1.8;
   }
   .social-links { display: flex; gap: 16px; }
   .social-link {
@@ -664,9 +656,9 @@
     .schedule-section { padding: 80px 0; }
     .schedule-inner { padding: 0 24px; }
     .finished-banner { flex-wrap: wrap; gap: 16px; padding: 20px 24px; }
-    footer { padding: 60px 24px 40px; }
-    .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
+    footer { padding: 40px 24px; flex-direction: column; }
     .footer-info { text-align: center; }
+    .footer-collab { align-items: center; }
   }
 </style>
 </head>
@@ -1190,10 +1182,7 @@
         <div class="judge-front">
           <div class="judge-role">Photo & Video</div>
           <div class="judge-placeholder">
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" fill="none" stroke="#E8490F" stroke-width="1.5" opacity="0.4"/>
-              <text x="40" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="11" fill="#E8490F" opacity="0.6">GOOFY</text>
-            </svg>
+            <img src="photos/goofy.jpeg" alt="Goofy" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="judge-info"><div class="judge-name">GOOFY</div><div class="judge-origin">Media Team</div></div>
         </div>
@@ -1247,15 +1236,13 @@
     <div class="footer-x">×</div>
     <img src="photos/tala-logo.png" alt="Tala Ple(j)s" class="footer-partner-logo">
   </div>
-  <div class="footer-bottom">
-    <div class="footer-info">
-      Zagreb · Croatia<br>
-      14–15 March 2026<br>
-      Tala Ple(j)s / Peti Kupe
-    </div>
-    <div class="social-links">
-      <a href="https://www.instagram.com/break2future.hr/" target="_blank" class="social-link">Instagram</a>
-    </div>
+  <div class="social-links">
+    <a href="https://www.instagram.com/break2future.hr/" target="_blank" class="social-link">Instagram</a>
+  </div>
+  <div class="footer-info">
+    14–15 March 2026<br>
+    Tala Ple(j)s / Peti Kupe<br>
+    break2future.hr
   </div>
 </footer>
 
