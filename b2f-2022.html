@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BREAK2FUTURE 2022 — Recap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #E8490F;
+    --dark: #080E10;
+    --mid: #0E1719;
+    --panel: #121C1F;
+    --border: rgba(200,212,214,0.1);
+    --light: #C8D4D6;
+    --white: #F0F4F5;
+    --gold: #D4A843;
+    --silver: #94A8AE;
+    --bronze: #B5734A;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.035; pointer-events: none; z-index: 9999;
+  }
+
+  /* ── TOP BAR (nav) ── */
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 48px;
+    height: 56px;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(8,14,16,0.97);
+    backdrop-filter: blur(8px);
+  }
+  .topbar-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem; letter-spacing: 0.18em;
+    color: var(--white); text-decoration: none;
+  }
+  .topbar-logo em { color: var(--orange); font-style: normal; }
+  .topbar-nav { display: flex; gap: 0; list-style: none; }
+  .topbar-nav li { border-left: 1px solid var(--border); }
+  .topbar-nav a {
+    display: block; padding: 0 20px; height: 56px;
+    line-height: 56px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--light); text-decoration: none; opacity: 0.5;
+    transition: opacity 0.2s, color 0.2s, background 0.2s;
+  }
+  .topbar-nav a:hover { opacity: 1; color: var(--orange); background: rgba(232,73,15,0.04); }
+  .topbar-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem; letter-spacing: 0.15em;
+    color: rgba(232,73,15,0.4);
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    min-height: 340px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .masthead-left {
+    padding: 56px 48px 48px;
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+
+  .masthead-left::before {
+    content: 'B2F';
+    position: absolute; right: -24px; bottom: -40px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(160px, 22vw, 300px);
+    color: rgba(232,73,15,0.04);
+    line-height: 1; pointer-events: none; user-select: none;
+    letter-spacing: -0.02em;
+  }
+
+  .masthead-kicker {
+    display: flex; align-items: center; gap: 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.4em; text-transform: uppercase;
+  }
+  .masthead-kicker-dot {
+    display: inline-block; width: 6px; height: 6px;
+    background: var(--orange); margin-right: 14px;
+  }
+  .masthead-kicker-text { color: var(--orange); }
+  .masthead-kicker-sep { color: var(--border); margin: 0 12px; }
+  .masthead-kicker-sub { color: var(--light); opacity: 0.4; }
+
+  .masthead-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 9vw, 130px);
+    line-height: 0.92; letter-spacing: 0.01em;
+    position: relative; z-index: 1;
+  }
+  .masthead-title .stroke {
+    -webkit-text-stroke: 1.5px var(--orange);
+    color: transparent;
+  }
+
+  .masthead-meta-row {
+    display: flex; align-items: center; gap: 32px;
+    position: relative; z-index: 1;
+  }
+  .masthead-btn {
+    display: inline-block;
+    background: var(--orange); color: var(--dark);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    padding: 12px 28px; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .masthead-btn:hover { background: var(--white); }
+  .masthead-btn-ghost {
+    display: inline-block;
+    border: 1px solid rgba(200,212,214,0.25); color: var(--light);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    padding: 12px 28px; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .masthead-btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+
+  .masthead-right {
+    display: flex; flex-direction: column;
+  }
+
+  .masthead-right-cell {
+    flex: 1;
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .masthead-right-cell:last-child { border-bottom: none; }
+
+  .mrc-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--light); opacity: 0.35; margin-bottom: 6px;
+  }
+  .mrc-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem; line-height: 1;
+    color: var(--white); letter-spacing: 0.04em;
+  }
+  .mrc-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem; color: var(--light);
+    opacity: 0.4; margin-top: 3px; letter-spacing: 0.1em;
+  }
+
+  /* ── SECTION COMMON ── */
+  .section-header {
+    display: flex; align-items: baseline; gap: 20px;
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem; line-height: 1;
+    color: rgba(232,73,15,0.15);
+  }
+  .section-heading-wrap {}
+  .section-tag-sm {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 4px;
+  }
+  .section-heading-lg {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 0.95; color: var(--white);
+  }
+
+  /* ── RESULTS ── */
+  .results-area { border-bottom: 1px solid var(--border); }
+
+  .results-table {
+    display: grid;
+    border-collapse: collapse;
+  }
+
+  .rt-row {
+    display: grid;
+    grid-template-columns: 56px 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .rt-row:hover { background: rgba(232,73,15,0.02); }
+  .rt-row.rt-head { background: var(--mid); }
+
+  .rt-cell {
+    padding: 20px 24px;
+    border-right: 1px solid var(--border);
+    display: flex; align-items: center;
+  }
+  .rt-cell:last-child { border-right: none; }
+
+  .rt-head .rt-cell {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--light); opacity: 0.35;
+    padding: 14px 24px;
+  }
+
+  .rt-rank {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem; line-height: 1;
+    justify-content: center;
+  }
+  .rt-rank.gold { color: var(--gold); }
+  .rt-rank.silver { color: var(--silver); }
+  .rt-rank.bronze { color: var(--bronze); }
+  .rt-rank.other { color: rgba(200,212,214,0.25); font-size: 1rem; }
+
+  .rt-name-wrap {}
+  .rt-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    letter-spacing: 0.04em; color: var(--white);
+  }
+  .rt-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.72rem; color: var(--light);
+    opacity: 0.35; margin-top: 2px;
+  }
+
+  .rt-category {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--orange); opacity: 0.8;
+  }
+
+  .rt-format {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem; color: var(--light); opacity: 0.3;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── PANEL (Judges) ── */
+  .panel-area { border-bottom: 1px solid var(--border); }
+
+  .judges-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--border);
+  }
+
+  .judge-strip-card {
+    border-right: 1px solid var(--border);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .judge-strip-card:last-child { border-right: none; }
+  .judge-strip-card:hover { background: rgba(232,73,15,0.03); }
+
+  .jsc-top {
+    padding: 48px 40px 32px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    min-height: 220px;
+    position: relative; overflow: hidden;
+  }
+  .jsc-top::before {
+    content: attr(data-initial);
+    position: absolute; right: 16px; top: 16px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 7rem; line-height: 1;
+    color: rgba(232,73,15,0.07);
+    pointer-events: none;
+  }
+
+  .jsc-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--orange); opacity: 0.5; margin-bottom: 12px;
+  }
+  .jsc-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem; line-height: 0.95; color: var(--white);
+  }
+  .jsc-crew {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--orange); opacity: 0.6; margin-top: 6px;
+  }
+
+  .jsc-bottom {
+    padding: 20px 40px 28px;
+    border-top: 1px solid var(--border);
+  }
+  .jsc-origin {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--light); opacity: 0.35;
+  }
+  .jsc-role {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--orange); opacity: 0.55; margin-top: 2px;
+  }
+
+  /* dj strip */
+  .dj-strip {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border);
+  }
+  .dj-strip-block {
+    padding: 32px 40px;
+    border-right: 1px solid var(--border);
+    display: flex; align-items: center; gap: 24px;
+  }
+  .dj-strip-block:last-child { border-right: none; }
+  .dj-strip-line { width: 2px; height: 48px; background: rgba(232,73,15,0.3); flex-shrink: 0; }
+  .dj-strip-role {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 3px;
+  }
+  .dj-strip-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; line-height: 1; color: var(--white);
+  }
+  .dj-strip-detail {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.78rem; color: var(--light); opacity: 0.35; margin-top: 3px;
+  }
+
+  /* ── GALLERY ── */
+  .gallery-area { border-bottom: 1px solid var(--border); }
+
+  .gallery-mosaic {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 280px 220px;
+    gap: 1px;
+    background: var(--border);
+    margin-top: 1px;
+  }
+
+  .gm-cell {
+    background: var(--mid);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .gm-cell.span-row { grid-row: span 2; }
+
+  .gm-cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+  .gm-cell:hover img { transform: scale(1.04); }
+
+  .gm-placeholder {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    opacity: 0.1;
+  }
+  .gm-placeholder svg polygon { fill: none; stroke: var(--orange); stroke-width: 1; }
+  .gm-label {
+    position: absolute; bottom: 12px; left: 14px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.55rem; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--light); opacity: 0.15;
+  }
+
+  /* ── VENUE / SCHEDULE ── */
+  .info-area { border-bottom: 1px solid var(--border); }
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border);
+  }
+
+  .info-col {
+    padding: 48px;
+    border-right: 1px solid var(--border);
+  }
+  .info-col:last-child { border-right: none; }
+
+  .info-col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 28px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .info-col-label::after { content: ''; flex: 1; height: 1px; background: rgba(232,73,15,0.2); }
+
+  .venue-big-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.2rem; line-height: 1; color: var(--white);
+    margin-bottom: 12px;
+  }
+  .venue-addr {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.88rem; color: var(--light);
+    opacity: 0.4; line-height: 1.7; margin-bottom: 28px;
+  }
+  .venue-tag-list { display: flex; flex-direction: column; gap: 8px; }
+  .venue-tag-item {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--light); opacity: 0.55;
+  }
+  .venue-tag-item::before {
+    content: ''; width: 5px; height: 5px;
+    background: var(--orange);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    flex-shrink: 0;
+  }
+
+  .sched-list { display: flex; flex-direction: column; }
+  .sched-row {
+    display: flex; gap: 0;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(200,212,214,0.06);
+    transition: padding-left 0.15s;
+  }
+  .sched-row:first-child { padding-top: 0; }
+  .sched-row:last-child { border-bottom: none; }
+  .sched-row:hover { padding-left: 6px; }
+  .sched-time {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.1em; color: var(--orange);
+    min-width: 100px; opacity: 0.8;
+  }
+  .sched-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem; font-weight: 600;
+    letter-spacing: 0.04em; color: var(--white);
+  }
+  .sched-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.7rem; color: var(--light);
+    opacity: 0.3; margin-top: 2px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    gap: 24px;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem; letter-spacing: 0.08em;
+  }
+  .footer-logo em { color: var(--orange); font-style: normal; }
+  .footer-center {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--light); opacity: 0.25; text-align: center;
+  }
+  .footer-right {
+    display: flex; gap: 12px; justify-content: flex-end;
+  }
+  .f-link {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--light); text-decoration: none; opacity: 0.35;
+    padding: 7px 14px;
+    border: 1px solid rgba(200,212,214,0.1);
+    transition: opacity 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .f-link:hover { opacity: 1; color: var(--orange); border-color: var(--orange); }
+
+  /* ── ANIMATIONS ── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .topbar { padding: 0 24px; }
+    .topbar-nav { display: none; }
+    .masthead { grid-template-columns: 1fr; min-height: auto; }
+    .masthead-left { border-right: none; border-bottom: 1px solid var(--border); padding: 40px 24px 36px; }
+    .masthead-right { display: grid; grid-template-columns: 1fr 1fr; }
+    .masthead-right-cell { border-bottom: none; border-right: 1px solid var(--border); }
+    .masthead-right-cell:last-child { border-right: none; }
+    .section-header { padding: 32px 24px 24px; }
+    .rt-row { grid-template-columns: 40px 1fr 1fr; }
+    .rt-row .rt-cell:last-child { display: none; }
+    .rt-head .rt-cell:last-child { display: none; }
+    .judges-strip { grid-template-columns: 1fr; }
+    .judge-strip-card { border-right: none; border-bottom: 1px solid var(--border); }
+    .dj-strip { grid-template-columns: 1fr; }
+    .dj-strip-block { border-right: none; border-bottom: 1px solid var(--border); padding: 24px; }
+    .gallery-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
+    .gm-cell.span-row { grid-row: span 1; }
+    .info-grid { grid-template-columns: 1fr; }
+    .info-col { border-right: none; border-bottom: 1px solid var(--border); padding: 36px 24px; }
+    footer { grid-template-columns: 1fr; text-align: center; padding: 32px 24px; }
+    .footer-right { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<nav class="topbar">
+  <a href="index.html" class="topbar-logo">BREAK<em>2</em>FUTURE</a>
+  <ul class="topbar-nav">
+    <li><a href="index.html">← Home</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#judges">Judges</a></li>
+    <li><a href="#venue">Venue</a></li>
+  </ul>
+  <div class="topbar-year">2022</div>
+</nav>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-left">
+    <div class="masthead-kicker">
+      <span class="masthead-kicker-dot"></span>
+      <span class="masthead-kicker-text">Event Finished</span>
+      <span class="masthead-kicker-sep">·</span>
+      <span class="masthead-kicker-sub">Zagreb, Croatia &nbsp;·&nbsp; 2022</span>
+    </div>
+    <h1 class="masthead-title">
+      BREAK<span class="stroke">2</span>FUTURE<br>
+      <span class="stroke">2022</span>
+    </h1>
+    <div class="masthead-meta-row">
+      <a href="#results" class="masthead-btn">View Results</a>
+      <a href="#judges" class="masthead-btn-ghost">Meet the Panel</a>
+    </div>
+  </div>
+  <div class="masthead-right">
+    <div class="masthead-right-cell">
+      <div class="mrc-label">Edition</div>
+      <div class="mrc-value">2022</div>
+      <div class="mrc-sub">Break2Future</div>
+    </div>
+    <div class="masthead-right-cell">
+      <div class="mrc-label">Location</div>
+      <div class="mrc-value">Zagreb</div>
+      <div class="mrc-sub">Croatia</div>
+    </div>
+    <div class="masthead-right-cell">
+      <div class="mrc-label">Categories</div>
+      <div class="mrc-value">—</div>
+      <div class="mrc-sub">TBA</div>
+    </div>
+    <div class="masthead-right-cell">
+      <div class="mrc-label">Judges</div>
+      <div class="mrc-value">—</div>
+      <div class="mrc-sub">TBA</div>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<section class="results-area" id="results">
+  <div class="section-header reveal">
+    <div class="section-num">01</div>
+    <div class="section-heading-wrap">
+      <div class="section-tag-sm">Battle Results</div>
+      <div class="section-heading-lg">Winners & Results</div>
+    </div>
+  </div>
+
+  <div class="results-table">
+    <!-- header row -->
+    <div class="rt-row rt-head">
+      <div class="rt-cell">#</div>
+      <div class="rt-cell">Name / Crew</div>
+      <div class="rt-cell">Category</div>
+      <div class="rt-cell">Format</div>
+    </div>
+
+    <!-- PLACEHOLDER ROWS — replace with real data -->
+    <div class="rt-row reveal">
+      <div class="rt-cell rt-rank gold">1</div>
+      <div class="rt-cell"><div class="rt-name-wrap"><div class="rt-name">TBA</div><div class="rt-sub">—</div></div></div>
+      <div class="rt-cell"><div class="rt-category">TBA Category</div></div>
+      <div class="rt-cell"><div class="rt-format">—</div></div>
+    </div>
+    <div class="rt-row reveal">
+      <div class="rt-cell rt-rank silver">2</div>
+      <div class="rt-cell"><div class="rt-name-wrap"><div class="rt-name">TBA</div><div class="rt-sub">—</div></div></div>
+      <div class="rt-cell"><div class="rt-category">TBA Category</div></div>
+      <div class="rt-cell"><div class="rt-format">—</div></div>
+    </div>
+    <div class="rt-row reveal">
+      <div class="rt-cell rt-rank bronze">3</div>
+      <div class="rt-cell"><div class="rt-name-wrap"><div class="rt-name">TBA</div><div class="rt-sub">—</div></div></div>
+      <div class="rt-cell"><div class="rt-category">TBA Category</div></div>
+      <div class="rt-cell"><div class="rt-format">—</div></div>
+    </div>
+    <div class="rt-row reveal">
+      <div class="rt-cell rt-rank other">—</div>
+      <div class="rt-cell"><div class="rt-name-wrap"><div class="rt-name">TBA</div><div class="rt-sub">—</div></div></div>
+      <div class="rt-cell"><div class="rt-category">TBA Category</div></div>
+      <div class="rt-cell"><div class="rt-format">—</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-area" id="gallery">
+  <div class="section-header reveal">
+    <div class="section-num">02</div>
+    <div class="section-heading-wrap">
+      <div class="section-tag-sm">Photo Gallery</div>
+      <div class="section-heading-lg">B2F 2022 in Photos</div>
+    </div>
+  </div>
+  <div class="gallery-mosaic">
+    <div class="gm-cell span-row reveal">
+      <div class="gm-placeholder">
+        <svg width="80" height="80" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg>
+      </div>
+      <span class="gm-label">Main Battle</span>
+    </div>
+    <div class="gm-cell reveal">
+      <div class="gm-placeholder"><svg width="50" height="50" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
+      <span class="gm-label">Action</span>
+    </div>
+    <div class="gm-cell reveal">
+      <div class="gm-placeholder"><svg width="50" height="50" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
+      <span class="gm-label">Crowd</span>
+    </div>
+    <div class="gm-cell reveal">
+      <div class="gm-placeholder"><svg width="50" height="50" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
+      <span class="gm-label">Judges</span>
+    </div>
+    <div class="gm-cell reveal">
+      <div class="gm-placeholder"><svg width="50" height="50" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
+      <span class="gm-label">Winners</span>
+    </div>
+  </div>
+</section>
+
+<!-- JUDGES -->
+<section class="panel-area" id="judges">
+  <div class="section-header reveal">
+    <div class="section-num">03</div>
+    <div class="section-heading-wrap">
+      <div class="section-tag-sm">The Panel</div>
+      <div class="section-heading-lg">Judges & Artists</div>
+    </div>
+  </div>
+
+  <div class="judges-strip">
+    <div class="judge-strip-card reveal">
+      <div class="jsc-top" data-initial="?">
+        <div class="jsc-num">Judge 01</div>
+        <div class="jsc-name">TBA</div>
+        <div class="jsc-crew">— · —</div>
+      </div>
+      <div class="jsc-bottom">
+        <div class="jsc-origin">Country — TBA</div>
+        <div class="jsc-role">Breaking Judge</div>
+      </div>
+    </div>
+    <div class="judge-strip-card reveal">
+      <div class="jsc-top" data-initial="?">
+        <div class="jsc-num">Judge 02</div>
+        <div class="jsc-name">TBA</div>
+        <div class="jsc-crew">— · —</div>
+      </div>
+      <div class="jsc-bottom">
+        <div class="jsc-origin">Country — TBA</div>
+        <div class="jsc-role">Breaking Judge</div>
+      </div>
+    </div>
+    <div class="judge-strip-card reveal">
+      <div class="jsc-top" data-initial="?">
+        <div class="jsc-num">Judge 03</div>
+        <div class="jsc-name">TBA</div>
+        <div class="jsc-crew">— · —</div>
+      </div>
+      <div class="jsc-bottom">
+        <div class="jsc-origin">Country — TBA</div>
+        <div class="jsc-role">Breaking Judge</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dj-strip">
+    <div class="dj-strip-block reveal">
+      <div class="dj-strip-line"></div>
+      <div>
+        <div class="dj-strip-role">Battle DJ</div>
+        <div class="dj-strip-name">TBA</div>
+        <div class="dj-strip-detail">Official Battle DJ — B2F 2022</div>
+      </div>
+    </div>
+    <div class="dj-strip-block reveal">
+      <div class="dj-strip-line" style="background:rgba(200,212,214,0.15);"></div>
+      <div>
+        <div class="dj-strip-role" style="color:var(--light);opacity:0.3;">Host / MC</div>
+        <div class="dj-strip-name" style="font-size:1.4rem;opacity:0.5;">TBA</div>
+        <div class="dj-strip-detail">Event Host — B2F 2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENUE + SCHEDULE -->
+<section class="info-area" id="venue">
+  <div class="section-header reveal">
+    <div class="section-num">04</div>
+    <div class="section-heading-wrap">
+      <div class="section-tag-sm">Where it happened</div>
+      <div class="section-heading-lg">Venue & Schedule</div>
+    </div>
+  </div>
+  <div class="info-grid">
+    <div class="info-col reveal">
+      <div class="info-col-label">Venue</div>
+      <div class="venue-big-name">TBA</div>
+      <div class="venue-addr">
+        Zagreb, Croatia<br>
+        2022
+      </div>
+      <div class="venue-tag-list">
+        <div class="venue-tag-item">TBA Category</div>
+        <div class="venue-tag-item">Finals & Awards</div>
+      </div>
+    </div>
+    <div class="info-col reveal">
+      <div class="info-col-label">Programme</div>
+      <div class="sched-list">
+        <div class="sched-row">
+          <div><div class="sched-time">TBA</div></div>
+          <div><div class="sched-name">Qualifications</div><div class="sched-sub">—</div></div>
+        </div>
+        <div class="sched-row">
+          <div><div class="sched-time">TBA</div></div>
+          <div><div class="sched-name">Main Battles</div><div class="sched-sub">—</div></div>
+        </div>
+        <div class="sched-row">
+          <div><div class="sched-time">TBA</div></div>
+          <div><div class="sched-name">Finals & Awards Ceremony</div><div class="sched-sub">—</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">BREAK<em>2</em>FUTURE</div>
+  <div class="footer-center">Zagreb · Croatia · 2022 Edition</div>
+  <div class="footer-right">
+    <a href="https://www.instagram.com/break2future.hr/" target="_blank" class="f-link">Instagram</a>
+    <a href="index.html" class="f-link">← Back</a>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

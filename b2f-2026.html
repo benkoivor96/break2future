@@ -315,12 +315,39 @@
   .judges-section { padding: 120px 48px; max-width: 1200px; margin: 0 auto; }
   .judges-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
 
-  .judge-card {
-    position: relative; background: var(--mid); overflow: hidden;
-    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-    transition: transform 0.3s;
+  /* flip wrapper */
+  .judge-card-wrap {
+    perspective: 1000px;
+    cursor: pointer;
   }
-  .judge-card:hover { transform: translateY(-6px); }
+  .judge-card-inner {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  .judge-card-wrap:hover .judge-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  /* shared face styles */
+  .judge-front, .judge-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    overflow: hidden;
+  }
+  .judge-front {
+    background: var(--mid);
+    position: relative;
+  }
+  .judge-back {
+    position: absolute; inset: 0;
+    background: var(--teal);
+    transform: rotateY(180deg);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 32px 28px;
+  }
+
   .judge-role {
     position: absolute; top: 16px; left: 16px;
     font-family: 'Barlow Condensed', sans-serif;
@@ -347,6 +374,40 @@
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.75rem; letter-spacing: 0.3em;
     text-transform: uppercase; color: var(--orange); margin-top: 6px;
+  }
+
+  /* back face content */
+  .judge-back-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .judge-back-tag::after {
+    content: ''; flex: 1; height: 1px; background: rgba(232,73,15,0.3);
+  }
+  .judge-back-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.6rem; line-height: 1; color: var(--white);
+    margin-bottom: 4px;
+  }
+  .judge-back-crew {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 20px;
+  }
+  .judge-back-bio {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.85rem; line-height: 1.65;
+    color: var(--light); opacity: 0.7;
+  }
+  .judge-back-hint {
+    margin-top: auto; padding-top: 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--light); opacity: 0.25;
   }
 
   .dj-card {
@@ -870,37 +931,76 @@
   <h2 class="section-title reveal">JUDGES &<br>ARTISTS</h2>
   <div class="judges-grid">
 
-    <div class="judge-card reveal">
-      <div class="judge-role">Breaking Judge</div>
-      <div class="judge-placeholder">
-        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" fill="none" stroke="#E8490F" stroke-width="1.5" opacity="0.4"/>
-          <text x="40" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#E8490F" opacity="0.6">INTACT</text>
-        </svg>
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <!-- FRONT -->
+        <div class="judge-front">
+          <div class="judge-role">Breaking Judge</div>
+          <div class="judge-placeholder">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" fill="none" stroke="#E8490F" stroke-width="1.5" opacity="0.4"/>
+              <text x="40" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#E8490F" opacity="0.6">INTACT</text>
+            </svg>
+          </div>
+          <div class="judge-info"><div class="judge-name">INTACT</div><div class="judge-origin">Ukraine</div></div>
+        </div>
+        <!-- BACK -->
+        <div class="judge-back">
+          <div class="judge-back-tag">Breaking Judge</div>
+          <div class="judge-back-name">INTACT</div>
+          <div class="judge-back-crew">Ruffneck Attack · Ukraine</div>
+          <div class="judge-back-bio">One of Ukraine's most respected b-boys, known for his raw power and consistent musicality. Member of Ruffneck Attack crew and a frequent judge at major international events across Europe.</div>
+          <div class="judge-back-hint">hover to flip back</div>
+        </div>
       </div>
-      <div class="judge-info"><div class="judge-name">INTACT</div><div class="judge-origin">Ukraine</div></div>
     </div>
 
-    <div class="judge-card reveal">
-      <div class="judge-role">Breaking Judge</div>
-      <div class="judge-placeholder">
-        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" fill="none" stroke="#E8490F" stroke-width="1.5" opacity="0.4"/>
-          <text x="40" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#E8490F" opacity="0.6">SAM</text>
-        </svg>
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <!-- FRONT -->
+        <div class="judge-front">
+          <div class="judge-role">Breaking Judge</div>
+          <div class="judge-placeholder">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" fill="none" stroke="#E8490F" stroke-width="1.5" opacity="0.4"/>
+              <text x="40" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#E8490F" opacity="0.6">SAM</text>
+            </svg>
+          </div>
+          <div class="judge-info"><div class="judge-name">SAM</div><div class="judge-origin">Belgium</div></div>
+        </div>
+        <!-- BACK -->
+        <div class="judge-back">
+          <div class="judge-back-tag">Breaking Judge</div>
+          <div class="judge-back-name">SAM</div>
+          <div class="judge-back-crew">Team Shmetta · Belgium</div>
+          <div class="judge-back-bio">Belgian b-boy with deep roots in the European breaking scene. Part of Team Shmetta, Sam brings a sharp eye for foundational breaking and creative expression, blending old-school roots with modern style.</div>
+          <div class="judge-back-hint">hover to flip back</div>
+        </div>
       </div>
-      <div class="judge-info"><div class="judge-name">SAM</div><div class="judge-origin">Belgium</div></div>
     </div>
 
-    <div class="judge-card reveal">
-      <div class="judge-role">Breaking Judge</div>
-      <div class="judge-placeholder">
-        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" fill="none" stroke="#E8490F" stroke-width="1.5" opacity="0.4"/>
-          <text x="40" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#E8490F" opacity="0.6">VISION</text>
-        </svg>
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <!-- FRONT -->
+        <div class="judge-front">
+          <div class="judge-role">Breaking Judge</div>
+          <div class="judge-placeholder">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" fill="none" stroke="#E8490F" stroke-width="1.5" opacity="0.4"/>
+              <text x="40" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#E8490F" opacity="0.6">VISION</text>
+            </svg>
+          </div>
+          <div class="judge-info"><div class="judge-name">VISION</div><div class="judge-origin">Slovenia</div></div>
+        </div>
+        <!-- BACK -->
+        <div class="judge-back">
+          <div class="judge-back-tag">Breaking Judge</div>
+          <div class="judge-back-name">VISION</div>
+          <div class="judge-back-crew">Flow from Below · Slovenia</div>
+          <div class="judge-back-bio">Slovenian b-boy and one of the region's most prominent figures. Representing Flow from Below, Vision is recognised for his technical precision and deep understanding of breaking culture and musicality.</div>
+          <div class="judge-back-hint">hover to flip back</div>
+        </div>
       </div>
-      <div class="judge-info"><div class="judge-name">VISION</div><div class="judge-origin">Slovenia</div></div>
     </div>
 
     <div class="dj-card reveal">
