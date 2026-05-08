@@ -259,91 +259,71 @@
   }
 
   /* ── JUDGES ── */
-  .panel-section {
-    background: var(--mid);
-    padding: 100px 0;
-  }
-  .panel-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+  .judges-section { padding: 120px 48px; max-width: 1200px; margin: 0 auto; }
+  .judges-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
 
-  .panel-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    margin-top: 56px;
-    background: rgba(200,212,214,0.06);
-  }
-
-  .panel-person {
-    background: var(--mid);
-    padding: 40px 36px;
+  /* flip wrapper */
+  .judge-card-wrap { perspective: 1000px; cursor: pointer; }
+  .judge-card-inner {
     position: relative;
-    transition: background 0.3s;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1);
   }
-  .panel-person:hover { background: #151F22; }
+  .judge-card-wrap.flipped .judge-card-inner { transform: rotateY(180deg); }
 
-  .panel-person-role {
+  /* shared face styles */
+  .judge-front, .judge-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    overflow: hidden;
+  }
+  .judge-front { background: var(--mid); position: relative; }
+  .judge-back {
+    position: absolute; inset: 0;
+    background: var(--teal);
+    transform: rotateY(180deg);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 32px 28px;
+  }
+
+  .judge-role {
+    position: absolute; top: 16px; left: 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--orange); z-index: 2;
+    background: rgba(8,14,16,0.7); padding: 4px 10px;
+  }
+  .judge-placeholder {
+    width: 100%; aspect-ratio: 3/4;
+    background: linear-gradient(160deg, #0D2B2E, #111C1F);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .judge-info { padding: 20px 24px 24px; position: relative; }
+  .judge-info::before {
+    content: ''; position: absolute; top: 0; left: 24px;
+    width: 40px; height: 2px; background: var(--orange);
+  }
+  .judge-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1; color: var(--white); }
+  .judge-origin { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--orange); margin-top: 6px; }
+
+  /* back face content */
+  .judge-back-tag {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.6rem; font-weight: 700;
     letter-spacing: 0.35em; text-transform: uppercase;
-    color: var(--orange); opacity: 0.7; margin-bottom: 20px;
+    color: var(--orange); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
   }
-
-  .panel-person-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 3.5rem; line-height: 1;
-    color: rgba(232,73,15,0.12); margin-bottom: -10px;
-  }
-
-  .panel-person-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.4rem; line-height: 1;
-    color: var(--white);
-  }
-
-  .panel-person-origin {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.75rem; letter-spacing: 0.3em;
-    text-transform: uppercase; color: var(--light);
-    opacity: 0.35; margin-top: 8px;
-  }
-
-  .panel-divider { background: rgba(200,212,214,0.06); height: 1px; }
-
-  .dj-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    margin-top: 1px;
-    background: rgba(200,212,214,0.06);
-  }
-
-  .dj-block {
-    background: var(--teal);
-    padding: 36px;
-    display: flex; align-items: center; gap: 28px;
-  }
-
-  .dj-icon {
-    width: 48px; height: 48px; flex-shrink: 0;
-    border: 1px solid rgba(232,73,15,0.3);
-    display: flex; align-items: center; justify-content: center;
-  }
-
-  .dj-block-role {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem; font-weight: 700;
-    letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--orange); margin-bottom: 4px;
-  }
-  .dj-block-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem; line-height: 1; color: var(--white);
-  }
-  .dj-block-detail {
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.8rem; color: var(--light);
-    opacity: 0.45; margin-top: 4px;
-  }
+  .judge-back-tag::after { content: ''; flex: 1; height: 1px; background: rgba(232,73,15,0.3); }
+  .judge-back-name { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; line-height: 1; color: var(--white); margin-bottom: 4px; }
+  .judge-back-crew { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 20px; }
+  .judge-back-bio { font-family: 'Barlow', sans-serif; font-size: 0.85rem; line-height: 1.65; color: var(--light); opacity: 0.7; }
+  .judge-back-ig { margin-top: 14px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; color: var(--orange); opacity: 0.85; }
+  .judge-back-ig a { color: var(--orange); text-decoration: none; transition: opacity 0.2s; }
+  .judge-back-ig a:hover { opacity: 1; text-decoration: underline; }
+  .judge-back-hint { margin-top: auto; padding-top: 20px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light); opacity: 0.25; }
 
   /* ── GALLERY placeholder ── */
   .gallery-section { padding: 100px 0; background: var(--dark); }
@@ -483,10 +463,8 @@
     .stats-bar { overflow-x: auto; }
     .results-section { padding: 72px 24px; }
     .winners-grid { grid-template-columns: 1fr; }
-    .panel-section { padding: 72px 0; }
-    .panel-inner { padding: 0 24px; }
-    .panel-row { grid-template-columns: 1fr; }
-    .dj-row { grid-template-columns: 1fr; }
+    .judges-section { padding: 80px 24px; }
+    .judges-grid { grid-template-columns: 1fr; }
     .gallery-section { padding: 72px 0; }
     .gallery-inner { padding: 0 24px; }
     .gallery-grid-25 { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
@@ -622,61 +600,102 @@
   </div>
 </section>
 
-<!-- JUDGES & DJ -->
-<section class="panel-section" id="judges">
-  <div class="panel-inner">
-    <p class="section-label reveal" data-en="The Panel" data-hr="Panel Sudaca">The Panel</p>
-    <h2 class="section-heading reveal" data-en="JUDGES &amp;<br>ARTISTS" data-hr="SUCI &amp;<br>UMJETNICI">JUDGES &<br>ARTISTS</h2>
+<!-- JUDGES -->
+<section class="judges-section" id="judges">
+  <p class="section-label reveal" data-en="The Panel" data-hr="Panel Sudaca">The Panel</p>
+  <h2 class="section-heading reveal" data-en="JUDGES &amp;<br>ARTISTS" data-hr="SUCI &amp;<br>UMJETNICI">JUDGES &<br>ARTISTS</h2>
+  <div class="judges-grid">
 
-    <div class="panel-row">
-      <div class="panel-person reveal">
-        <div class="panel-person-role">Breaking Judge</div>
-        <div class="panel-person-num">01</div>
-        <div class="panel-person-name">KHALIL</div>
-        <div class="panel-person-origin">France</div>
-      </div>
-      <div class="panel-person reveal">
-        <div class="panel-person-role">Breaking Judge</div>
-        <div class="panel-person-num">02</div>
-        <div class="panel-person-name">PESTO</div>
-        <div class="panel-person-origin">Italy</div>
-      </div>
-      <div class="panel-person reveal">
-        <div class="panel-person-role">Breaking Judge</div>
-        <div class="panel-person-num">03</div>
-        <div class="panel-person-name">JAY</div>
-        <div class="panel-person-origin">Slovenia</div>
+    <!-- Khalil -->
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <div class="judge-front">
+          <div class="judge-role">Breaking Judge</div>
+          <div class="judge-placeholder">
+            <img src="photos/khalil.png" alt="Khalil" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="judge-info"><div class="judge-name">KHALIL</div><div class="judge-origin">🇫🇷 France</div></div>
+        </div>
+        <div class="judge-back">
+          <div class="judge-back-tag">Breaking Judge</div>
+          <div class="judge-back-name">KHALIL</div>
+          <div class="judge-back-crew">🇫🇷 France</div>
+          <div class="judge-back-bio">French b-boy with a powerful and dynamic style, known for his precise footwork and strong musicality. A respected figure on the European breaking circuit and a regular at international events.</div>
+          <div class="judge-back-hint">tap to flip back</div>
+        </div>
       </div>
     </div>
 
-    <div class="dj-row">
-      <div class="dj-block reveal">
-        <div class="dj-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" stroke="#E8490F" stroke-width="1.2" opacity="0.6"/>
-            <circle cx="12" cy="12" r="3" stroke="#E8490F" stroke-width="1.2" opacity="0.6"/>
-          </svg>
+    <!-- Pesto -->
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <div class="judge-front">
+          <div class="judge-role">Breaking Judge</div>
+          <div class="judge-placeholder">
+            <img src="photos/pesto.png" alt="Pesto" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="judge-info"><div class="judge-name">PESTO</div><div class="judge-origin">🇮🇹 Italy</div></div>
         </div>
-        <div>
-          <div class="dj-block-role">Battle DJ</div>
-          <div class="dj-block-name">DJ TZEK</div>
-          <div class="dj-block-detail">Croatia · Official B2F 2025 Battle DJ</div>
-        </div>
-      </div>
-      <div class="dj-block reveal" style="background: rgba(13,43,46,0.4);">
-        <div class="dj-icon" style="border-color: rgba(200,212,214,0.15);">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <polygon points="12,2 22,7 22,17 12,22 2,17 2,7" stroke="#C8D4D6" stroke-width="1.2" opacity="0.3" fill="none"/>
-            <circle cx="12" cy="12" r="2" stroke="#C8D4D6" stroke-width="1.2" opacity="0.3"/>
-          </svg>
-        </div>
-        <div>
-          <div class="dj-block-role" style="color: var(--light); opacity: 0.4;">Venue</div>
-          <div class="dj-block-name" style="font-size: 1.4rem;">TALA PLE(J)S</div>
-          <div class="dj-block-detail">Zagreb, Croatia · Single venue event</div>
+        <div class="judge-back">
+          <div class="judge-back-tag">Breaking Judge</div>
+          <div class="judge-back-name">PESTO</div>
+          <div class="judge-back-crew">🇮🇹 Italy</div>
+          <div class="judge-back-bio">Italian b-boy bringing a creative mix of power and style to the floor. Known for his expressive breaking and solid technical foundation, Pesto is a consistent presence at competitions across Europe.</div>
+          <div class="judge-back-hint">tap to flip back</div>
         </div>
       </div>
     </div>
+
+    <!-- Jay -->
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <div class="judge-front">
+          <div class="judge-role">Breaking Judge</div>
+          <div class="judge-placeholder">
+            <img src="photos/jay.png" alt="Jay" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="judge-info"><div class="judge-name">JAY</div><div class="judge-origin">🇸🇮 Slovenia</div></div>
+        </div>
+        <div class="judge-back">
+          <div class="judge-back-tag">Breaking Judge</div>
+          <div class="judge-back-name">JAY</div>
+          <div class="judge-back-crew">🇸🇮 Slovenia</div>
+          <div class="judge-back-bio">Slovenian b-boy and a key figure in the regional breaking scene. Jay brings deep cultural knowledge and a sharp judging eye, known for his balanced approach to evaluating both style and execution.</div>
+          <div class="judge-back-hint">tap to flip back</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DJ & CREW -->
+<section class="judges-section" id="crew" style="padding-top: 0;">
+  <p class="section-label reveal" data-en="Sound &amp; Media" data-hr="Zvuk i Mediji">Sound &amp; Media</p>
+  <h2 class="section-heading reveal" data-en="DJ &amp;<br>CREW" data-hr="DJ &amp;<br>EKIPA">DJ &<br>CREW</h2>
+  <div class="judges-grid">
+
+    <!-- DJ Tzek -->
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <div class="judge-front">
+          <div class="judge-role">Battle DJ</div>
+          <div class="judge-placeholder">
+            <img src="photos/tzek.png" alt="DJ Tzek" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="judge-info"><div class="judge-name">DJ TZEK</div><div class="judge-origin">Battle DJ</div></div>
+        </div>
+        <div class="judge-back">
+          <div class="judge-back-tag">Battle DJ</div>
+          <div class="judge-back-name">DJ TZEK</div>
+          <div class="judge-back-crew">B2F 2025 Official Battle DJ</div>
+          <div class="judge-back-bio">Official battle DJ for B2F 2025. Tzek kept the energy locked in from the first qualifier all the way through the finals, reading the room and fueling every battle.</div>
+          <div class="judge-back-ig"><a href="https://www.instagram.com/dj_tzek" target="_blank" rel="noopener">@dj_tzek</a></div>
+          <div class="judge-back-hint">tap to flip back</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -741,6 +760,13 @@
     localStorage.setItem('b2f-lang', lang);
   }
   applyLang(localStorage.getItem('b2f-lang') || 'en');
+
+  // ── Flip cards ────────────────────────────────────
+  document.querySelectorAll('.judge-card-wrap').forEach(card => {
+    card.addEventListener('click', e => {
+      if (!e.target.closest('a')) card.classList.toggle('flipped');
+    });
+  });
 
   // ── Reveal ────────────────────────────────────────
   const reveals = document.querySelectorAll('.reveal');
