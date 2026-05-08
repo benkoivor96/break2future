@@ -333,6 +333,24 @@
     padding: 5px 14px; margin-top: 16px;
   }
 
+  /* ── PODIUM (combined winners block) ── */
+  .podium-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 48px;
+    margin-top: 8px;
+  }
+  .podium-item { flex: 1; }
+  .podium-divider {
+    width: 1px;
+    align-self: stretch;
+    background: rgba(200,212,214,0.08);
+    flex-shrink: 0;
+  }
+  .winner-name-sm {
+    font-size: clamp(28px, 3.5vw, 52px) !important;
+  }
+
   /* ── VENUE ── */
   .venue-section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
 
@@ -429,9 +447,9 @@
     <div style="display:flex;align-items:center;gap:28px;">
       <ul class="nav-links">
         <li><a href="index.html" data-en="← Home" data-hr="← Početna">← Home</a></li>
+        <li><a href="#results" data-en="Results" data-hr="Rezultati">Results</a></li>
         <li><a href="#judges" data-en="Judges" data-hr="Suci">Judges</a></li>
         <li><a href="#gallery" data-en="Gallery" data-hr="Galerija">Gallery</a></li>
-        <li><a href="#results" data-en="Results" data-hr="Rezultati">Results</a></li>
         <li><a href="#venue" data-en="Venue" data-hr="Lokacija">Venue</a></li>
       </ul>
       <div class="lang-toggle desktop-lang">
@@ -475,6 +493,29 @@
     <div class="stat-label">Battle DJ</div>
   </div>
 </div>
+
+<!-- RESULTS -->
+<section class="results-section" id="results">
+  <p class="section-label reveal" data-en="Battle Results" data-hr="Rezultati Bitaka">Battle Results</p>
+  <h2 class="section-heading reveal" data-en="WINNERS &amp;<br>RESULTS" data-hr="POBJEDNICI &amp;<br>REZULTATI">WINNERS &<br>RESULTS</h2>
+
+  <div class="winner-block reveal">
+    <div class="winner-category">1VS1 Breaking — Adults Open</div>
+    <div class="podium-row">
+      <div class="podium-item">
+        <div class="winner-rank-label">1st Place</div>
+        <div class="winner-name">DANIEL</div>
+        <div class="winner-tag">🥇 Champion</div>
+      </div>
+      <div class="podium-divider"></div>
+      <div class="podium-item">
+        <div class="winner-rank-label">2nd Place</div>
+        <div class="winner-name winner-name-sm">DJUS</div>
+        <div class="winner-tag-silver">🥈 Runner-up</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- JUDGES -->
 <section class="judges-section" id="judges">
@@ -604,32 +645,6 @@
         <span class="gp-tag">Winners</span>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- RESULTS -->
-<section class="results-section" id="results">
-  <p class="section-label reveal" data-en="Battle Results" data-hr="Rezultati Bitaka">Battle Results</p>
-  <h2 class="section-heading reveal" data-en="WINNERS &amp;<br>RESULTS" data-hr="POBJEDNICI &amp;<br>REZULTATI">WINNERS &<br>RESULTS</h2>
-
-  <div class="winners-grid">
-
-    <!-- 1st Place -->
-    <div class="winner-block reveal">
-      <div class="winner-category">1VS1 Breaking — Adults Open</div>
-      <div class="winner-rank-label">Winner</div>
-      <div class="winner-name">DANIEL</div>
-      <div class="winner-tag">🥇 1st Place</div>
-    </div>
-
-    <!-- 2nd Place -->
-    <div class="winner-block reveal">
-      <div class="winner-category">1VS1 Breaking — Adults Open</div>
-      <div class="winner-rank-label">Runner-up</div>
-      <div class="winner-name">DJUS</div>
-      <div class="winner-tag-silver">🥈 2nd Place</div>
-    </div>
-
   </div>
 </section>
 
