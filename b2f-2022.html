@@ -12,10 +12,9 @@
 
   :root {
     --orange: #E8490F;
+    --teal: #0D2B2E;
     --dark: #080E10;
-    --mid: #0E1719;
-    --panel: #121C1F;
-    --border: rgba(200,212,214,0.1);
+    --mid: #111C1F;
     --light: #C8D4D6;
     --white: #F0F4F5;
     --gold: #D4A843;
@@ -31,448 +30,218 @@
     overflow-x: hidden;
   }
 
-  /* ── NOISE TEXTURE ── */
   body::before {
     content: '';
     position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.035; pointer-events: none; z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none; z-index: 9999;
   }
 
-  /* ── TOP BAR (nav) ── */
-  .topbar {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0 48px;
-    height: 56px;
-    border-bottom: 1px solid var(--border);
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(8,14,16,0.97);
-    backdrop-filter: blur(8px);
+  /* ── COMPACT HEADER ── */
+  .site-header {
+    position: relative;
+    background: var(--mid);
+    border-bottom: 1px solid rgba(232,73,15,0.25);
+    overflow: hidden;
   }
-  .topbar-logo {
+  .site-header::before {
+    content: '2022';
+    position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem; letter-spacing: 0.18em;
-    color: var(--white); text-decoration: none;
-  }
-  .topbar-logo em { color: var(--orange); font-style: normal; }
-  .topbar-nav { display: flex; gap: 0; list-style: none; }
-  .topbar-nav li { border-left: 1px solid var(--border); }
-  .topbar-nav a {
-    display: block; padding: 0 20px; height: 56px;
-    line-height: 56px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem; font-weight: 700;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--light); text-decoration: none; opacity: 0.5;
-    transition: opacity 0.2s, color 0.2s, background 0.2s;
-  }
-  .topbar-nav a:hover { opacity: 1; color: var(--orange); background: rgba(232,73,15,0.04); }
-  .topbar-year {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem; letter-spacing: 0.15em;
-    color: rgba(232,73,15,0.4);
-  }
-
-  /* ── MASTHEAD ── */
-  .masthead {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    min-height: 340px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .masthead-left {
-    padding: 56px 48px 48px;
-    border-right: 1px solid var(--border);
-    display: flex; flex-direction: column; justify-content: space-between;
-    position: relative; overflow: hidden;
-  }
-
-  .masthead-left::before {
-    content: 'B2F';
-    position: absolute; right: -24px; bottom: -40px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(160px, 22vw, 300px);
-    color: rgba(232,73,15,0.04);
-    line-height: 1; pointer-events: none; user-select: none;
+    font-size: clamp(120px, 18vw, 260px);
+    color: rgba(232,73,15,0.06);
+    line-height: 1;
+    pointer-events: none; user-select: none;
     letter-spacing: -0.02em;
   }
 
-  .masthead-kicker {
-    display: flex; align-items: center; gap: 0;
+  .header-top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 48px;
+    border-bottom: 1px solid rgba(200,212,214,0.06);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem; letter-spacing: 0.15em;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo span { color: var(--orange); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--light); text-decoration: none; opacity: 0.6;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--orange); }
+
+  .header-body {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 40px;
+    padding: 40px 48px 44px;
+    position: relative; z-index: 1;
+  }
+  .header-edition {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.45em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .header-edition::before {
+    content: '';
+    display: inline-block; width: 28px; height: 1px; background: var(--orange);
+  }
+  .header-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.95; letter-spacing: 0.01em;
+  }
+  .header-title .word { display: inline; }
+  .header-title .num {
+    -webkit-text-stroke: 1.5px var(--orange);
+    color: transparent; margin: 0 4px;
+  }
+  .header-meta {
+    display: flex; align-items: flex-end; flex-direction: column;
+    gap: 6px; text-align: right; padding-bottom: 4px;
+  }
+  .header-meta-badge {
+    display: inline-block;
+    background: rgba(232,73,15,0.15);
+    border: 1px solid rgba(232,73,15,0.4);
+    color: var(--orange);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    padding: 5px 14px; margin-bottom: 10px;
+  }
+  .header-meta-line {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--light); opacity: 0.55;
+  }
+  .header-meta-line strong { color: var(--white); opacity: 1; font-weight: 700; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--teal);
+    display: flex; justify-content: center; align-items: stretch;
+    border-bottom: 1px solid rgba(232,73,15,0.15);
+  }
+  .stat-item {
+    flex: 1; max-width: 200px;
+    padding: 20px 24px; text-align: center;
+    border-right: 1px solid rgba(200,212,214,0.08);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1; color: var(--orange); }
+  .stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--light); opacity: 0.45; margin-top: 4px; }
+
+  /* ── RESULTS ── */
+  .results-section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+
+  .section-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.45em; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+  .section-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 6vw, 80px); line-height: 0.95; margin-bottom: 56px; }
+
+  .winners-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+
+  .winner-block {
+    background: var(--mid);
+    padding: 48px 40px;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+  }
+  .winner-block:hover { background: #151F22; }
+  .winner-block::after {
+    content: '';
+    position: absolute; bottom: 0; left: 40px; right: 40px;
+    height: 2px; background: var(--orange); opacity: 0.2;
+    transition: opacity 0.3s;
+  }
+  .winner-block:hover::after { opacity: 0.5; }
+
+  .winner-category {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.65rem; font-weight: 700;
     letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 32px;
+    display: flex; align-items: center; gap: 10px;
   }
-  .masthead-kicker-dot {
-    display: inline-block; width: 6px; height: 6px;
-    background: var(--orange); margin-right: 14px;
-  }
-  .masthead-kicker-text { color: var(--orange); }
-  .masthead-kicker-sep { color: var(--border); margin: 0 12px; }
-  .masthead-kicker-sub { color: var(--light); opacity: 0.4; }
+  .winner-category::after { content: ''; flex: 1; height: 1px; background: rgba(232,73,15,0.2); }
 
-  .masthead-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(56px, 9vw, 130px);
-    line-height: 0.92; letter-spacing: 0.01em;
-    position: relative; z-index: 1;
-  }
-  .masthead-title .stroke {
-    -webkit-text-stroke: 1.5px var(--orange);
-    color: transparent;
-  }
+  .winner-rank-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--light); opacity: 0.3; margin-bottom: 6px; }
+  .winner-name { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 4vw, 60px); line-height: 0.95; color: var(--white); margin-bottom: 8px; }
+  .winner-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,168,67,0.12); border: 1px solid rgba(212,168,67,0.3); color: var(--gold); font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; padding: 5px 14px; margin-top: 16px; }
 
-  .masthead-meta-row {
-    display: flex; align-items: center; gap: 32px;
-    position: relative; z-index: 1;
-  }
-  .masthead-btn {
-    display: inline-block;
-    background: var(--orange); color: var(--dark);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem; font-weight: 700;
-    letter-spacing: 0.28em; text-transform: uppercase;
-    padding: 12px 28px; text-decoration: none;
-    transition: background 0.2s;
-  }
-  .masthead-btn:hover { background: var(--white); }
-  .masthead-btn-ghost {
-    display: inline-block;
-    border: 1px solid rgba(200,212,214,0.25); color: var(--light);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem; font-weight: 700;
-    letter-spacing: 0.28em; text-transform: uppercase;
-    padding: 12px 28px; text-decoration: none;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .masthead-btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+  /* ── JUDGES ── */
+  .judges-section { padding: 120px 48px; max-width: 1200px; margin: 0 auto; }
+  .judges-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
 
-  .masthead-right {
-    display: flex; flex-direction: column;
-  }
+  .judge-card-wrap { perspective: 1000px; cursor: pointer; }
+  .judge-card-inner { position: relative; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1); }
+  .judge-card-wrap.flipped .judge-card-inner { transform: rotateY(180deg); }
 
-  .masthead-right-cell {
-    flex: 1;
-    padding: 24px 32px;
-    border-bottom: 1px solid var(--border);
-    display: flex; flex-direction: column; justify-content: center;
+  .judge-front, .judge-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    overflow: hidden;
   }
-  .masthead-right-cell:last-child { border-bottom: none; }
+  .judge-front { background: var(--mid); position: relative; }
+  .judge-back { position: absolute; inset: 0; background: var(--teal); transform: rotateY(180deg); display: flex; flex-direction: column; justify-content: center; padding: 32px 28px; }
 
-  .mrc-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem; font-weight: 700;
-    letter-spacing: 0.35em; text-transform: uppercase;
-    color: var(--light); opacity: 0.35; margin-bottom: 6px;
-  }
-  .mrc-value {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem; line-height: 1;
-    color: var(--white); letter-spacing: 0.04em;
-  }
-  .mrc-sub {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.75rem; color: var(--light);
-    opacity: 0.4; margin-top: 3px; letter-spacing: 0.1em;
-  }
+  .judge-role { position: absolute; top: 16px; left: 16px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--orange); z-index: 2; background: rgba(8,14,16,0.7); padding: 4px 10px; }
+  .judge-placeholder { width: 100%; aspect-ratio: 3/4; background: linear-gradient(160deg, #0D2B2E, #111C1F); display: flex; align-items: center; justify-content: center; }
+  .judge-info { padding: 20px 24px 24px; position: relative; }
+  .judge-info::before { content: ''; position: absolute; top: 0; left: 24px; width: 40px; height: 2px; background: var(--orange); }
+  .judge-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1; color: var(--white); }
+  .judge-origin { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--orange); margin-top: 6px; }
 
-  /* ── SECTION COMMON ── */
-  .section-header {
-    display: flex; align-items: baseline; gap: 20px;
-    padding: 40px 48px 32px;
-    border-bottom: 1px solid var(--border);
-  }
-  .section-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 4rem; line-height: 1;
-    color: rgba(232,73,15,0.15);
-  }
-  .section-heading-wrap {}
-  .section-tag-sm {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.62rem; font-weight: 700;
-    letter-spacing: 0.4em; text-transform: uppercase;
-    color: var(--orange); margin-bottom: 4px;
-  }
-  .section-heading-lg {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(36px, 5vw, 64px);
-    line-height: 0.95; color: var(--white);
-  }
-
-  /* ── RESULTS ── */
-  .results-area { border-bottom: 1px solid var(--border); }
-
-  .results-table {
-    display: grid;
-    border-collapse: collapse;
-  }
-
-  .rt-row {
-    display: grid;
-    grid-template-columns: 56px 1fr 1fr 1fr;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.15s;
-  }
-  .rt-row:hover { background: rgba(232,73,15,0.02); }
-  .rt-row.rt-head { background: var(--mid); }
-
-  .rt-cell {
-    padding: 20px 24px;
-    border-right: 1px solid var(--border);
-    display: flex; align-items: center;
-  }
-  .rt-cell:last-child { border-right: none; }
-
-  .rt-head .rt-cell {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem; font-weight: 700;
-    letter-spacing: 0.35em; text-transform: uppercase;
-    color: var(--light); opacity: 0.35;
-    padding: 14px 24px;
-  }
-
-  .rt-rank {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem; line-height: 1;
-    justify-content: center;
-  }
-  .rt-rank.gold { color: var(--gold); }
-  .rt-rank.silver { color: var(--silver); }
-  .rt-rank.bronze { color: var(--bronze); }
-  .rt-rank.other { color: rgba(200,212,214,0.25); font-size: 1rem; }
-
-  .rt-name-wrap {}
-  .rt-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem; font-weight: 700;
-    letter-spacing: 0.04em; color: var(--white);
-  }
-  .rt-sub {
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.72rem; color: var(--light);
-    opacity: 0.35; margin-top: 2px;
-  }
-
-  .rt-category {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem; font-weight: 600;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--orange); opacity: 0.8;
-  }
-
-  .rt-format {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem; color: var(--light); opacity: 0.3;
-    letter-spacing: 0.1em;
-  }
-
-  /* ── PANEL (Judges) ── */
-  .panel-area { border-bottom: 1px solid var(--border); }
-
-  .judges-strip {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid var(--border);
-  }
-
-  .judge-strip-card {
-    border-right: 1px solid var(--border);
-    display: grid;
-    grid-template-rows: 1fr auto;
-    transition: background 0.2s;
-    cursor: default;
-  }
-  .judge-strip-card:last-child { border-right: none; }
-  .judge-strip-card:hover { background: rgba(232,73,15,0.03); }
-
-  .jsc-top {
-    padding: 48px 40px 32px;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    min-height: 220px;
-    position: relative; overflow: hidden;
-  }
-  .jsc-top::before {
-    content: attr(data-initial);
-    position: absolute; right: 16px; top: 16px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 7rem; line-height: 1;
-    color: rgba(232,73,15,0.07);
-    pointer-events: none;
-  }
-
-  .jsc-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem; font-weight: 700;
-    letter-spacing: 0.35em; text-transform: uppercase;
-    color: var(--orange); opacity: 0.5; margin-bottom: 12px;
-  }
-  .jsc-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 3rem; line-height: 0.95; color: var(--white);
-  }
-  .jsc-crew {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.75rem; font-weight: 600;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--orange); opacity: 0.6; margin-top: 6px;
-  }
-
-  .jsc-bottom {
-    padding: 20px 40px 28px;
-    border-top: 1px solid var(--border);
-  }
-  .jsc-origin {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--light); opacity: 0.35;
-  }
-  .jsc-role {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem; font-weight: 600;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--orange); opacity: 0.55; margin-top: 2px;
-  }
-
-  /* dj strip */
-  .dj-strip {
-    display: grid; grid-template-columns: 1fr 1fr;
-    border-top: 1px solid var(--border);
-  }
-  .dj-strip-block {
-    padding: 32px 40px;
-    border-right: 1px solid var(--border);
-    display: flex; align-items: center; gap: 24px;
-  }
-  .dj-strip-block:last-child { border-right: none; }
-  .dj-strip-line { width: 2px; height: 48px; background: rgba(232,73,15,0.3); flex-shrink: 0; }
-  .dj-strip-role {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem; font-weight: 700;
-    letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--orange); margin-bottom: 3px;
-  }
-  .dj-strip-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem; line-height: 1; color: var(--white);
-  }
-  .dj-strip-detail {
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.78rem; color: var(--light); opacity: 0.35; margin-top: 3px;
-  }
+  .judge-back-tag { font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.35em; text-transform: uppercase; color: var(--orange); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .judge-back-tag::after { content: ''; flex: 1; height: 1px; background: rgba(232,73,15,0.3); }
+  .judge-back-name { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; line-height: 1; color: var(--white); margin-bottom: 4px; }
+  .judge-back-crew { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 20px; }
+  .judge-back-bio { font-family: 'Barlow', sans-serif; font-size: 0.85rem; line-height: 1.65; color: var(--light); opacity: 0.7; }
+  .judge-back-ig { margin-top: 14px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; color: var(--orange); opacity: 0.85; }
+  .judge-back-ig a { color: var(--orange); text-decoration: none; transition: opacity 0.2s; }
+  .judge-back-ig a:hover { opacity: 1; text-decoration: underline; }
+  .judge-back-hint { margin-top: auto; padding-top: 20px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light); opacity: 0.25; }
 
   /* ── GALLERY ── */
-  .gallery-area { border-bottom: 1px solid var(--border); }
+  .gallery-section { padding: 100px 0; background: var(--dark); }
+  .gallery-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+  .gallery-grid-25 { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 280px; gap: 8px; margin-top: 48px; }
+  .gp { background: var(--mid); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .gp.span2 { grid-column: span 2; }
+  .gp-inner { display: flex; flex-direction: column; align-items: center; gap: 12px; opacity: 0.12; }
+  .gp-inner svg polygon { fill: none; stroke: var(--orange); stroke-width: 1; }
+  .gp-tag { position: absolute; bottom: 14px; left: 16px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.55rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--light); opacity: 0.15; }
 
-  .gallery-mosaic {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 280px 220px;
-    gap: 1px;
-    background: var(--border);
-    margin-top: 1px;
-  }
+  /* ── VENUE ── */
+  .venue-section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+  .venue-single { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid rgba(200,212,214,0.08); }
+  .venue-left { padding: 56px 48px; border-right: 1px solid rgba(200,212,214,0.08); }
+  .venue-right { padding: 56px 48px; background: var(--mid); }
+  .venue-edition-num { font-family: 'Bebas Neue', sans-serif; font-size: 6rem; line-height: 1; color: rgba(232,73,15,0.1); margin-bottom: -16px; }
+  .venue-name-big { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; line-height: 1; color: var(--white); margin-bottom: 16px; }
+  .venue-addr { font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: var(--light); opacity: 0.45; line-height: 1.7; }
+  .venue-tags { margin-top: 32px; display: flex; flex-direction: column; gap: 10px; }
+  .vtag { display: flex; align-items: center; gap: 10px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--light); opacity: 0.6; }
+  .vtag-dot { width: 5px; height: 5px; background: var(--orange); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); flex-shrink: 0; }
+  .venue-right-title { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.35em; text-transform: uppercase; color: var(--orange); margin-bottom: 28px; }
+  .venue-schedule-item { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(200,212,214,0.06); }
+  .venue-schedule-item:last-child { border-bottom: none; }
+  .vsi-time { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; color: var(--orange); min-width: 100px; }
+  .vsi-name { font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 600; letter-spacing: 0.04em; color: var(--white); }
+  .vsi-sub { font-family: 'Barlow', sans-serif; font-size: 0.7rem; color: var(--light); opacity: 0.35; margin-top: 2px; }
 
-  .gm-cell {
-    background: var(--mid);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-  }
-  .gm-cell.span-row { grid-row: span 2; }
-
-  .gm-cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
-  .gm-cell:hover img { transform: scale(1.04); }
-
-  .gm-placeholder {
-    display: flex; flex-direction: column; align-items: center; gap: 10px;
-    opacity: 0.1;
-  }
-  .gm-placeholder svg polygon { fill: none; stroke: var(--orange); stroke-width: 1; }
-  .gm-label {
-    position: absolute; bottom: 12px; left: 14px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.55rem; font-weight: 700;
-    letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--light); opacity: 0.15;
-  }
-
-  /* ── VENUE / SCHEDULE ── */
-  .info-area { border-bottom: 1px solid var(--border); }
-  .info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-top: 1px solid var(--border);
-  }
-
-  .info-col {
-    padding: 48px;
-    border-right: 1px solid var(--border);
-  }
-  .info-col:last-child { border-right: none; }
-
-  .info-col-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem; font-weight: 700;
-    letter-spacing: 0.4em; text-transform: uppercase;
-    color: var(--orange); margin-bottom: 28px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .info-col-label::after { content: ''; flex: 1; height: 1px; background: rgba(232,73,15,0.2); }
-
-  .venue-big-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 3.2rem; line-height: 1; color: var(--white);
-    margin-bottom: 12px;
-  }
-  .venue-addr {
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.88rem; color: var(--light);
-    opacity: 0.4; line-height: 1.7; margin-bottom: 28px;
-  }
-  .venue-tag-list { display: flex; flex-direction: column; gap: 8px; }
-  .venue-tag-item {
-    display: flex; align-items: center; gap: 10px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.82rem; font-weight: 600;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--light); opacity: 0.55;
-  }
-  .venue-tag-item::before {
-    content: ''; width: 5px; height: 5px;
-    background: var(--orange);
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    flex-shrink: 0;
-  }
-
-  .sched-list { display: flex; flex-direction: column; }
-  .sched-row {
-    display: flex; gap: 0;
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(200,212,214,0.06);
-    transition: padding-left 0.15s;
-  }
-  .sched-row:first-child { padding-top: 0; }
-  .sched-row:last-child { border-bottom: none; }
-  .sched-row:hover { padding-left: 6px; }
-  .sched-time {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.8rem; font-weight: 600;
-    letter-spacing: 0.1em; color: var(--orange);
-    min-width: 100px; opacity: 0.8;
-  }
-  .sched-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.95rem; font-weight: 600;
-    letter-spacing: 0.04em; color: var(--white);
-  }
-  .sched-sub {
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.7rem; color: var(--light);
-    opacity: 0.3; margin-top: 2px;
-  }
-
-  /* hamburger + footer + mobile-nav → style.css + components.js */
+  /* footer + hamburger → style.css + components.js */
 
   /* ── LANG TOGGLE ── */
   .lang-toggle { display:flex; border: 1px solid rgba(200,212,214,0.2); }
@@ -480,292 +249,300 @@
   .lang-btn.active { background:var(--orange); color:var(--dark); opacity:1; }
 
   /* ── ANIMATIONS ── */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    .topbar { padding: 0 24px; }
-    .topbar-nav { display: none; }
-    .masthead { grid-template-columns: 1fr; min-height: auto; }
-    .masthead-left { border-right: none; border-bottom: 1px solid var(--border); padding: 40px 24px 36px; }
-    .masthead-right { display: grid; grid-template-columns: 1fr 1fr; }
-    .masthead-right-cell { border-bottom: none; border-right: 1px solid var(--border); }
-    .masthead-right-cell:last-child { border-right: none; }
-    .section-header { padding: 32px 24px 24px; }
-    .rt-row { grid-template-columns: 40px 1fr 1fr; }
-    .rt-row .rt-cell:last-child { display: none; }
-    .rt-head .rt-cell:last-child { display: none; }
-    .judges-strip { grid-template-columns: 1fr; }
-    .judge-strip-card { border-right: none; border-bottom: 1px solid var(--border); }
-    .dj-strip { grid-template-columns: 1fr; }
-    .dj-strip-block { border-right: none; border-bottom: 1px solid var(--border); padding: 24px; }
-    .gallery-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
-    .gm-cell.span-row { grid-row: span 1; }
-    .info-grid { grid-template-columns: 1fr; }
-    .info-col { border-right: none; border-bottom: 1px solid var(--border); padding: 36px 24px; }
-    .topbar .lang-toggle { display: none; }
+  @media (max-width: 768px) {
+    .header-top { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .header-body { grid-template-columns: 1fr; padding: 32px 24px 36px; gap: 24px; }
+    .header-meta { align-items: flex-start; text-align: left; }
+    .stats-bar { overflow-x: auto; }
+    .results-section { padding: 72px 24px; }
+    .winners-grid { grid-template-columns: 1fr; }
+    .judges-section { padding: 80px 24px; }
+    .judges-grid { grid-template-columns: 1fr; }
+    .gallery-section { padding: 72px 0; }
+    .gallery-inner { padding: 0 24px; }
+    .gallery-grid-25 { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
+    .gp.span2 { grid-column: span 2; }
+    .venue-section { padding: 72px 24px; }
+    .venue-single { grid-template-columns: 1fr; }
+    .venue-left { border-right: none; border-bottom: 1px solid rgba(200,212,214,0.08); padding: 40px 28px; }
+    .venue-right { padding: 40px 28px; }
   }
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
-<nav class="topbar">
-  <a href="index.html" class="topbar-logo">BREAK<em>2</em>FUTURE</a>
-  <ul class="topbar-nav">
-    <li><a href="index.html" data-en="← Home" data-hr="← Početna">← Home</a></li>
-    <li><a href="#results" data-en="Results" data-hr="Rezultati">Results</a></li>
-    <li><a href="#judges" data-en="Judges" data-hr="Suci">Judges</a></li>
-    <li><a href="#venue" data-en="Venue" data-hr="Lokacija">Venue</a></li>
-  </ul>
-  <div style="display:flex;align-items:center;gap:20px;">
-    <div class="topbar-year">2022</div>
-    <div class="lang-toggle desktop-lang">
-      <button class="lang-btn" data-lang="hr" onclick="applyLang('hr')">HR</button>
-      <button class="lang-btn active" data-lang="en" onclick="applyLang('en')">EN</button>
+<!-- COMPACT HEADER -->
+<header class="site-header">
+  <div class="header-top">
+    <a href="index.html" class="nav-logo">BREAK<span>2</span>FUTURE</a>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <ul class="nav-links">
+        <li><a href="index.html" data-en="← Home" data-hr="← Početna">← Home</a></li>
+        <li><a href="#results" data-en="Results" data-hr="Rezultati">Results</a></li>
+        <li><a href="#judges" data-en="Judges" data-hr="Suci">Judges</a></li>
+        <li><a href="#gallery" data-en="Gallery" data-hr="Galerija">Gallery</a></li>
+        <li><a href="#venue" data-en="Venue" data-hr="Lokacija">Venue</a></li>
+      </ul>
+      <div class="lang-toggle desktop-lang">
+        <button class="lang-btn" data-lang="hr" onclick="applyLang('hr')">HR</button>
+        <button class="lang-btn active" data-lang="en" onclick="applyLang('en')">EN</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
-</nav>
+  <div class="header-body">
+    <div class="header-left">
+      <div class="header-edition" data-en="Edition 2022" data-hr="Izdanje 2022">Edition 2022</div>
+      <h1 class="header-title">
+        <span class="word">BREAK</span><span class="num">2</span><span class="word">FUTURE</span>
+      </h1>
+    </div>
+    <div class="header-meta">
+      <div class="header-meta-badge" data-en="Event Finished" data-hr="Event Završen">Event Finished</div>
+      <div class="header-meta-line"><strong>Zagreb</strong>, Croatia</div>
+      <div class="header-meta-line">Tala Ple(j)s</div>
+    </div>
+  </div>
+</header>
 
-<!-- MASTHEAD -->
-<div class="masthead">
-  <div class="masthead-left">
-    <div class="masthead-kicker">
-      <span class="masthead-kicker-dot"></span>
-      <span class="masthead-kicker-text">Event Finished</span>
-      <span class="masthead-kicker-sep">·</span>
-      <span class="masthead-kicker-sub">Zagreb, Croatia &nbsp;·&nbsp; 2022</span>
-    </div>
-    <h1 class="masthead-title">
-      BREAK<span class="stroke">2</span>FUTURE<br>
-      <span class="stroke">2022</span>
-    </h1>
-    <div class="masthead-meta-row">
-      <a href="#results" class="masthead-btn">View Results</a>
-      <a href="#judges" class="masthead-btn-ghost">Meet the Panel</a>
-    </div>
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">2</div>
+    <div class="stat-label">Battle Categories</div>
   </div>
-  <div class="masthead-right">
-    <div class="masthead-right-cell">
-      <div class="mrc-label">Edition</div>
-      <div class="mrc-value">2022</div>
-      <div class="mrc-sub">Break2Future</div>
-    </div>
-    <div class="masthead-right-cell">
-      <div class="mrc-label">Location</div>
-      <div class="mrc-value">Zagreb</div>
-      <div class="mrc-sub">Croatia</div>
-    </div>
-    <div class="masthead-right-cell">
-      <div class="mrc-label">Categories</div>
-      <div class="mrc-value">—</div>
-      <div class="mrc-sub">TBA</div>
-    </div>
-    <div class="masthead-right-cell">
-      <div class="mrc-label">Judges</div>
-      <div class="mrc-value">—</div>
-      <div class="mrc-sub">TBA</div>
-    </div>
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Int'l Judges</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">1</div>
+    <div class="stat-label">Venue</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">1</div>
+    <div class="stat-label">Battle DJ</div>
   </div>
 </div>
 
 <!-- RESULTS -->
-<section class="results-area" id="results">
-  <div class="section-header reveal">
-    <div class="section-num">01</div>
-    <div class="section-heading-wrap">
-      <div class="section-tag-sm" data-en="Battle Results" data-hr="Rezultati Bitaka">Battle Results</div>
-      <div class="section-heading-lg" data-en="Winners &amp; Results" data-hr="Pobjednici &amp; Rezultati">Winners & Results</div>
-    </div>
-  </div>
+<section class="results-section" id="results">
+  <p class="section-label reveal" data-en="Battle Results" data-hr="Rezultati Bitaka">Battle Results</p>
+  <h2 class="section-heading reveal" data-en="WINNERS &amp;<br>RESULTS" data-hr="POBJEDNICI &amp;<br>REZULTATI">WINNERS &<br>RESULTS</h2>
 
-  <div class="results-table">
-    <!-- header row -->
-    <div class="rt-row rt-head">
-      <div class="rt-cell">#</div>
-      <div class="rt-cell">Name / Crew</div>
-      <div class="rt-cell">Category</div>
-      <div class="rt-cell">Format</div>
+  <div class="winners-grid">
+
+    <!-- Adults -->
+    <div class="winner-block reveal">
+      <div class="winner-category">1VS1 Breaking — Adults Open</div>
+      <div class="winner-rank-label">Winner</div>
+      <div class="winner-name">BEAT THE YOUNG HUSTLER</div>
+      <div class="winner-tag">🥇 1st Place</div>
     </div>
 
-    <!-- PLACEHOLDER ROWS — replace with real data -->
-    <div class="rt-row reveal">
-      <div class="rt-cell rt-rank gold">1</div>
-      <div class="rt-cell"><div class="rt-name-wrap"><div class="rt-name">TBA</div><div class="rt-sub">—</div></div></div>
-      <div class="rt-cell"><div class="rt-category">TBA Category</div></div>
-      <div class="rt-cell"><div class="rt-format">—</div></div>
+    <!-- Kids -->
+    <div class="winner-block reveal">
+      <div class="winner-category">1VS1 Breaking — Kids U16</div>
+      <div class="winner-rank-label">Winner</div>
+      <div class="winner-name">G WIZARD</div>
+      <div class="winner-tag">🥇 1st Place</div>
     </div>
-    <div class="rt-row reveal">
-      <div class="rt-cell rt-rank silver">2</div>
-      <div class="rt-cell"><div class="rt-name-wrap"><div class="rt-name">TBA</div><div class="rt-sub">—</div></div></div>
-      <div class="rt-cell"><div class="rt-category">TBA Category</div></div>
-      <div class="rt-cell"><div class="rt-format">—</div></div>
-    </div>
-    <div class="rt-row reveal">
-      <div class="rt-cell rt-rank bronze">3</div>
-      <div class="rt-cell"><div class="rt-name-wrap"><div class="rt-name">TBA</div><div class="rt-sub">—</div></div></div>
-      <div class="rt-cell"><div class="rt-category">TBA Category</div></div>
-      <div class="rt-cell"><div class="rt-format">—</div></div>
-    </div>
-    <div class="rt-row reveal">
-      <div class="rt-cell rt-rank other">—</div>
-      <div class="rt-cell"><div class="rt-name-wrap"><div class="rt-name">TBA</div><div class="rt-sub">—</div></div></div>
-      <div class="rt-cell"><div class="rt-category">TBA Category</div></div>
-      <div class="rt-cell"><div class="rt-format">—</div></div>
-    </div>
-  </div>
-</section>
 
-<!-- GALLERY -->
-<section class="gallery-area" id="gallery">
-  <div class="section-header reveal">
-    <div class="section-num">02</div>
-    <div class="section-heading-wrap">
-      <div class="section-tag-sm" data-en="Photo Gallery" data-hr="Foto Galerija">Photo Gallery</div>
-      <div class="section-heading-lg" data-en="B2F 2022 in Photos" data-hr="B2F 2022 na Fotografijama">B2F 2022 in Photos</div>
-    </div>
-  </div>
-  <div class="gallery-mosaic">
-    <div class="gm-cell span-row reveal">
-      <div class="gm-placeholder">
-        <svg width="80" height="80" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg>
-      </div>
-      <span class="gm-label">Main Battle</span>
-    </div>
-    <div class="gm-cell reveal">
-      <div class="gm-placeholder"><svg width="50" height="50" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
-      <span class="gm-label">Action</span>
-    </div>
-    <div class="gm-cell reveal">
-      <div class="gm-placeholder"><svg width="50" height="50" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
-      <span class="gm-label">Crowd</span>
-    </div>
-    <div class="gm-cell reveal">
-      <div class="gm-placeholder"><svg width="50" height="50" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
-      <span class="gm-label">Judges</span>
-    </div>
-    <div class="gm-cell reveal">
-      <div class="gm-placeholder"><svg width="50" height="50" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
-      <span class="gm-label">Winners</span>
-    </div>
   </div>
 </section>
 
 <!-- JUDGES -->
-<section class="panel-area" id="judges">
-  <div class="section-header reveal">
-    <div class="section-num">03</div>
-    <div class="section-heading-wrap">
-      <div class="section-tag-sm" data-en="The Panel" data-hr="Panel Sudaca">The Panel</div>
-      <div class="section-heading-lg" data-en="Judges &amp; Artists" data-hr="Suci &amp; Umjetnici">Judges & Artists</div>
-    </div>
-  </div>
+<section class="judges-section" id="judges">
+  <p class="section-label reveal" data-en="The Panel" data-hr="Panel Sudaca">The Panel</p>
+  <h2 class="section-heading reveal" data-en="JUDGES &amp;<br>ARTISTS" data-hr="SUCI &amp;<br>UMJETNICI">JUDGES &<br>ARTISTS</h2>
+  <div class="judges-grid">
 
-  <div class="judges-strip">
-    <div class="judge-strip-card reveal">
-      <div class="jsc-top" data-initial="?">
-        <div class="jsc-num">Judge 01</div>
-        <div class="jsc-name">TBA</div>
-        <div class="jsc-crew">— · —</div>
-      </div>
-      <div class="jsc-bottom">
-        <div class="jsc-origin">Country — TBA</div>
-        <div class="jsc-role">Breaking Judge</div>
-      </div>
-    </div>
-    <div class="judge-strip-card reveal">
-      <div class="jsc-top" data-initial="?">
-        <div class="jsc-num">Judge 02</div>
-        <div class="jsc-name">TBA</div>
-        <div class="jsc-crew">— · —</div>
-      </div>
-      <div class="jsc-bottom">
-        <div class="jsc-origin">Country — TBA</div>
-        <div class="jsc-role">Breaking Judge</div>
+    <!-- Mighty Jim -->
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <div class="judge-front">
+          <div class="judge-role">Breaking Judge</div>
+          <div class="judge-placeholder">
+            <svg width="60" height="60" viewBox="0 0 80 80" fill="none" opacity="0.15">
+              <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" stroke="#E8490F" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="judge-info"><div class="judge-name">MIGHTY JIM</div><div class="judge-origin">Breaking Judge</div></div>
+        </div>
+        <div class="judge-back">
+          <div class="judge-back-tag">Breaking Judge</div>
+          <div class="judge-back-name">MIGHTY JIM</div>
+          <div class="judge-back-crew">Breaking Judge</div>
+          <div class="judge-back-bio">One of the judges on the inaugural B2F panel. Mighty Jim brought credibility and experience to the first edition, helping set the standard for B2F's judging culture from day one.</div>
+          <div class="judge-back-hint">tap to flip back</div>
+        </div>
       </div>
     </div>
-    <div class="judge-strip-card reveal">
-      <div class="jsc-top" data-initial="?">
-        <div class="jsc-num">Judge 03</div>
-        <div class="jsc-name">TBA</div>
-        <div class="jsc-crew">— · —</div>
-      </div>
-      <div class="jsc-bottom">
-        <div class="jsc-origin">Country — TBA</div>
-        <div class="jsc-role">Breaking Judge</div>
-      </div>
-    </div>
-  </div>
 
-  <div class="dj-strip">
-    <div class="dj-strip-block reveal">
-      <div class="dj-strip-line"></div>
-      <div>
-        <div class="dj-strip-role">Battle DJ</div>
-        <div class="dj-strip-name">TBA</div>
-        <div class="dj-strip-detail">Official Battle DJ — B2F 2022</div>
+    <!-- Dirty Entony -->
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <div class="judge-front">
+          <div class="judge-role">Breaking Judge</div>
+          <div class="judge-placeholder">
+            <svg width="60" height="60" viewBox="0 0 80 80" fill="none" opacity="0.15">
+              <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" stroke="#E8490F" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="judge-info"><div class="judge-name">DIRTY ENTONY</div><div class="judge-origin">Breaking Judge</div></div>
+        </div>
+        <div class="judge-back">
+          <div class="judge-back-tag">Breaking Judge</div>
+          <div class="judge-back-name">DIRTY ENTONY</div>
+          <div class="judge-back-crew">Breaking Judge</div>
+          <div class="judge-back-bio">Part of the original B2F judging panel in 2022. Dirty Entony brought his own perspective and style to the event, contributing to the authentic breaking atmosphere of the first edition.</div>
+          <div class="judge-back-hint">tap to flip back</div>
+        </div>
       </div>
     </div>
-    <div class="dj-strip-block reveal">
-      <div class="dj-strip-line" style="background:rgba(200,212,214,0.15);"></div>
-      <div>
-        <div class="dj-strip-role" style="color:var(--light);opacity:0.3;">Host / MC</div>
-        <div class="dj-strip-name" style="font-size:1.4rem;opacity:0.5;">TBA</div>
-        <div class="dj-strip-detail">Event Host — B2F 2022</div>
+
+    <!-- Apache -->
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <div class="judge-front">
+          <div class="judge-role">Breaking Judge</div>
+          <div class="judge-placeholder">
+            <svg width="60" height="60" viewBox="0 0 80 80" fill="none" opacity="0.15">
+              <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" stroke="#E8490F" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="judge-info"><div class="judge-name">APACHE</div><div class="judge-origin">Breaking Judge</div></div>
+        </div>
+        <div class="judge-back">
+          <div class="judge-back-tag">Breaking Judge</div>
+          <div class="judge-back-name">APACHE</div>
+          <div class="judge-back-crew">Breaking Judge</div>
+          <div class="judge-back-bio">Completed the three-judge panel for the first ever B2F edition. Apache's presence on the panel helped give the inaugural event the weight and respect it deserved.</div>
+          <div class="judge-back-hint">tap to flip back</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DJ & CREW -->
+<section class="judges-section" id="crew" style="padding-top: 0;">
+  <p class="section-label reveal" data-en="Sound &amp; Media" data-hr="Zvuk i Mediji">Sound &amp; Media</p>
+  <h2 class="section-heading reveal" data-en="DJ &amp;<br>CREW" data-hr="DJ &amp;<br>EKIPA">DJ &<br>CREW</h2>
+  <div class="judges-grid">
+
+    <!-- DJ TBA -->
+    <div class="judge-card-wrap reveal">
+      <div class="judge-card-inner">
+        <div class="judge-front">
+          <div class="judge-role">Battle DJ</div>
+          <div class="judge-placeholder">
+            <svg width="60" height="60" viewBox="0 0 80 80" fill="none" opacity="0.15">
+              <circle cx="40" cy="40" r="34" stroke="#E8490F" stroke-width="1.5"/>
+              <circle cx="40" cy="40" r="10" stroke="#E8490F" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="judge-info"><div class="judge-name">DJ</div><div class="judge-origin">Battle DJ</div></div>
+        </div>
+        <div class="judge-back">
+          <div class="judge-back-tag">Battle DJ</div>
+          <div class="judge-back-name">DJ</div>
+          <div class="judge-back-crew">B2F 2022 Battle DJ</div>
+          <div class="judge-back-bio">The official battle DJ for the first B2F edition, setting the sonic foundation for what would become a signature event in the Croatian breaking scene.</div>
+          <div class="judge-back-hint">tap to flip back</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-inner">
+    <p class="section-label reveal" data-en="Photo Gallery" data-hr="Foto Galerija">Photo Gallery</p>
+    <h2 class="section-heading reveal" data-en="B2F 2022<br>IN PHOTOS" data-hr="B2F 2022<br>NA FOTOGRAFIJAMA">B2F 2022<br>IN PHOTOS</h2>
+    <div class="gallery-grid-25">
+      <div class="gp span2 reveal">
+        <div class="gp-inner">
+          <svg width="100" height="100" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg>
+        </div>
+        <span class="gp-tag">Battle Finals</span>
+      </div>
+      <div class="gp reveal">
+        <div class="gp-inner"><svg width="60" height="60" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
+        <span class="gp-tag">Crowd</span>
+      </div>
+      <div class="gp reveal">
+        <div class="gp-inner"><svg width="60" height="60" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
+        <span class="gp-tag">Adults 1v1</span>
+      </div>
+      <div class="gp reveal">
+        <div class="gp-inner"><svg width="60" height="60" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
+        <span class="gp-tag">Kids Battles</span>
+      </div>
+      <div class="gp span2 reveal">
+        <div class="gp-inner"><svg width="100" height="100" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
+        <span class="gp-tag">Winners</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- VENUE + SCHEDULE -->
-<section class="info-area" id="venue">
-  <div class="section-header reveal">
-    <div class="section-num">04</div>
-    <div class="section-heading-wrap">
-      <div class="section-tag-sm" data-en="Where it happened" data-hr="Gdje se odvilo">Where it happened</div>
-      <div class="section-heading-lg" data-en="Venue &amp; Schedule" data-hr="Lokacija &amp; Raspored">Venue & Schedule</div>
-    </div>
-  </div>
-  <div class="info-grid">
-    <div class="info-col reveal">
-      <div class="info-col-label">Venue</div>
-      <div class="venue-big-name">TBA</div>
+<!-- VENUE -->
+<section class="venue-section" id="venue">
+  <p class="section-label reveal" data-en="Where it happened" data-hr="Gdje se odvilo">Where it happened</p>
+  <h2 class="section-heading reveal" data-en="VENUE" data-hr="LOKACIJA">VENUE</h2>
+
+  <div class="venue-single reveal">
+    <div class="venue-left">
+      <div class="venue-edition-num">22</div>
+      <div class="venue-name-big">Tala Ple(j)s</div>
       <div class="venue-addr">
-        Zagreb, Croatia<br>
-        2022
+        Radnička cesta 27<br>
+        10000 Zagreb, Croatia
       </div>
-      <div class="venue-tag-list">
-        <div class="venue-tag-item">TBA Category</div>
-        <div class="venue-tag-item">Finals & Awards</div>
+      <div class="venue-tags">
+        <div class="vtag"><div class="vtag-dot"></div>1VS1 Breaking Adults Open</div>
+        <div class="vtag"><div class="vtag-dot"></div>1VS1 Breaking Kids U16</div>
+        <div class="vtag"><div class="vtag-dot"></div>Finals & Awards</div>
       </div>
     </div>
-    <div class="info-col reveal">
-      <div class="info-col-label">Programme</div>
-      <div class="sched-list">
-        <div class="sched-row">
-          <div><div class="sched-time">TBA</div></div>
-          <div><div class="sched-name">Qualifications</div><div class="sched-sub">—</div></div>
-        </div>
-        <div class="sched-row">
-          <div><div class="sched-time">TBA</div></div>
-          <div><div class="sched-name">Main Battles</div><div class="sched-sub">—</div></div>
-        </div>
-        <div class="sched-row">
-          <div><div class="sched-time">TBA</div></div>
-          <div><div class="sched-name">Finals & Awards Ceremony</div><div class="sched-sub">—</div></div>
-        </div>
+    <div class="venue-right">
+      <div class="venue-right-title">Programme</div>
+      <div class="venue-schedule-item">
+        <div><div class="vsi-time">Afternoon</div></div>
+        <div><div class="vsi-name">Qualifications – 1VS1 Kids U16</div><div class="vsi-sub">Tala Ple(j)s</div></div>
+      </div>
+      <div class="venue-schedule-item">
+        <div><div class="vsi-time">Afternoon</div></div>
+        <div><div class="vsi-name">Qualifications – 1VS1 Adults Open</div><div class="vsi-sub">Tala Ple(j)s</div></div>
+      </div>
+      <div class="venue-schedule-item">
+        <div><div class="vsi-time">Evening</div></div>
+        <div><div class="vsi-name">Battles – 1VS1 Kids U16</div><div class="vsi-sub">Tala Ple(j)s</div></div>
+      </div>
+      <div class="venue-schedule-item">
+        <div><div class="vsi-time">Evening</div></div>
+        <div><div class="vsi-name">Battles – 1VS1 Adults Open</div><div class="vsi-sub">Tala Ple(j)s</div></div>
+      </div>
+      <div class="venue-schedule-item">
+        <div><div class="vsi-time">Night</div></div>
+        <div><div class="vsi-name">Finals & Awards Ceremony</div><div class="vsi-sub">Tala Ple(j)s</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <div id="site-footer"></div>
 
 <script>
-  // ── Lang ──────────────────────────────────────────
   function applyLang(lang) {
     document.querySelectorAll('[data-en],[data-hr]').forEach(el => {
       const txt = el.getAttribute('data-' + lang);
@@ -779,18 +556,24 @@
   }
   applyLang(localStorage.getItem('b2f-lang') || 'en');
 
+  // ── Flip cards ────────────────────────────────────
+  document.querySelectorAll('.judge-card-wrap').forEach(card => {
+    card.addEventListener('click', e => {
+      if (!e.target.closest('a')) card.classList.toggle('flipped');
+    });
+  });
+
   // ── Reveal ────────────────────────────────────────
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        setTimeout(() => e.target.classList.add('visible'), i * 70);
         observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
-
 </script>
 <script src="components.js"></script>
 </body>
