@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BREAK2FUTURE 2025 — Recap</title>
+<title>BREAK2FUTURE 2024 — Recap</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -47,7 +47,7 @@
   }
 
   .site-header::before {
-    content: '2025';
+    content: '2024';
     position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(120px, 18vw, 260px);
@@ -86,8 +86,6 @@
     padding: 40px 48px 44px;
     position: relative; z-index: 1;
   }
-
-  .header-left {}
 
   .header-edition {
     font-family: 'Barlow Condensed', sans-serif;
@@ -162,102 +160,6 @@
     color: var(--light); opacity: 0.45; margin-top: 4px;
   }
 
-  /* ── RESULTS ── */
-  .results-section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
-
-  .section-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.7rem; font-weight: 700;
-    letter-spacing: 0.45em; text-transform: uppercase;
-    color: var(--orange); margin-bottom: 16px;
-  }
-  .section-heading {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(44px, 6vw, 80px);
-    line-height: 0.95; margin-bottom: 56px;
-  }
-
-  .winners-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-  }
-
-  .winner-block {
-    background: var(--mid);
-    padding: 48px 40px;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-  }
-  .winner-block:hover { background: #151F22; }
-
-  .winner-block::after {
-    content: '';
-    position: absolute; bottom: 0; left: 40px; right: 40px;
-    height: 2px; background: var(--orange); opacity: 0.2;
-    transition: opacity 0.3s;
-  }
-  .winner-block:hover::after { opacity: 0.5; }
-
-  .winner-category {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.65rem; font-weight: 700;
-    letter-spacing: 0.4em; text-transform: uppercase;
-    color: var(--orange); margin-bottom: 32px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .winner-category::after {
-    content: ''; flex: 1; height: 1px;
-    background: rgba(232,73,15,0.2);
-  }
-
-  .winner-rank-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem; font-weight: 600;
-    letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--light); opacity: 0.3; margin-bottom: 6px;
-  }
-
-  .winner-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(40px, 5vw, 72px);
-    line-height: 0.95; color: var(--white);
-    margin-bottom: 8px;
-  }
-
-  .winner-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(212,168,67,0.12);
-    border: 1px solid rgba(212,168,67,0.3);
-    color: var(--gold);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.65rem; font-weight: 700;
-    letter-spacing: 0.25em; text-transform: uppercase;
-    padding: 5px 14px; margin-top: 16px;
-  }
-
-  .runner-up-row {
-    display: flex; align-items: center; gap: 12px;
-    margin-top: 28px; padding-top: 24px;
-    border-top: 1px solid rgba(200,212,214,0.07);
-  }
-  .runner-up-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem; font-weight: 700;
-    letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--light); opacity: 0.3; white-space: nowrap;
-  }
-  .runner-up-dot {
-    width: 4px; height: 4px; background: rgba(232,73,15,0.4);
-    border-radius: 50%; flex-shrink: 0;
-  }
-  .runner-up-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem; font-weight: 600;
-    letter-spacing: 0.05em; color: var(--light); opacity: 0.5;
-  }
-
   /* ── JUDGES ── */
   .judges-section { padding: 120px 48px; max-width: 1200px; margin: 0 auto; }
   .judges-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
@@ -271,7 +173,6 @@
   }
   .judge-card-wrap.flipped .judge-card-inner { transform: rotateY(180deg); }
 
-  /* shared face styles */
   .judge-front, .judge-back {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
@@ -308,7 +209,6 @@
   .judge-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1; color: var(--white); }
   .judge-origin { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--orange); margin-top: 6px; }
 
-  /* back face content */
   .judge-back-tag {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.6rem; font-weight: 700;
@@ -325,7 +225,7 @@
   .judge-back-ig a:hover { opacity: 1; text-decoration: underline; }
   .judge-back-hint { margin-top: auto; padding-top: 20px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light); opacity: 0.25; }
 
-  /* ── GALLERY placeholder ── */
+  /* ── GALLERY ── */
   .gallery-section { padding: 100px 0; background: var(--dark); }
   .gallery-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
 
@@ -356,6 +256,83 @@
     color: var(--light); opacity: 0.15;
   }
 
+  /* ── RESULTS ── */
+  .results-section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.45em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 16px;
+  }
+  .section-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 6vw, 80px);
+    line-height: 0.95; margin-bottom: 56px;
+  }
+
+  .winners-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .winner-block {
+    background: var(--mid);
+    padding: 48px 40px;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+  }
+  .winner-block:hover { background: #151F22; }
+  .winner-block::after {
+    content: '';
+    position: absolute; bottom: 0; left: 40px; right: 40px;
+    height: 2px; background: var(--orange); opacity: 0.2;
+    transition: opacity 0.3s;
+  }
+  .winner-block:hover::after { opacity: 0.5; }
+
+  .winner-category {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 32px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .winner-category::after { content: ''; flex: 1; height: 1px; background: rgba(232,73,15,0.2); }
+
+  .winner-rank-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem; font-weight: 600;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--light); opacity: 0.3; margin-bottom: 6px;
+  }
+  .winner-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95; color: var(--white); margin-bottom: 8px;
+  }
+  .winner-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(212,168,67,0.12);
+    border: 1px solid rgba(212,168,67,0.3);
+    color: var(--gold);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    padding: 5px 14px; margin-top: 16px;
+  }
+  .winner-tag-silver {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(148,168,174,0.12);
+    border: 1px solid rgba(148,168,174,0.3);
+    color: var(--silver);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    padding: 5px 14px; margin-top: 16px;
+  }
+
   /* ── VENUE ── */
   .venue-section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
 
@@ -365,39 +342,22 @@
     gap: 0;
     border: 1px solid rgba(200,212,214,0.08);
   }
-
-  .venue-left {
-    padding: 56px 48px;
-    border-right: 1px solid rgba(200,212,214,0.08);
-  }
-
-  .venue-right {
-    padding: 56px 48px;
-    background: var(--mid);
-  }
+  .venue-left { padding: 56px 48px; border-right: 1px solid rgba(200,212,214,0.08); }
+  .venue-right { padding: 56px 48px; background: var(--mid); }
 
   .venue-edition-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 6rem; line-height: 1;
     color: rgba(232,73,15,0.1); margin-bottom: -16px;
   }
-
   .venue-name-big {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 3rem; line-height: 1;
     color: var(--white); margin-bottom: 16px;
   }
+  .venue-addr { font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: var(--light); opacity: 0.45; line-height: 1.7; }
 
-  .venue-addr {
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.9rem; color: var(--light);
-    opacity: 0.45; line-height: 1.7;
-  }
-
-  .venue-tags {
-    margin-top: 32px;
-    display: flex; flex-direction: column; gap: 10px;
-  }
+  .venue-tags { margin-top: 32px; display: flex; flex-direction: column; gap: 10px; }
   .vtag {
     display: flex; align-items: center; gap: 10px;
     font-family: 'Barlow Condensed', sans-serif;
@@ -405,11 +365,7 @@
     letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--light); opacity: 0.6;
   }
-  .vtag-dot {
-    width: 5px; height: 5px; background: var(--orange);
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    flex-shrink: 0;
-  }
+  .vtag-dot { width: 5px; height: 5px; background: var(--orange); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); flex-shrink: 0; }
 
   .venue-right-title {
     font-family: 'Barlow Condensed', sans-serif;
@@ -417,7 +373,6 @@
     letter-spacing: 0.35em; text-transform: uppercase;
     color: var(--orange); margin-bottom: 28px;
   }
-
   .venue-schedule-item {
     display: flex; gap: 16px;
     padding: 14px 0;
@@ -427,19 +382,10 @@
   .vsi-time {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.8rem; font-weight: 600;
-    letter-spacing: 0.1em; color: var(--orange);
-    min-width: 100px;
+    letter-spacing: 0.1em; color: var(--orange); min-width: 100px;
   }
-  .vsi-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.95rem; font-weight: 600;
-    letter-spacing: 0.04em; color: var(--white);
-  }
-  .vsi-sub {
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.7rem; color: var(--light);
-    opacity: 0.35; margin-top: 2px;
-  }
+  .vsi-name { font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 600; letter-spacing: 0.04em; color: var(--white); }
+  .vsi-sub { font-family: 'Barlow', sans-serif; font-size: 0.7rem; color: var(--light); opacity: 0.35; margin-top: 2px; }
 
   /* footer + hamburger → style.css + components.js */
 
@@ -449,8 +395,6 @@
   .lang-btn.active { background:var(--orange); color:var(--dark); opacity:1; }
 
   /* ── ANIMATIONS ── */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-
   .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 
@@ -461,14 +405,14 @@
     .header-body { grid-template-columns: 1fr; padding: 32px 24px 36px; gap: 24px; }
     .header-meta { align-items: flex-start; text-align: left; }
     .stats-bar { overflow-x: auto; }
-    .results-section { padding: 72px 24px; }
-    .winners-grid { grid-template-columns: 1fr; }
     .judges-section { padding: 80px 24px; }
     .judges-grid { grid-template-columns: 1fr; }
     .gallery-section { padding: 72px 0; }
     .gallery-inner { padding: 0 24px; }
     .gallery-grid-25 { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
     .gp.span2 { grid-column: span 2; }
+    .results-section { padding: 72px 24px; }
+    .winners-grid { grid-template-columns: 1fr; }
     .venue-section { padding: 72px 24px; }
     .venue-single { grid-template-columns: 1fr; }
     .venue-left { border-right: none; border-bottom: 1px solid rgba(200,212,214,0.08); padding: 40px 28px; }
@@ -485,8 +429,9 @@
     <div style="display:flex;align-items:center;gap:28px;">
       <ul class="nav-links">
         <li><a href="index.html" data-en="← Home" data-hr="← Početna">← Home</a></li>
-        <li><a href="#results" data-en="Results" data-hr="Rezultati">Results</a></li>
         <li><a href="#judges" data-en="Judges" data-hr="Suci">Judges</a></li>
+        <li><a href="#gallery" data-en="Gallery" data-hr="Galerija">Gallery</a></li>
+        <li><a href="#results" data-en="Results" data-hr="Rezultati">Results</a></li>
         <li><a href="#venue" data-en="Venue" data-hr="Lokacija">Venue</a></li>
       </ul>
       <div class="lang-toggle desktop-lang">
@@ -498,7 +443,7 @@
   </div>
   <div class="header-body">
     <div class="header-left">
-      <div class="header-edition" data-en="Edition 2025" data-hr="Izdanje 2025">Edition 2025</div>
+      <div class="header-edition" data-en="Edition 2024" data-hr="Izdanje 2024">Edition 2024</div>
       <h1 class="header-title">
         <span class="word">BREAK</span><span class="num">2</span><span class="word">FUTURE</span>
       </h1>
@@ -511,12 +456,11 @@
   </div>
 </header>
 
-
 <!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stat-item">
-    <div class="stat-num">2</div>
-    <div class="stat-label">Battle Categories</div>
+    <div class="stat-num">1</div>
+    <div class="stat-label">Battle Category</div>
   </div>
   <div class="stat-item">
     <div class="stat-num">3</div>
@@ -532,135 +476,67 @@
   </div>
 </div>
 
-<!-- RESULTS -->
-<section class="results-section" id="results">
-  <p class="section-label reveal" data-en="Battle Results" data-hr="Rezultati Bitaka">Battle Results</p>
-  <h2 class="section-heading reveal" data-en="WINNERS &amp;<br>RESULTS" data-hr="POBJEDNICI &amp;<br>REZULTATI">WINNERS &<br>RESULTS</h2>
-
-  <div class="winners-grid">
-
-    <!-- 1VS1 Adults -->
-    <div class="winner-block reveal">
-      <div class="winner-category">1VS1 Breaking — Adults Open</div>
-      <div class="winner-rank-label">Winner</div>
-      <div class="winner-name">LITEFOOT</div>
-      <div class="winner-tag">🥇 1st Place</div>
-      <div class="runner-up-row">
-        <span class="runner-up-label">Runner-up</span>
-        <span class="runner-up-dot"></span>
-        <span class="runner-up-name">TBA</span>
-      </div>
-    </div>
-
-    <!-- 1VS1 Kids -->
-    <div class="winner-block reveal">
-      <div class="winner-category">1VS1 Breaking — Kids U16</div>
-      <div class="winner-rank-label">Winner</div>
-      <div class="winner-name">TAV</div>
-      <div class="winner-tag">🥇 1st Place</div>
-      <div class="runner-up-row">
-        <span class="runner-up-label">Runner-up</span>
-        <span class="runner-up-dot"></span>
-        <span class="runner-up-name">TBA</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- GALLERY placeholder -->
-<section class="gallery-section" id="gallery">
-  <div class="gallery-inner">
-    <p class="section-label reveal" data-en="Photo Gallery" data-hr="Foto Galerija">Photo Gallery</p>
-    <h2 class="section-heading reveal" data-en="B2F 2025<br>IN PHOTOS" data-hr="B2F 2025<br>NA FOTOGRAFIJAMA">B2F 2025<br>IN PHOTOS</h2>
-    <div class="gallery-grid-25">
-      <div class="gp span2 reveal">
-        <div class="gp-inner">
-          <svg width="100" height="100" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg>
-        </div>
-        <span class="gp-tag">Battle Finals</span>
-      </div>
-      <div class="gp reveal">
-        <div class="gp-inner"><svg width="60" height="60" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
-        <span class="gp-tag">Crowd</span>
-      </div>
-      <div class="gp reveal">
-        <div class="gp-inner"><svg width="60" height="60" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
-        <span class="gp-tag">Kids Battles</span>
-      </div>
-      <div class="gp reveal">
-        <div class="gp-inner"><svg width="60" height="60" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
-        <span class="gp-tag">Adults 1v1</span>
-      </div>
-      <div class="gp span2 reveal">
-        <div class="gp-inner"><svg width="100" height="100" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
-        <span class="gp-tag">Winners</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- JUDGES -->
 <section class="judges-section" id="judges">
   <p class="section-label reveal" data-en="The Panel" data-hr="Panel Sudaca">The Panel</p>
   <h2 class="section-heading reveal" data-en="JUDGES &amp;<br>ARTISTS" data-hr="SUCI &amp;<br>UMJETNICI">JUDGES &<br>ARTISTS</h2>
   <div class="judges-grid">
 
-    <!-- Khalil -->
+    <!-- Kuzya -->
     <div class="judge-card-wrap reveal">
       <div class="judge-card-inner">
         <div class="judge-front">
           <div class="judge-role">Breaking Judge</div>
           <div class="judge-placeholder">
-            <img src="photos/khalil.png" alt="Khalil" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="photos/kuzya.png" alt="Kuzya" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
-          <div class="judge-info"><div class="judge-name">KHALIL</div><div class="judge-origin">🇫🇷 France</div></div>
+          <div class="judge-info"><div class="judge-name">KUZYA</div><div class="judge-origin">🇺🇦 Ukraine</div></div>
         </div>
         <div class="judge-back">
           <div class="judge-back-tag">Breaking Judge</div>
-          <div class="judge-back-name">KHALIL</div>
-          <div class="judge-back-crew">🇫🇷 France</div>
-          <div class="judge-back-bio">French b-boy with a powerful and dynamic style, known for his precise footwork and strong musicality. A respected figure on the European breaking circuit and a regular at international events.</div>
+          <div class="judge-back-name">KUZYA</div>
+          <div class="judge-back-crew">🇺🇦 Ukraine</div>
+          <div class="judge-back-bio">Ukrainian b-boy known for his explosive power moves and sharp technical execution. A respected competitor and judge across Europe, bringing raw energy and an eye for detail to every battle panel.</div>
           <div class="judge-back-hint">tap to flip back</div>
         </div>
       </div>
     </div>
 
-    <!-- Pesto -->
+    <!-- Johnny Fox -->
     <div class="judge-card-wrap reveal">
       <div class="judge-card-inner">
         <div class="judge-front">
           <div class="judge-role">Breaking Judge</div>
           <div class="judge-placeholder">
-            <img src="photos/pesto.png" alt="Pesto" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="photos/johnny-fox.png" alt="Johnny Fox" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
-          <div class="judge-info"><div class="judge-name">PESTO</div><div class="judge-origin">🇮🇹 Italy</div></div>
+          <div class="judge-info"><div class="judge-name">JOHNNY FOX</div><div class="judge-origin">Breaking Judge</div></div>
         </div>
         <div class="judge-back">
           <div class="judge-back-tag">Breaking Judge</div>
-          <div class="judge-back-name">PESTO</div>
-          <div class="judge-back-crew">🇮🇹 Italy</div>
-          <div class="judge-back-bio">Italian b-boy bringing a creative mix of power and style to the floor. Known for his expressive breaking and solid technical foundation, Pesto is a consistent presence at competitions across Europe.</div>
+          <div class="judge-back-name">JOHNNY FOX</div>
+          <div class="judge-back-crew">Breaking Judge</div>
+          <div class="judge-back-bio">A seasoned b-boy with a deep connection to the culture and a versatile judging approach. Johnny Fox brings balance and experience to the panel, known for reading both the music and the movement.</div>
           <div class="judge-back-hint">tap to flip back</div>
         </div>
       </div>
     </div>
 
-    <!-- Jay -->
+    <!-- Naki -->
     <div class="judge-card-wrap reveal">
       <div class="judge-card-inner">
         <div class="judge-front">
           <div class="judge-role">Breaking Judge</div>
           <div class="judge-placeholder">
-            <img src="photos/jay.png" alt="Jay" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="photos/naki.png" alt="Naki" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
-          <div class="judge-info"><div class="judge-name">JAY</div><div class="judge-origin">🇸🇮 Slovenia</div></div>
+          <div class="judge-info"><div class="judge-name">NAKI</div><div class="judge-origin">Breaking Judge</div></div>
         </div>
         <div class="judge-back">
           <div class="judge-back-tag">Breaking Judge</div>
-          <div class="judge-back-name">JAY</div>
-          <div class="judge-back-crew">🇸🇮 Slovenia</div>
-          <div class="judge-back-bio">Slovenian b-boy and a key figure in the regional breaking scene. Jay brings deep cultural knowledge and a sharp judging eye, known for his balanced approach to evaluating both style and execution.</div>
+          <div class="judge-back-name">NAKI</div>
+          <div class="judge-back-crew">Breaking Judge</div>
+          <div class="judge-back-bio">B-boy with a strong foundation and creative style, recognized on the international circuit. Naki evaluates with a focus on musicality, authenticity and the essence of breaking culture.</div>
           <div class="judge-back-hint">tap to flip back</div>
         </div>
       </div>
@@ -688,8 +564,8 @@
         <div class="judge-back">
           <div class="judge-back-tag">Battle DJ</div>
           <div class="judge-back-name">DJ TZEK</div>
-          <div class="judge-back-crew">B2F 2025 Official Battle DJ</div>
-          <div class="judge-back-bio">Official battle DJ for B2F 2025. Tzek kept the energy locked in from the first qualifier all the way through the finals, reading the room and fueling every battle.</div>
+          <div class="judge-back-crew">B2F 2024 Official Battle DJ</div>
+          <div class="judge-back-bio">Official battle DJ for B2F 2024. Tzek set the tone for every round, locking in the energy from qualifiers through to the final battle.</div>
           <div class="judge-back-ig"><a href="https://www.instagram.com/dj_tzek" target="_blank" rel="noopener">@dj_tzek</a></div>
           <div class="judge-back-hint">tap to flip back</div>
         </div>
@@ -699,21 +575,78 @@
   </div>
 </section>
 
-<!-- VENUE + SCHEDULE -->
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-inner">
+    <p class="section-label reveal" data-en="Photo Gallery" data-hr="Foto Galerija">Photo Gallery</p>
+    <h2 class="section-heading reveal" data-en="B2F 2024<br>IN PHOTOS" data-hr="B2F 2024<br>NA FOTOGRAFIJAMA">B2F 2024<br>IN PHOTOS</h2>
+    <div class="gallery-grid-25">
+      <div class="gp span2 reveal">
+        <div class="gp-inner">
+          <svg width="100" height="100" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg>
+        </div>
+        <span class="gp-tag">Battle Finals</span>
+      </div>
+      <div class="gp reveal">
+        <div class="gp-inner"><svg width="60" height="60" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
+        <span class="gp-tag">Crowd</span>
+      </div>
+      <div class="gp reveal">
+        <div class="gp-inner"><svg width="60" height="60" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
+        <span class="gp-tag">Adults 1v1</span>
+      </div>
+      <div class="gp reveal">
+        <div class="gp-inner"><svg width="60" height="60" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
+        <span class="gp-tag">Judges</span>
+      </div>
+      <div class="gp span2 reveal">
+        <div class="gp-inner"><svg width="100" height="100" viewBox="0 0 120 120"><polygon points="36,3 84,3 117,36 117,84 84,117 36,117 3,84 3,36"/></svg></div>
+        <span class="gp-tag">Winners</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results-section" id="results">
+  <p class="section-label reveal" data-en="Battle Results" data-hr="Rezultati Bitaka">Battle Results</p>
+  <h2 class="section-heading reveal" data-en="WINNERS &amp;<br>RESULTS" data-hr="POBJEDNICI &amp;<br>REZULTATI">WINNERS &<br>RESULTS</h2>
+
+  <div class="winners-grid">
+
+    <!-- 1st Place -->
+    <div class="winner-block reveal">
+      <div class="winner-category">1VS1 Breaking — Adults Open</div>
+      <div class="winner-rank-label">Winner</div>
+      <div class="winner-name">DANIEL</div>
+      <div class="winner-tag">🥇 1st Place</div>
+    </div>
+
+    <!-- 2nd Place -->
+    <div class="winner-block reveal">
+      <div class="winner-category">1VS1 Breaking — Adults Open</div>
+      <div class="winner-rank-label">Runner-up</div>
+      <div class="winner-name">DJUS</div>
+      <div class="winner-tag-silver">🥈 2nd Place</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VENUE -->
 <section class="venue-section" id="venue">
   <p class="section-label reveal" data-en="Where it happened" data-hr="Gdje se odvilo">Where it happened</p>
   <h2 class="section-heading reveal" data-en="VENUE" data-hr="LOKACIJA">VENUE</h2>
 
   <div class="venue-single reveal">
     <div class="venue-left">
-      <div class="venue-edition-num">25</div>
+      <div class="venue-edition-num">24</div>
       <div class="venue-name-big">Tala Ple(j)s</div>
       <div class="venue-addr">
         Radnička cesta 27<br>
         10000 Zagreb, Croatia
       </div>
       <div class="venue-tags">
-        <div class="vtag"><div class="vtag-dot"></div>1VS1 Breaking Kids U16</div>
         <div class="vtag"><div class="vtag-dot"></div>1VS1 Breaking Adults Open</div>
         <div class="vtag"><div class="vtag-dot"></div>Finals & Awards</div>
       </div>
@@ -722,15 +655,7 @@
       <div class="venue-right-title">Programme</div>
       <div class="venue-schedule-item">
         <div><div class="vsi-time">Afternoon</div></div>
-        <div><div class="vsi-name">Qualifications – 1VS1 Kids U16</div><div class="vsi-sub">Tala Ple(j)s</div></div>
-      </div>
-      <div class="venue-schedule-item">
-        <div><div class="vsi-time">Afternoon</div></div>
-        <div><div class="vsi-name">Qualifications – 1VS1 Adults</div><div class="vsi-sub">Tala Ple(j)s</div></div>
-      </div>
-      <div class="venue-schedule-item">
-        <div><div class="vsi-time">Evening</div></div>
-        <div><div class="vsi-name">Battles – 1VS1 Kids U16</div><div class="vsi-sub">Tala Ple(j)s · feat. DJ Tzek</div></div>
+        <div><div class="vsi-name">Qualifications – 1VS1 Adults Open</div><div class="vsi-sub">Tala Ple(j)s</div></div>
       </div>
       <div class="venue-schedule-item">
         <div><div class="vsi-time">Evening</div></div>
@@ -747,7 +672,6 @@
 <div id="site-footer"></div>
 
 <script>
-  // ── Lang ──────────────────────────────────────────
   function applyLang(lang) {
     document.querySelectorAll('[data-en],[data-hr]').forEach(el => {
       const txt = el.getAttribute('data-' + lang);
@@ -779,7 +703,6 @@
     });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
-
 </script>
 <script src="components.js"></script>
 </body>
