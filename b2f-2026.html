@@ -6,6 +6,7 @@
 <title>BREAK2FUTURE 2026 — Recap</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -575,59 +576,9 @@
     clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); flex-shrink: 0;
   }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--mid); padding: 60px 48px;
-    display: flex; justify-content: space-between; align-items: center;
-    border-top: 1px solid rgba(232,73,15,0.2);
-    flex-wrap: wrap; gap: 24px;
-  }
-  .footer-collab {
-    display: flex; flex-direction: column; align-items: flex-start; gap: 0;
-  }
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.5rem; letter-spacing: 0.05em; line-height: 1;
-    color: var(--white);
-  }
-  .footer-logo span { color: var(--orange); }
-  .footer-x {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem; color: var(--light); opacity: 0.3;
-    line-height: 1.6; letter-spacing: 0.1em;
-  }
-  .footer-partner-logo {
-    max-width: 160px;
-    mix-blend-mode: screen;
-    opacity: 0.85;
-    display: block;
-  }
-  .footer-info {
-    font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem;
-    letter-spacing: 0.2em; color: var(--light); opacity: 0.4;
-    text-align: right; text-transform: uppercase; line-height: 1.8;
-  }
-  .social-links { display: flex; gap: 16px; }
-  .social-link {
-    font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
-    font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--light); text-decoration: none; opacity: 0.5;
-    padding: 8px 16px; border: 1px solid rgba(200,212,214,0.15);
-    transition: opacity 0.2s, color 0.2s;
-  }
-  .social-link:hover { opacity: 1; color: var(--orange); border-color: var(--orange); }
+  /* footer → style.css */
 
-  /* ── HAMBURGER ── */
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; z-index: 300; }
-  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: all 0.3s; border-radius: 1px; }
-  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  .mobile-nav { display: none; position: fixed; inset: 0; background: rgba(8,14,16,0.98); z-index: 250; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
-  .mobile-nav.open { display: flex; }
-  .mobile-nav a { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 0.12em; color: var(--white); text-decoration: none; transition: color 0.2s; }
-  .mobile-nav a:hover { color: var(--orange); }
-  .mobile-nav .lang-toggle { margin-top: 12px; }
+  /* hamburger + mobile-nav → style.css + components.js */
 
   /* ── LANG TOGGLE ── */
   .lang-toggle { display:flex; border: 1px solid rgba(200,212,214,0.2); }
@@ -654,8 +605,6 @@
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
-    .nav-right .lang-toggle { display: none; }
-    .hamburger { display: flex; }
     .page-header { padding: 80px 24px 40px; }
     .ph-body { grid-template-columns: 1fr; gap: 20px; }
     .ph-meta { align-items: flex-start; }
@@ -670,9 +619,6 @@
     .schedule-section { padding: 80px 0; }
     .schedule-inner { padding: 0 24px; }
     .finished-banner { flex-wrap: wrap; gap: 16px; padding: 20px 24px; }
-    footer { padding: 40px 24px; flex-direction: column; }
-    .footer-info { text-align: center; }
-    .footer-collab { align-items: center; }
   }
 </style>
 </head>
@@ -689,7 +635,7 @@
       <li><a href="#schedule" data-en="Schedule" data-hr="Raspored">Schedule</a></li>
       <li><a href="#judges" data-en="Judges" data-hr="Suci">Judges</a></li>
     </ul>
-    <div class="lang-toggle">
+    <div class="lang-toggle desktop-lang">
       <button class="lang-btn" data-lang="hr" onclick="applyLang('hr')">HR</button>
       <button class="lang-btn active" data-lang="en" onclick="applyLang('en')">EN</button>
     </div>
@@ -697,17 +643,6 @@
   </div>
 </nav>
 
-<!-- MOBILE NAV -->
-<div class="mobile-nav" id="mobile-nav">
-  <a href="index.html" data-en="← Home" data-hr="← Početna">← Home</a>
-  <a href="#results" data-en="Results" data-hr="Rezultati">Results</a>
-  <a href="#gallery" data-en="Gallery" data-hr="Galerija">Gallery</a>
-  <a href="#judges" data-en="Judges" data-hr="Suci">Judges</a>
-  <div class="lang-toggle">
-    <button class="lang-btn" data-lang="hr" onclick="applyLang('hr')">HR</button>
-    <button class="lang-btn active" data-lang="en" onclick="applyLang('en')">EN</button>
-  </div>
-</div>
 
 <!-- PAGE HEADER -->
 <header class="page-header">
@@ -1242,21 +1177,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-collab">
-    <div class="footer-logo">BREAK<span>2</span>FUTURE</div>
-    <div class="footer-x">×</div>
-    <img src="photos/tala-logo.png" alt="Tala Ple(j)s" class="footer-partner-logo">
-  </div>
-  <div class="social-links">
-    <a href="https://www.instagram.com/break2future.hr/" target="_blank" class="social-link">Instagram</a>
-  </div>
-  <div class="footer-info">
-    14–15 March 2026<br>
-    Tala Ple(j)s / Peti Kupe<br>
-    break2future.hr
-  </div>
-</footer>
+<div id="site-footer"></div>
 
 <script>
   // ── Lang ──────────────────────────────────────────
@@ -1272,22 +1193,6 @@
     localStorage.setItem('b2f-lang', lang);
   }
   applyLang(localStorage.getItem('b2f-lang') || 'en');
-
-  // ── Hamburger ─────────────────────────────────────
-  const hamburger = document.getElementById('hamburger');
-  const mobileNav = document.getElementById('mobile-nav');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileNav.classList.toggle('open');
-    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
-  });
-  mobileNav.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      mobileNav.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
 
   // ── Flip cards (click) ────────────────────────────
   document.querySelectorAll('.judge-card-wrap').forEach(card => {
@@ -1345,5 +1250,6 @@
   }, { threshold: 0.12 });
   reveals.forEach(el => observer.observe(el));
 </script>
+<script src="components.js"></script>
 </body>
 </html>

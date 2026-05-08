@@ -1,0 +1,157 @@
+/* ================================================================
+   BREAK2FUTURE — Shared Styles
+   footer + hamburger/mobile-nav used on every page
+   ================================================================ */
+
+/* ── CSS variable fallbacks (each page overrides in its own <style>) ── */
+:root {
+  --orange: #E8490F;
+  --light:  #C8D4D6;
+  --white:  #F0F4F5;
+  --mid:    #111C1F;
+}
+
+/* ── FOOTER ─────────────────────────────────────────────────────── */
+footer {
+  background: var(--mid);
+  padding: 60px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(232,73,15,0.2);
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-collab {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  color: var(--white);
+}
+
+/* both <span> (most pages) and <em> (b2f-2022) */
+.footer-logo span,
+.footer-logo em {
+  color: var(--orange);
+  font-style: normal;
+}
+
+.footer-x {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: var(--light);
+  opacity: 0.3;
+  line-height: 1.6;
+  letter-spacing: 0.1em;
+}
+
+.footer-partner-logo {
+  max-width: 160px;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  display: block;
+}
+
+.footer-info {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--light);
+  opacity: 0.4;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+.social-links { display: flex; gap: 16px; }
+
+.social-link {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--light);
+  text-decoration: none;
+  opacity: 0.5;
+  padding: 8px 16px;
+  border: 1px solid rgba(200,212,214,0.15);
+  transition: opacity 0.2s, color 0.2s, border-color 0.2s;
+}
+.social-link:hover { opacity: 1; color: var(--orange); border-color: var(--orange); }
+
+/* ── HAMBURGER ───────────────────────────────────────────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+  z-index: 300;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 1px;
+  transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE NAV ──────────────────────────────────────────────────── */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(8,14,16,0.98);
+  z-index: 250;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+.mobile-nav.open { display: flex; }
+
+.mobile-nav a {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  letter-spacing: 0.12em;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.mobile-nav a:hover { color: var(--orange); }
+
+.mobile-nav .lang-toggle {
+  margin-top: 12px;
+  border: 1px solid rgba(200,212,214,0.2);
+}
+
+/* ── HIDE DESKTOP LANG ON MOBILE ─────────────────────────────────── */
+/* Add class="desktop-lang" to the lang toggle inside nav/header */
+@media (max-width: 900px) {
+  .desktop-lang { display: none !important; }
+  .hamburger    { display: flex; }
+
+  footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 24px;
+  }
+  .footer-collab { align-items: center; }
+  .footer-info   { text-align: center; }
+}

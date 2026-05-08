@@ -7,6 +7,7 @@
 <meta name="description" content="Break2Future je Zagreb's premier breaking event. Battles, workshops, kultura.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -567,34 +568,7 @@ nav {
 }
 .ig-icon { width: 20px; height: 20px; }
 
-/* ── FOOTER ── */
-footer {
-  background: var(--mid); padding: 60px 48px;
-  display: flex; justify-content: space-between; align-items: center;
-  border-top: 1px solid rgba(232,73,15,0.2);
-  flex-wrap: wrap; gap: 24px;
-}
-.footer-collab { display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
-.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.05em; line-height: 1; color: var(--white); }
-.footer-logo span { color: var(--orange); }
-.footer-x { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--light); opacity: 0.3; line-height: 1.6; letter-spacing: 0.1em; }
-.footer-partner-logo { max-width: 160px; mix-blend-mode: screen; opacity: 0.85; display: block; }
-.footer-info { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 0.2em; color: var(--light); opacity: 0.4; text-align: right; text-transform: uppercase; line-height: 1.8; }
-.social-links { display: flex; gap: 16px; }
-.social-link { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light); text-decoration: none; opacity: 0.5; padding: 8px 16px; border: 1px solid rgba(200,212,214,0.15); transition: opacity 0.2s, color 0.2s; }
-.social-link:hover { opacity: 1; color: var(--orange); border-color: var(--orange); }
-
-/* ── HAMBURGER ── */
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; z-index: 300; }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: all 0.3s; border-radius: 1px; }
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.mobile-nav { display: none; position: fixed; inset: 0; background: rgba(7,9,10,0.98); z-index: 250; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
-.mobile-nav.open { display: flex; }
-.mobile-nav a { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 0.12em; color: var(--white); text-decoration: none; transition: color 0.2s; }
-.mobile-nav a:hover { color: var(--orange); }
-.mobile-nav .lang-toggle { margin-top: 12px; border: 1px solid rgba(200,212,214,0.2); }
+/* footer + hamburger → style.css */
 
 /* ── SCROLL REVEAL ── */
 .reveal {
@@ -624,8 +598,6 @@ footer {
   nav { padding: 18px 24px; }
   .nav-links { display: none; }
   .nav-dropdown-menu { display: none; }
-  .nav-right .lang-toggle { display: none; }
-  .hamburger { display: flex; }
   .hero { padding: 110px 24px 80px; }
   .hero-oct { display: none; }
   .about { grid-template-columns: 1fr; gap: 48px; padding: 80px 24px; }
@@ -633,9 +605,6 @@ footer {
   .archive-grid { grid-template-columns: 1fr 1fr; }
   .archive-inner { padding: 0 24px; }
   .cta-band { padding: 80px 24px; }
-  footer { flex-direction: column; align-items: center; text-align: center; padding: 40px 24px; }
-  .footer-collab { align-items: center; }
-  .footer-info { text-align: center; }
 }
 @media (max-width: 540px) {
   .archive-grid { grid-template-columns: 1fr; }
@@ -673,7 +642,7 @@ footer {
       </li>
       <li><a href="about.html" data-hr="O nama" data-en="About us">O nama</a></li>
     </ul>
-    <div class="lang-toggle">
+    <div class="lang-toggle desktop-lang">
       <button class="lang-btn" data-lang="hr" onclick="setLang('hr')">HR</button>
       <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
     </div>
@@ -681,17 +650,6 @@ footer {
   </div>
 </nav>
 
-<!-- MOBILE NAV -->
-<div class="mobile-nav" id="mobile-nav">
-  <a href="b2f-2026.html">2026</a>
-  <a href="b2f-2025.html">2025</a>
-  <a href="b2f-2022.html">2022</a>
-  <a href="about.html" data-hr="O nama" data-en="About us">About us</a>
-  <div class="lang-toggle">
-    <button class="lang-btn" data-lang="hr" onclick="setLang('hr')">HR</button>
-    <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
-  </div>
-</div>
 
 <!-- HERO — populated by SITE_CONFIG in JS -->
 <section class="hero" id="hero">
@@ -869,21 +827,7 @@ footer {
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-collab">
-    <div class="footer-logo">BREAK<span>2</span>FUTURE</div>
-    <div class="footer-x">×</div>
-    <img src="photos/tala-logo.png" alt="Tala Ple(j)s" class="footer-partner-logo">
-  </div>
-  <div class="social-links">
-    <a href="https://www.instagram.com/break2future.hr/" target="_blank" class="social-link">Instagram</a>
-  </div>
-  <div class="footer-info">
-    Zagreb · Croatia<br>
-    breaking culture<br>
-    break2future.hr
-  </div>
-</footer>
+<div id="site-footer"></div>
 
 <script>
 // ════════════════════════════════════════════════════
@@ -1118,21 +1062,7 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ── Hamburger ─────────────────────────────────────────
-const hamburger = document.getElementById('hamburger');
-const mobileNav = document.getElementById('mobile-nav');
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('open');
-  mobileNav.classList.toggle('open');
-  document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
-});
-mobileNav.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    hamburger.classList.remove('open');
-    mobileNav.classList.remove('open');
-    document.body.style.overflow = '';
-  });
-});
 </script>
+<script src="components.js"></script>
 </body>
 </html>
