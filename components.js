@@ -33,7 +33,7 @@
   <a href="index.html">Home</a>
   <a href="about.html">O Nama</a>
   <div class="mob-dropdown">
-    <button class="mob-dropdown-btn" id="mob-archive-btn">Archive</button>
+    <button class="mob-dropdown-btn" id="mob-archive-btn">Editions</button>
     <div class="mob-dropdown-items" id="mob-archive-items">
       <a href="b2f-2026.html">2026</a>
       <a href="b2f-2025.html">2025</a>
