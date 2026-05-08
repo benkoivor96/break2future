@@ -31,9 +31,10 @@
   navDiv.innerHTML = `
 <div class="mobile-nav" id="mobile-nav">
   <a href="index.html">Home</a>
+  <a href="about.html">O Nama</a>
   <a href="b2f-2026.html">2026</a>
   <a href="b2f-2025.html">2025</a>
-  <a href="b2f-2022.html">2022</a>
+  <a href="b2f-2022.html">Archive</a>
   <div class="lang-toggle">
     <button class="lang-btn" data-lang="hr" id="mob-lang-hr">HR</button>
     <button class="lang-btn" data-lang="en" id="mob-lang-en">EN</button>
