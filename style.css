@@ -140,6 +140,53 @@ footer {
   border: 1px solid rgba(200,212,214,0.2);
 }
 
+/* ── MOBILE NAV DROPDOWN ─────────────────────────────────────── */
+.mob-dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mob-dropdown-btn {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  letter-spacing: 0.12em;
+  color: var(--white);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.2s;
+  padding: 0;
+}
+.mob-dropdown-btn:hover { color: var(--orange); }
+.mob-dropdown-btn::after {
+  content: '▾';
+  font-size: 1rem;
+  display: inline-block;
+  transition: transform 0.25s;
+  line-height: 1;
+}
+.mob-dropdown-btn.open { color: var(--orange); }
+.mob-dropdown-btn.open::after { transform: rotate(180deg); }
+
+.mob-dropdown-items {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding-top: 12px;
+}
+.mob-dropdown-items.open { display: flex; }
+.mob-dropdown-items a {
+  font-size: 1.5rem !important;
+  opacity: 0.55;
+  letter-spacing: 0.15em !important;
+}
+.mob-dropdown-items a:hover { opacity: 1; color: var(--orange); }
+
 /* ── HIDE DESKTOP LANG ON MOBILE ─────────────────────────────────── */
 /* Add class="desktop-lang" to the lang toggle inside nav/header */
 @media (max-width: 900px) {

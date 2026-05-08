@@ -32,9 +32,15 @@
 <div class="mobile-nav" id="mobile-nav">
   <a href="index.html">Home</a>
   <a href="about.html">O Nama</a>
-  <a href="b2f-2026.html">2026</a>
-  <a href="b2f-2025.html">2025</a>
-  <a href="b2f-2022.html">Archive</a>
+  <div class="mob-dropdown">
+    <button class="mob-dropdown-btn" id="mob-archive-btn">Archive</button>
+    <div class="mob-dropdown-items" id="mob-archive-items">
+      <a href="b2f-2026.html">2026</a>
+      <a href="b2f-2025.html">2025</a>
+      <a href="b2f-2024.html">2024</a>
+      <a href="b2f-2022.html">2022</a>
+    </div>
+  </div>
   <div class="lang-toggle">
     <button class="lang-btn" data-lang="hr" id="mob-lang-hr">HR</button>
     <button class="lang-btn" data-lang="en" id="mob-lang-en">EN</button>
@@ -44,6 +50,16 @@
 
   const mobileNav  = document.getElementById('mobile-nav');
   const hamburger  = document.getElementById('hamburger');
+
+  // ── Archive dropdown ────────────────────────────────────────────
+  const archiveBtn   = document.getElementById('mob-archive-btn');
+  const archiveItems = document.getElementById('mob-archive-items');
+  if (archiveBtn) {
+    archiveBtn.addEventListener('click', () => {
+      const isOpen = archiveItems.classList.toggle('open');
+      archiveBtn.classList.toggle('open', isOpen);
+    });
+  }
 
   // Sync active lang state into mobile buttons
   const currentLang = localStorage.getItem('b2f-lang') || 'en';
